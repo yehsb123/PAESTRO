@@ -31,9 +31,11 @@ KO_SYNONYMS: dict[str, list[str]] = {
 }
 
 _IRREVERSIBLE = ("delete", "remove", "uninstall", "prune", "reset", "revert",
-                 "discard", "drop", "publish", "deploy", "destroy", "force")
+                 "discard", "drop", "publish", "deploy", "destroy", "force", "clean",
+                 "삭제", "제거", "초기화", "되돌리", "폐기", "배포", "발행", "덮어")
 _REVERSIBLE = ("fix", "format", "rename", "install", "add", "create", "edit",
-               "apply", "restart", "autofix", "pin", "unpin", "generate")
+               "apply", "restart", "autofix", "pin", "unpin", "generate",
+               "수정", "고치", "생성", "저장", "추가", "바꾸", "커밋", "포맷", "정렬")
 
 
 def _classify(text: str) -> str:
@@ -49,7 +51,9 @@ def enrich(cap: dict[str, Any]) -> dict[str, Any]:
     text = f"{cap.get('intent', '')} {cap.get('id', '')}"
     low = text.lower()
 
-    cap["side_effects"] = _classify(low)
+    # 명시적 side_effects(seed 등)는 보존, 기본값(read_only)만 재분류
+    if cap.get("side_effects", "read_only") in ("", "read_only", None):
+        cap["side_effects"] = _classify(low)
 
     kws: list[str] = []
     for en, kos in KO_SYNONYMS.items():

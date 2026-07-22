@@ -105,9 +105,25 @@ function rank(query, manifests, k = 5) {
 }
 
 const { manifests, stats } = scan();
+
+// seeds/ 의 큐레이션 매니페스트(VS Code 내장 명령 등) 병합 — 스캔으로 못 얻는 built-in 커버리지
+const SEEDS = path.join(__dirname, "..", "seeds");
+if (fs.existsSync(SEEDS)) {
+  for (const f of fs.readdirSync(SEEDS).filter((x) => x.endsWith(".json"))) {
+    try {
+      const seed = JSON.parse(fs.readFileSync(path.join(SEEDS, f), "utf8"));
+      if (seed && Array.isArray(seed.capabilities)) {
+        manifests.push(seed);
+        stats.capabilities += seed.capabilities.length;
+        stats.seeds = (stats.seeds || 0) + seed.capabilities.length;
+      }
+    } catch {}
+  }
+}
+
 fs.writeFileSync(OUT, JSON.stringify(manifests, null, 2));
 console.log("═══ PAESTRO 카탈로그 스캔 (parse 단계) ═══");
-console.log(`확장 ${stats.extensions}개 · 명령 보유 ${stats.withCommands}개 · capability ${stats.capabilities}개`);
+console.log(`확장 ${stats.extensions}개 · 명령 보유 ${stats.withCommands}개 · capability ${stats.capabilities}개 (seed ${stats.seeds || 0})`);
 console.log(`→ ${path.relative(process.cwd(), OUT)} 저장\n`);
 
 for (const query of ["git 로그 그래프", "lint 자동 수정", "docker 컨테이너", "python 디버그"]) {
