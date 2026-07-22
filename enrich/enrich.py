@@ -25,30 +25,10 @@ import re
 import sys
 from pathlib import Path
 
+from safety import classify_side_effects  # 안전 분류 정책 단일 소스
+
 MODEL = os.environ.get("PAESTRO_ENRICH_MODEL", "claude-sonnet-5")  # 최고 품질은 claude-opus-4-8
 BATCH = int(os.environ.get("PAESTRO_ENRICH_BATCH", "15"))
-
-# ── side_effects 규칙 (보수적: 애매하면 더 위험한 쪽으로) ──────────────────
-_IRREVERSIBLE = re.compile(
-    r"\b(delete|remove|reset|revert|discard|drop|destroy|wipe|clean|prune|purge|"
-    r"uninstall|publish|deploy|release|push|force|overwrite|erase|clear\s*all)\b|"
-    r"삭제|제거|초기화|되돌리|배포|발행|덮어",
-    re.I,
-)
-_REVERSIBLE = re.compile(
-    r"\b(fix|format|rename|edit|apply|add|create|generate|write|save|refactor|"
-    r"organize|sort|insert|replace|install|update|move|convert|import|commit|stage)\b|"
-    r"수정|고치|정리|생성|저장|추가|변경|바꾸|이동|커밋",
-    re.I,
-)
-
-
-def classify_side_effects(text: str) -> str:
-    if _IRREVERSIBLE.search(text):
-        return "irreversible"
-    if _REVERSIBLE.search(text):
-        return "reversible"
-    return "read_only"
 
 
 # ── 카탈로그 로딩 & flatten ──────────────────────────────────────────────
