@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.0",
+  "info": { "title": "Petstore", "version": "1.0.0" },
+  "servers": [{ "url": "https://api.petstore.example/v1" }],
+  "paths": {
+    "/pets": {
+      "get": {
+        "operationId": "listPets",
+        "summary": "반려동물 목록을 조회한다",
+        "tags": ["pets"],
+        "parameters": [{ "name": "limit", "in": "query", "schema": { "type": "integer" }, "description": "최대 개수" }]
+      },
+      "post": {
+        "operationId": "createPet",
+        "summary": "반려동물을 등록한다",
+        "tags": ["pets"]
+      }
+    },
+    "/pets/{petId}": {
+      "delete": {
+        "operationId": "deletePet",
+        "summary": "반려동물을 삭제한다",
+        "tags": ["pets"],
+        "parameters": [{ "name": "petId", "in": "path", "required": true, "schema": { "type": "string" } }]
+      }
+    }
+  }
+}
