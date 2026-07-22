@@ -30,7 +30,7 @@ PAESTRO/
 │       ├─ index/                         ✓  [3. 지식] store.py·embedding.py (리랭커 예정)
 │       ├─ orchestrator/                  ✓  [4. 오케스트레이터] pipeline.py 단일-스텝 (planner 예정)
 │       ├─ harness/                       ·  [5. 안전] side_effects 승인 게이트
-│       ├─ adapters/                      ·  [2. 어댑터] rest·mcp·cli 정규화 + LLM 보강
+│       ├─ adapters/                      ·  [2. 어댑터] enrich.py(결정적: side_effects+한국어) ✓ / rest·mcp·cli·LLM보강 예정
 │       └─ llm/                           ·  Claude 클라이언트
 │
 ├─ tools/

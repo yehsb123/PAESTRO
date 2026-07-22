@@ -20,6 +20,7 @@ from typing import Any
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from paestro.adapters import enrich
 from paestro.index import embedding, store
 from paestro.orchestrator import pipeline
 
@@ -47,7 +48,8 @@ class QueryReq(BaseModel):
 
 @app.post("/index")
 def index(req: IndexReq) -> dict[str, int]:
-    n = store.upsert([c.model_dump() for c in req.capabilities])
+    caps = [enrich.enrich(c.model_dump()) for c in req.capabilities]  # [2] 결정적 보강
+    n = store.upsert(caps)
     return {"indexed": n, "total": store.count()}
 
 
