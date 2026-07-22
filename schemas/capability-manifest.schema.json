@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paestro.dev/schemas/capability-manifest.v0.json",
+  "title": "PAESTRO Capability Manifest",
+  "description": "어떤 소스(REST·MCP·CLI·Skill·VS Code 확장)든 이 하나의 형태로 정규화된다. 어댑터의 출력 계약이자 Chroma 색인/실행기의 입력.",
+  "type": "object",
+  "required": ["plugin", "capabilities"],
+  "additionalProperties": false,
+  "properties": {
+    "plugin": {
+      "type": "object",
+      "required": ["id", "version", "runtime"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9._-]+$", "description": "전역 유일 식별자. 예: 'vscode.eslint', 'stripe'" },
+        "displayName": { "type": "string" },
+        "version": { "type": "string" },
+        "runtime": {
+          "type": "string",
+          "enum": ["rest", "mcp", "cli", "graphql", "skill", "vscode"],
+          "description": "실행 런타임. capability의 invocation 형태를 결정한다."
+        },
+        "source": {
+          "type": "object",
+          "description": "이 매니페스트가 어디서 자동 추출됐는지(추적·재색인용).",
+          "properties": {
+            "kind": { "type": "string", "enum": ["marketplace", "openapi", "mcp-manifest", "manual"] },
+            "uri": { "type": "string" },
+            "extractedBy": { "type": "string", "description": "어댑터 버전. 예: 'vscode-adapter@0.1'" }
+          }
+        },
+        "auth": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["none", "apikey", "oauth2", "bearer", "session"] },
+            "scopes": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "sandbox": { "type": "string", "enum": ["none", "recommended", "required"], "default": "recommended" }
+      }
+    },
+
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Chroma 색인의 실제 단위. 플러그인 하나가 여러 capability를 가진다.",
+      "items": { "$ref": "#/$defs/capability" }
+    }
+  },
+
+  "$defs": {
+    "capability": {
+      "type": "object",
+      "required": ["id", "intent", "invocation", "side_effects"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9._-]+$", "description": "예: 'vscode.eslint.fixAllProblems'" },
+
+        "intent": {
+          "type": "string",
+          "description": "이 기능이 하는 일을 자연어 한 문장으로. 임베딩 핵심 재료 + 후보 목록에 표시되는 한 줄 설명."
+        },
+        "keywords": {
+          "type": "array", "items": { "type": "string" },
+          "description": "동의어·다국어(한/영) 검색어. 임베딩 보강."
+        },
+        "when_to_use": { "type": "string", "description": "이 도구를 골라야 하는 상황. 검색 정확도의 관건." },
+        "when_not_to_use": { "type": "string", "description": "혼동하기 쉬운 다른 capability로 유도." },
+
+        "invocation": {
+          "description": "실행기가 실제로 이걸 어떻게 호출하는가. runtime별로 형태가 다르다(oneOf).",
+          "oneOf": [
+            {
+              "title": "vscode",
+              "type": "object",
+              "required": ["type", "command"],
+              "additionalProperties": false,
+              "properties": {
+                "type": { "const": "vscode" },
+                "command": { "type": "string", "description": "commands.executeCommand로 부를 command id. 예: 'eslint.executeAutofix'" },
+                "args_schema": { "type": "object", "description": "command 인자의 JSON Schema(있으면). 대부분 확장은 미제공 → 어댑터가 추정/공란." }
+              }
+            },
+            {
+              "title": "rest",
+              "type": "object",
+              "required": ["type", "method", "path"],
+              "additionalProperties": false,
+              "properties": {
+                "type": { "const": "rest" },
+                "method": { "type": "string", "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"] },
+                "path": { "type": "string" },
+                "base_url": { "type": "string" }
+              }
+            },
+            {
+              "title": "mcp",
+              "type": "object",
+              "required": ["type", "tool"],
+              "additionalProperties": false,
+              "properties": {
+                "type": { "const": "mcp" },
+                "server": { "type": "string" },
+                "tool": { "type": "string" }
+              }
+            },
+            {
+              "title": "cli",
+              "type": "object",
+              "required": ["type", "argv_template"],
+              "additionalProperties": false,
+              "properties": {
+                "type": { "const": "cli" },
+                "argv_template": { "type": "array", "items": { "type": "string" }, "description": "예: ['git', 'log', '--oneline', '{n}']" }
+              }
+            }
+          ]
+        },
+
+        "inputs": {
+          "type": "object",
+          "description": "입력 파라미터 이름 → 타입/설명.",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["string", "integer", "number", "boolean", "object", "array"] },
+              "required": { "type": "boolean", "default": false },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "outputs": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        },
+
+        "side_effects": {
+          "type": "string",
+          "enum": ["none", "read_only", "reversible", "irreversible"],
+          "description": "하네스의 승인 게이트 판단 기준. irreversible이면 실행 전 승인 요구."
+        },
+        "cost_hint": { "type": "string", "description": "대략 비용/지연. 예: '1 api call', 'local instant'" },
+        "depends_on": {
+          "type": "array", "items": { "type": "string" },
+          "description": "선행 capability id. 도구 간 의존 그래프(오케스트레이션 순서)."
+        },
+
+        "examples": {
+          "type": "array",
+          "description": "few-shot 색인 + 실행 힌트.",
+          "items": {
+            "type": "object",
+            "required": ["q"],
+            "properties": {
+              "q": { "type": "string", "description": "사용자 자연어 요구 예시" },
+              "call": { "type": "object", "description": "그때의 실제 인자" }
+            }
+          }
+        },
+
+        "embedding_text": {
+          "type": "string",
+          "description": "색인 파이프라인이 intent+keywords+when_to_use+examples를 합성해 채우는 필드(어댑터는 비워도 됨). 실제 벡터화 대상."
+        }
+      }
+    }
+  }
+}

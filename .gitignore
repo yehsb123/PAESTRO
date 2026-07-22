@@ -1,0 +1,21 @@
+# Node
+node_modules/
+extension/out/
+extension/dist/
+*.vsix
+
+# Python
+engine/.venv/
+.venv/
+__pycache__/
+*.pyc
+
+# PAESTRO 생성물
+catalog.json
+.chroma/
+chroma/
+
+# 기타
+.DS_Store
+*.log
+.env

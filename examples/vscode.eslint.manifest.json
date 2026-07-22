@@ -1,0 +1,51 @@
+{
+  "plugin": {
+    "id": "vscode.eslint",
+    "displayName": "ESLint",
+    "version": "3.0.10",
+    "runtime": "vscode",
+    "source": {
+      "kind": "marketplace",
+      "uri": "dbaeumer.vscode-eslint",
+      "extractedBy": "vscode-adapter@0.1"
+    },
+    "auth": { "type": "none" },
+    "sandbox": "none"
+  },
+  "capabilities": [
+    {
+      "id": "vscode.eslint.fixAll",
+      "intent": "현재 파일의 자동 수정 가능한 린트 문제를 모두 고친다",
+      "keywords": ["린트", "lint", "자동수정", "autofix", "eslint", "코드 정리", "fix problems"],
+      "when_to_use": "저장 전 또는 리뷰 전에 스타일/자동수정 위반을 일괄 정리할 때",
+      "when_not_to_use": "포맷팅만 원하면 editor.action.formatDocument, 규칙 자체 수정은 대상 아님",
+      "invocation": {
+        "type": "vscode",
+        "command": "eslint.executeAutofix",
+        "args_schema": {}
+      },
+      "inputs": {},
+      "outputs": { "modified": { "type": "boolean", "description": "수정 여부" } },
+      "side_effects": "reversible",
+      "cost_hint": "local instant",
+      "depends_on": [],
+      "examples": [
+        { "q": "이 파일 린트 에러 자동으로 다 고쳐줘" },
+        { "q": "eslint 자동수정 돌려줘" }
+      ]
+    },
+    {
+      "id": "vscode.eslint.restart",
+      "intent": "ESLint 언어 서버를 재시작한다",
+      "keywords": ["재시작", "restart", "eslint 서버", "먹통", "reload"],
+      "when_to_use": "설정 변경 후 반영이 안 되거나 ESLint가 응답 없을 때",
+      "when_not_to_use": "일반 린트 수정에는 불필요",
+      "invocation": { "type": "vscode", "command": "eslint.restart" },
+      "inputs": {},
+      "outputs": {},
+      "side_effects": "read_only",
+      "cost_hint": "local ~1s",
+      "examples": [{ "q": "eslint가 반응이 없어, 서버 다시 시작해줘" }]
+    }
+  ]
+}
