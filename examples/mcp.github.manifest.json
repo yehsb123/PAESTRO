@@ -1,0 +1,24 @@
+{
+  "plugin": {
+    "id": "mcp.github",
+    "displayName": "GitHub MCP",
+    "version": "1.0.0",
+    "runtime": "mcp",
+    "source": { "kind": "mcp-manifest", "uri": "github-mcp-server" },
+    "auth": { "type": "oauth2", "scopes": ["repo"] },
+    "sandbox": "recommended"
+  },
+  "capabilities": [
+    {
+      "id": "mcp.github.create_issue",
+      "intent": "GitHub 저장소에 이슈를 생성한다",
+      "keywords": ["이슈", "issue", "github", "생성", "create", "버그 등록"],
+      "when_to_use": "버그나 작업 항목을 저장소 이슈로 등록할 때",
+      "when_not_to_use": "PR 생성은 create_pull_request",
+      "invocation": { "type": "mcp", "server": "github", "tool": "create_issue" },
+      "side_effects": "reversible",
+      "cost_hint": "1 api call",
+      "examples": [{ "q": "이 버그 깃허브 이슈로 올려줘" }]
+    }
+  ]
+}

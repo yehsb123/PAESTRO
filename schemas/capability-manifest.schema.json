@@ -12,7 +12,7 @@
       "required": ["id", "version", "runtime"],
       "additionalProperties": false,
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9._-]+$", "description": "전역 유일 식별자. 예: 'vscode.eslint', 'stripe'" },
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9._-]+$", "description": "전역 유일 식별자. 예: 'vscode.eslint', 'stripe'" },
         "displayName": { "type": "string" },
         "version": { "type": "string" },
         "runtime": {
@@ -54,7 +54,7 @@
       "required": ["id", "intent", "invocation", "side_effects"],
       "additionalProperties": false,
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9._-]+$", "description": "예: 'vscode.eslint.fixAllProblems'" },
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9._-]+$", "description": "예: 'vscode.eslint.executeAutofix' (command는 camelCase)" },
 
         "intent": {
           "type": "string",

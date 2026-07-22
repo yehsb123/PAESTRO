@@ -1,0 +1,24 @@
+{
+  "plugin": {
+    "id": "rest.stripe",
+    "displayName": "Stripe",
+    "version": "2026-03",
+    "runtime": "rest",
+    "source": { "kind": "openapi", "uri": "https://api.stripe.com/openapi.json" },
+    "auth": { "type": "bearer" },
+    "sandbox": "required"
+  },
+  "capabilities": [
+    {
+      "id": "rest.stripe.refund_payment",
+      "intent": "결제를 환불한다",
+      "keywords": ["환불", "refund", "결제취소", "chargeback"],
+      "when_to_use": "이미 성공한 결제를 되돌릴 때",
+      "when_not_to_use": "구독 해지는 cancel_subscription",
+      "invocation": { "type": "rest", "method": "POST", "path": "/v1/refunds", "base_url": "https://api.stripe.com" },
+      "side_effects": "irreversible",
+      "cost_hint": "1 api call",
+      "examples": [{ "q": "김고객 3만원 환불해줘" }]
+    }
+  ]
+}
