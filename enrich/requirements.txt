@@ -1,0 +1,2 @@
+# enrich 배치 (LLM 보강 모드에서만 필요; heuristic 모드는 stdlib만 사용)
+anthropic>=0.40
