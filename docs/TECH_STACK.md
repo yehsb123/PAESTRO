@@ -9,7 +9,7 @@
 | 인터페이스 | **TypeScript + VS Code Extension API** | 마켓플레이스 배포 단위. `vscode.extensions.all`로 타 확장 command를 런타임에 열람, `commands.executeCommand`로 실행 |
 | 엔진 사이드카 | **Python 3.11+ · FastAPI · uvicorn** | 임베딩/Chroma가 Python 우선. 확장이 자식 프로세스로 스폰해 HTTP 호출 |
 | 지식/색인 | **ChromaDB** (PersistentClient, cosine) | 셀프호스팅·로컬 친화·메타필터. 규모 커지면 인터페이스 유지한 채 pgvector/Milvus로 교체 |
-| 임베딩 | **fastembed** + `intfloat/multilingual-e5-small` | ONNX 기반이라 torch 불필요(경량). **다국어** → 한국어 질의로 영어 title 확장 검색 (PoC의 KO↔EN 단절 해결) |
+| 임베딩 | **fastembed** + `paraphrase-multilingual-MiniLM-L12-v2` | ONNX 기반이라 torch 불필요(경량). **다국어** → 한국어 질의로 영어 title 확장 검색 (검증: "포맷"→prettier, "git 로그 그래프"→git-graph). 음차 도메인어(린트)는 #2 LLM 보강으로 보완 |
 | 오케스트레이터 LLM | **Anthropic SDK (Claude)** | 요구 분해·도구 선택·매니페스트 LLM 보강. BYO API 키 |
 | 어댑터 | Node(vscode) · `@modelcontextprotocol/sdk`(mcp) · OpenAPI 파서(rest) | 소스별 정규화 → 공통 매니페스트 |
 

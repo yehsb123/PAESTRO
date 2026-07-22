@@ -31,6 +31,17 @@ export async function retrieve(query: string, k = 5): Promise<Hit[]> {
   return json.hits ?? [];
 }
 
+// [4] 오케스트레이터 — 요구 → 후보. 현재는 검색과 동일, 이후 다중-스텝으로 확장.
+export async function orchestrate(query: string, k = 4): Promise<Hit[]> {
+  const res = await fetch(`${ENGINE}/orchestrate`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ query, k }),
+  });
+  const json = (await res.json()) as { query: string; candidates: Hit[] };
+  return json.candidates ?? [];
+}
+
 export async function health(): Promise<boolean> {
   try {
     const res = await fetch(`${ENGINE}/health`);

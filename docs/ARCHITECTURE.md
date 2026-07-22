@@ -20,15 +20,15 @@ PAESTRO/
 │   ├─ package.json / tsconfig / .vscodeignore  ✓
 │   └─ src/
 │       ├─ extension.ts                   ✓  진입점 (activate, 명령 등록)
-│       ├─ engineClient.ts                ·  엔진 HTTP 클라이언트
+│       ├─ engineClient.ts                ✓  엔진 HTTP 클라이언트 (index·retrieve·orchestrate)
 │       └─ ui/                            ☐  입력·후보메뉴·승인 다이얼로그
 │
 ├─ engine/                                ✓  [엔진 사이드카] Python/FastAPI
 │   ├─ app.py                             ✓  FastAPI 진입점 (현재 색인·검색 인라인)
 │   ├─ requirements.txt                   ✓
 │   └─ paestro/                           ·  파이썬 패키지 (app.py 로직이 이리로 이관)
-│       ├─ index/                         ·  [3. 지식] Chroma + 다국어 임베딩
-│       ├─ orchestrator/                  ·  [4. 오케스트레이터] Plan→…→Verify
+│       ├─ index/                         ✓  [3. 지식] store.py·embedding.py (리랭커 예정)
+│       ├─ orchestrator/                  ✓  [4. 오케스트레이터] pipeline.py 단일-스텝 (planner 예정)
 │       ├─ harness/                       ·  [5. 안전] side_effects 승인 게이트
 │       ├─ adapters/                      ·  [2. 어댑터] rest·mcp·cli 정규화 + LLM 보강
 │       └─ llm/                           ·  Claude 클라이언트
@@ -36,7 +36,7 @@ PAESTRO/
 ├─ tools/
 │   └─ scan.js                            ✓  VS Code 어댑터 PoC (parse, 오프라인)
 │
-└─ registry/                              ☐  [6. 거버넌스] 팀 공유 레지스트리 (후순위)
+└─ registry/                              ·  [6. 거버넌스] 팀 공유 레지스트리 (뼈대 확립)
 ```
 
 ## 노드 ↔ 디렉토리 매핑
