@@ -1,0 +1,17 @@
+{
+  "description": "PAESTRO 검색 정확도 평가용 라벨셋. KO/EN 혼용으로 다국어 임베딩 효과를 측정한다. expected = 정답 capability id(설치 카탈로그에 맞게 조정).",
+  "queries": [
+    { "q": "이 파일 lint 에러 자동으로 다 고쳐줘", "lang": "ko", "expected": ["vscode.eslint.executeAutofix"] },
+    { "q": "fix all lint problems", "lang": "en", "expected": ["vscode.eslint.executeAutofix"] },
+    { "q": "변경사항 전부 되돌려", "lang": "ko", "expected": ["vscode.git.clean"] },
+    { "q": "discard all my changes", "lang": "en", "expected": ["vscode.git.clean"] },
+    { "q": "커밋 기록 보고 싶어", "lang": "ko", "expected": ["vscode.git.viewHistory"] },
+    { "q": "show git history", "lang": "en", "expected": ["vscode.git.viewHistory"] },
+    { "q": "새 터미널 열어줘", "lang": "ko", "expected": ["vscode.workbench.action.terminal.new"] },
+    { "q": "open a new terminal", "lang": "en", "expected": ["vscode.workbench.action.terminal.new"] },
+    { "q": "파일 포맷팅 해줘", "lang": "ko", "expected": ["vscode.editor.action.formatDocument"] },
+    { "q": "format this document", "lang": "en", "expected": ["vscode.editor.action.formatDocument"] },
+    { "q": "심볼로 이동", "lang": "ko", "expected": ["vscode.workbench.action.gotoSymbol"] },
+    { "q": "go to symbol in file", "lang": "en", "expected": ["vscode.workbench.action.gotoSymbol"] }
+  ]
+}
