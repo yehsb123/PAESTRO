@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from fastembed import TextEmbedding
 
-MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+MODEL = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
 _embedder = TextEmbedding(model_name=MODEL)
 
 
