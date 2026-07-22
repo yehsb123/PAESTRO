@@ -2,26 +2,28 @@
   {
     "plugin": { "id": "vscode.eslint", "runtime": "vscode" },
     "capabilities": [
-      {
-        "id": "vscode.eslint.executeAutofix",
-        "intent": "ESLint: Fix all auto-fixable Problems",
-        "invocation": { "type": "vscode", "command": "eslint.executeAutofix" }
-      }
+      { "id": "vscode.eslint.executeAutofix", "intent": "ESLint: Fix all auto-fixable Problems",
+        "invocation": { "type": "vscode", "command": "eslint.executeAutofix" } }
     ]
   },
   {
     "plugin": { "id": "vscode.git", "runtime": "vscode" },
     "capabilities": [
-      {
-        "id": "vscode.git.clean",
-        "intent": "Git: Discard All Changes",
-        "invocation": { "type": "vscode", "command": "git.clean" }
-      },
-      {
-        "id": "vscode.git.viewHistory",
-        "intent": "Git: View History",
-        "invocation": { "type": "vscode", "command": "git.viewHistory" }
-      }
+      { "id": "vscode.git.clean", "intent": "Git: Discard All Changes",
+        "invocation": { "type": "vscode", "command": "git.clean" } },
+      { "id": "vscode.git.viewHistory", "intent": "Git: View History",
+        "invocation": { "type": "vscode", "command": "git.viewHistory" } }
+    ]
+  },
+  {
+    "plugin": { "id": "vscode.builtin", "runtime": "vscode" },
+    "capabilities": [
+      { "id": "vscode.workbench.action.terminal.new", "intent": "Terminal: Create New Terminal",
+        "invocation": { "type": "vscode", "command": "workbench.action.terminal.new" } },
+      { "id": "vscode.editor.action.formatDocument", "intent": "Format Document",
+        "invocation": { "type": "vscode", "command": "editor.action.formatDocument" } },
+      { "id": "vscode.workbench.action.gotoSymbol", "intent": "Go to Symbol in Editor",
+        "invocation": { "type": "vscode", "command": "workbench.action.gotoSymbol" } }
     ]
   }
 ]
