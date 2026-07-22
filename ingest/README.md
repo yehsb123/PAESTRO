@@ -14,6 +14,17 @@ python ingest/openapi_to_manifest.py --in ingest/sample_openapi.json --plugin pe
 - 출력은 `schemas/validate.py` 계약을 통과 → 엔진 `/index`에 투입 가능
 - 의존성 0(stdlib)
 
+## MCP
+
+```bash
+python ingest/mcp_to_manifest.py --in ingest/sample_mcp.json --server github --out ingest/out
+```
+
+- MCP `tools/list` 결과 → tool 1개당 capability 1개
+- `side_effects`: annotations 힌트 우선(readOnlyHint/destructiveHint), 없으면 이름 기반 폴백
+- inputs는 tool의 `inputSchema.properties`에서 추출
+
 ## 로드맵
 - [x] OpenAPI → 매니페스트
-- [ ] MCP 서버 tool 목록 → 매니페스트 (다음)
+- [x] MCP 서버 tool 목록 → 매니페스트
+- [ ] CLI(--help 파싱) → 매니페스트

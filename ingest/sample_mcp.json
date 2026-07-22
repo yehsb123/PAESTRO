@@ -1,0 +1,36 @@
+{
+  "tools": [
+    {
+      "name": "search_repositories",
+      "description": "GitHub 저장소를 검색한다",
+      "inputSchema": {
+        "type": "object",
+        "properties": { "query": { "type": "string", "description": "검색어" } },
+        "required": ["query"]
+      },
+      "annotations": { "readOnlyHint": true }
+    },
+    {
+      "name": "create_issue",
+      "description": "저장소에 이슈를 생성한다",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "repo": { "type": "string" },
+          "title": { "type": "string" }
+        },
+        "required": ["repo", "title"]
+      }
+    },
+    {
+      "name": "delete_branch",
+      "description": "브랜치를 삭제한다",
+      "inputSchema": {
+        "type": "object",
+        "properties": { "branch": { "type": "string" } },
+        "required": ["branch"]
+      },
+      "annotations": { "destructiveHint": true }
+    }
+  ]
+}
