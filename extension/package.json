@@ -1,0 +1,29 @@
+{
+  "name": "paestro",
+  "displayName": "PAESTRO",
+  "description": "자연어로 시키면 맞는 도구(확장 명령·MCP·REST·CLI)를 찾아 실행합니다.",
+  "version": "0.0.1",
+  "publisher": "seongbinyes",
+  "engines": { "vscode": "^1.90.0" },
+  "categories": ["Other", "Machine Learning"],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      { "command": "paestro.ask", "title": "자연어로 도구 실행", "category": "PAESTRO" },
+      { "command": "paestro.reindex", "title": "설치된 확장 재색인", "category": "PAESTRO" }
+    ]
+  },
+  "scripts": {
+    "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "watch": "npm run build -- --watch",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^2.29.0",
+    "esbuild": "^0.21.5",
+    "typescript": "^5.5.4"
+  }
+}

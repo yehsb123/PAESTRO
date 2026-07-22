@@ -1,0 +1,6 @@
+# PAESTRO 엔진 사이드카 (Python)
+fastapi>=0.111
+uvicorn[standard]>=0.30
+chromadb>=0.5.0
+fastembed>=0.3.0        # ONNX 기반 다국어 임베딩 (torch 불필요 → 경량)
+pydantic>=2.7
