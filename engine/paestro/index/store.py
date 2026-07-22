@@ -39,19 +39,43 @@ def upsert(caps: list[dict[str, Any]]) -> int:
     return len(caps)
 
 
+_LEX_WEIGHT = 0.4  # 하이브리드: dense(임베딩) + LEX_WEIGHT * lexical(토큰 겹침)
+
+
 def query(text: str, k: int = 5) -> list[dict[str, Any]]:
-    res = _col.query(query_embeddings=[embedding.embed_query(text)], n_results=k)
+    # 넉넉히 뽑아(dense) 렉시컬 겹침으로 재랭크 → 소형 다국어 모델의 KO 약점 보완.
+    pool = max(k * 6, 30)
+    res = _col.query(
+        query_embeddings=[embedding.embed_query(text)],
+        n_results=pool,
+        include=["metadatas", "documents", "distances"],
+    )
+    ids = res.get("ids", [[]])[0]
+    metas = res["metadatas"][0]
+    docs = res.get("documents", [[]])[0]
+    dists = res["distances"][0]
+
+    qtokens = [t for t in text.lower().split() if len(t) >= 2]
+    scored: list[tuple[float, int]] = []
+    for i in range(len(ids)):
+        doc = f"{(docs[i] or '')} {metas[i].get('intent', '')}".lower()
+        lex = (sum(1 for t in qtokens if t in doc) / len(qtokens)) if qtokens else 0.0
+        dense = 1.0 - float(dists[i])  # cosine distance → similarity
+        scored.append((dense + _LEX_WEIGHT * lex, i))
+    scored.sort(reverse=True)
+
     hits: list[dict[str, Any]] = []
-    for i, cid in enumerate(res.get("ids", [[]])[0]):
-        m = res["metadatas"][0][i]
+    for score, i in scored[:k]:
+        m = metas[i]
         hits.append(
             {
-                "id": cid,
+                "id": ids[i],
                 "intent": m.get("intent"),
                 "plugin": m.get("plugin"),
                 "side_effects": m.get("side_effects"),
                 "invocation": m.get("invocation"),
-                "distance": res["distances"][0][i],
+                "distance": dists[i],
+                "score": round(score, 4),
             }
         )
     return hits
