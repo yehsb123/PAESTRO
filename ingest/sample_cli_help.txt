@@ -1,0 +1,17 @@
+usage: git [--version] [--help] <command> [<args>]
+
+These are common Git commands used in various situations:
+
+Commands:
+  clone      Clone a repository into a new directory
+  add        Add file contents to the index
+  status     Show the working tree status
+  commit     Record changes to the repository
+  log        Show commit logs
+  push       Update remote refs along with associated objects
+  reset      Reset current HEAD to the specified state
+  clean      Remove untracked files from the working tree
+
+Options:
+  -v, --version   Show version
+  -h, --help      Show help

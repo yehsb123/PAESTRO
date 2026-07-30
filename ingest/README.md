@@ -24,7 +24,17 @@ python ingest/mcp_to_manifest.py --in ingest/sample_mcp.json --server github --o
 - `side_effects`: annotations 힌트 우선(readOnlyHint/destructiveHint), 없으면 이름 기반 폴백
 - inputs는 tool의 `inputSchema.properties`에서 추출
 
+## CLI
+
+```bash
+git --help > git_help.txt
+python ingest/cli_to_manifest.py --in git_help.txt --plugin git --out ingest/out
+```
+
+- `Commands:` 섹션의 서브커맨드 파싱(best-effort, git/docker/npm/kubectl 류)
+- `side_effects`: 이름·설명 키워드 기반(push/reset/clean=irreversible 등)
+
 ## 로드맵
 - [x] OpenAPI → 매니페스트
 - [x] MCP 서버 tool 목록 → 매니페스트
-- [ ] CLI(--help 파싱) → 매니페스트
+- [x] CLI(--help 파싱) → 매니페스트
