@@ -13,7 +13,9 @@ python registry/crawl.py --limit 3  # 앞 3개만(빠른 확인)
 - 각 소스 → 알맞은 `ingest/` 변환기 → `safety`로 side_effects 통일 분류 → `schemas/validate.py` 계약 검증 → `catalog.json` 합본.
 - 실패한 소스(브랜치 차이·네트워크)는 건너뛰고 보고. 의존성 0(stdlib).
 
-## 현재 seed (`catalog.json`)
+## 현재 seed
+
+전체 `catalog.json`은 생성물이라 **gitignore**(크롤로 재생성). repo에는 형식 확인용 **`catalog.sample.json`**(플러그인별 3개)만 커밋한다.
 
 실제 크롤 결과 — **8 플러그인 · 996 capability** (VS Code 확장 7 + Swagger REST):
 

@@ -1,0 +1,566 @@
+[
+  {
+    "plugin": {
+      "id": "vscode.eslint",
+      "displayName": "ESLint",
+      "version": "3.0.34",
+      "runtime": "vscode",
+      "source": {
+        "kind": "marketplace",
+        "uri": "dbaeumer.vscode-eslint",
+        "extractedBy": "vscode-pkg-crawler@0.1"
+      },
+      "auth": {
+        "type": "none"
+      },
+      "sandbox": "none"
+    },
+    "capabilities": [
+      {
+        "id": "vscode.eslint.executeAutofix",
+        "intent": "Fix all auto-fixable Problems",
+        "keywords": [
+          "eslint",
+          "executeautofix"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "eslint.executeAutofix"
+        },
+        "inputs": {},
+        "side_effects": "reversible",
+        "embedding_text": "Fix all auto-fixable Problems ESLint eslint.executeAutofix"
+      },
+      {
+        "id": "vscode.eslint.createConfig",
+        "intent": "Create ESLint configuration",
+        "keywords": [
+          "createconfig",
+          "eslint"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "eslint.createConfig"
+        },
+        "inputs": {},
+        "side_effects": "reversible",
+        "embedding_text": "Create ESLint configuration ESLint eslint.createConfig"
+      },
+      {
+        "id": "vscode.eslint.showOutputChannel",
+        "intent": "Show Output Channel",
+        "keywords": [
+          "eslint",
+          "showoutputchannel"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "eslint.showOutputChannel"
+        },
+        "inputs": {},
+        "side_effects": "read_only",
+        "embedding_text": "Show Output Channel ESLint eslint.showOutputChannel"
+      }
+    ]
+  },
+  {
+    "plugin": {
+      "id": "vscode.prettier",
+      "displayName": "Prettier - Code formatter",
+      "version": "12.4.0",
+      "runtime": "vscode",
+      "source": {
+        "kind": "marketplace",
+        "uri": "esbenp.prettier-vscode",
+        "extractedBy": "vscode-pkg-crawler@0.1"
+      },
+      "auth": {
+        "type": "none"
+      },
+      "sandbox": "none"
+    },
+    "capabilities": [
+      {
+        "id": "vscode.prettier.createConfigFile",
+        "intent": "Prettier: Create Configuration File",
+        "keywords": [
+          "createconfigfile",
+          "prettier"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "prettier.createConfigFile"
+        },
+        "inputs": {},
+        "side_effects": "reversible",
+        "embedding_text": "Prettier: Create Configuration File prettier.createConfigFile"
+      },
+      {
+        "id": "vscode.prettier.forceFormatDocument",
+        "intent": "Format Document (Forced)",
+        "keywords": [
+          "forceformatdocument",
+          "prettier"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "prettier.forceFormatDocument"
+        },
+        "inputs": {},
+        "side_effects": "reversible",
+        "embedding_text": "Format Document (Forced) prettier.forceFormatDocument"
+      }
+    ]
+  },
+  {
+    "plugin": {
+      "id": "vscode.gitlens",
+      "displayName": "GitLens — Git supercharged",
+      "version": "19.0.1",
+      "runtime": "vscode",
+      "source": {
+        "kind": "marketplace",
+        "uri": "eamodio.gitlens",
+        "extractedBy": "vscode-pkg-crawler@0.1"
+      },
+      "auth": {
+        "type": "none"
+      },
+      "sandbox": "none"
+    },
+    "capabilities": [
+      {
+        "id": "vscode.gitlens.addAuthors",
+        "intent": "Add Co-authors...",
+        "keywords": [
+          "addauthors",
+          "gitlens"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "gitlens.addAuthors"
+        },
+        "inputs": {},
+        "side_effects": "reversible",
+        "embedding_text": "Add Co-authors... GitLens gitlens.addAuthors"
+      },
+      {
+        "id": "vscode.gitlens.agents.focusSessionWorktreeInGraph",
+        "intent": "Focus in Commit Graph",
+        "keywords": [
+          "agents",
+          "focussessionworktreeingraph",
+          "gitlens"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "gitlens.agents.focusSessionWorktreeInGraph"
+        },
+        "inputs": {},
+        "side_effects": "reversible",
+        "embedding_text": "Focus in Commit Graph gitlens.agents.focusSessionWorktreeInGraph"
+      },
+      {
+        "id": "vscode.gitlens.agents.installHooks",
+        "intent": "Install GitKraken Hooks for All AI Agents",
+        "keywords": [
+          "agents",
+          "gitlens",
+          "installhooks"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "gitlens.agents.installHooks"
+        },
+        "inputs": {},
+        "side_effects": "reversible",
+        "embedding_text": "Install GitKraken Hooks for All AI Agents GitLens gitlens.agents.installHooks"
+      }
+    ]
+  },
+  {
+    "plugin": {
+      "id": "vscode.python",
+      "displayName": "Python",
+      "version": "2026.7.0-dev",
+      "runtime": "vscode",
+      "source": {
+        "kind": "marketplace",
+        "uri": "ms-python.python",
+        "extractedBy": "vscode-pkg-crawler@0.1"
+      },
+      "auth": {
+        "type": "none"
+      },
+      "sandbox": "none"
+    },
+    "capabilities": [
+      {
+        "id": "vscode.python.createNewFile",
+        "intent": "New Python File",
+        "keywords": [
+          "createnewfile",
+          "python"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "python.createNewFile"
+        },
+        "inputs": {},
+        "side_effects": "read_only",
+        "embedding_text": "New Python File Python python.createNewFile"
+      },
+      {
+        "id": "vscode.python.copyTestId",
+        "intent": "Copy Test Id",
+        "keywords": [
+          "copytestid",
+          "python"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "python.copyTestId"
+        },
+        "inputs": {},
+        "side_effects": "read_only",
+        "embedding_text": "Copy Test Id Python python.copyTestId"
+      },
+      {
+        "id": "vscode.python.analysis.restartLanguageServer",
+        "intent": "Restart Language Server",
+        "keywords": [
+          "analysis",
+          "python",
+          "restartlanguageserver"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "python.analysis.restartLanguageServer"
+        },
+        "inputs": {},
+        "side_effects": "read_only",
+        "embedding_text": "Restart Language Server Python python.analysis.restartLanguageServer"
+      }
+    ]
+  },
+  {
+    "plugin": {
+      "id": "vscode.vim",
+      "displayName": "Vim",
+      "version": "1.32.4",
+      "runtime": "vscode",
+      "source": {
+        "kind": "marketplace",
+        "uri": "vscodevim.vim",
+        "extractedBy": "vscode-pkg-crawler@0.1"
+      },
+      "auth": {
+        "type": "none"
+      },
+      "sandbox": "none"
+    },
+    "capabilities": [
+      {
+        "id": "vscode.toggleVim",
+        "intent": "Vim: Toggle Vim Mode",
+        "keywords": [
+          "togglevim"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "toggleVim"
+        },
+        "inputs": {},
+        "side_effects": "read_only",
+        "embedding_text": "Vim: Toggle Vim Mode toggleVim"
+      },
+      {
+        "id": "vscode.vim.showQuickpickCmdLine",
+        "intent": "Vim: Show Command Line",
+        "keywords": [
+          "showquickpickcmdline",
+          "vim"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "vim.showQuickpickCmdLine"
+        },
+        "inputs": {},
+        "side_effects": "read_only",
+        "embedding_text": "Vim: Show Command Line vim.showQuickpickCmdLine"
+      },
+      {
+        "id": "vscode.vim.editVimrc",
+        "intent": "Vim: Edit .vimrc",
+        "keywords": [
+          "editvimrc",
+          "vim"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "vim.editVimrc"
+        },
+        "inputs": {},
+        "side_effects": "reversible",
+        "embedding_text": "Vim: Edit .vimrc vim.editVimrc"
+      }
+    ]
+  },
+  {
+    "plugin": {
+      "id": "vscode.gitgraph",
+      "displayName": "Git Graph",
+      "version": "1.30.0",
+      "runtime": "vscode",
+      "source": {
+        "kind": "marketplace",
+        "uri": "mhutchie.git-graph",
+        "extractedBy": "vscode-pkg-crawler@0.1"
+      },
+      "auth": {
+        "type": "none"
+      },
+      "sandbox": "none"
+    },
+    "capabilities": [
+      {
+        "id": "vscode.git-graph.view",
+        "intent": "View Git Graph (git log)",
+        "keywords": [
+          "git",
+          "graph",
+          "view"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "git-graph.view"
+        },
+        "inputs": {},
+        "side_effects": "read_only",
+        "embedding_text": "View Git Graph (git log) Git Graph git-graph.view"
+      },
+      {
+        "id": "vscode.git-graph.addGitRepository",
+        "intent": "Add Git Repository...",
+        "keywords": [
+          "addgitrepository",
+          "git",
+          "graph"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "git-graph.addGitRepository"
+        },
+        "inputs": {},
+        "side_effects": "reversible",
+        "embedding_text": "Add Git Repository... Git Graph git-graph.addGitRepository"
+      },
+      {
+        "id": "vscode.git-graph.clearAvatarCache",
+        "intent": "Clear Avatar Cache",
+        "keywords": [
+          "clearavatarcache",
+          "git",
+          "graph"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "git-graph.clearAvatarCache"
+        },
+        "inputs": {},
+        "side_effects": "read_only",
+        "embedding_text": "Clear Avatar Cache Git Graph git-graph.clearAvatarCache"
+      }
+    ]
+  },
+  {
+    "plugin": {
+      "id": "vscode.rest-client",
+      "displayName": "REST Client",
+      "version": "0.26.0",
+      "runtime": "vscode",
+      "source": {
+        "kind": "marketplace",
+        "uri": "humao.rest-client",
+        "extractedBy": "vscode-pkg-crawler@0.1"
+      },
+      "auth": {
+        "type": "none"
+      },
+      "sandbox": "none"
+    },
+    "capabilities": [
+      {
+        "id": "vscode.rest-client.request",
+        "intent": "Send Request",
+        "keywords": [
+          "client",
+          "request",
+          "rest"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "rest-client.request"
+        },
+        "inputs": {},
+        "side_effects": "read_only",
+        "embedding_text": "Send Request Rest Client rest-client.request"
+      },
+      {
+        "id": "vscode.rest-client.rerun-last-request",
+        "intent": "Rerun Last Request",
+        "keywords": [
+          "client",
+          "last",
+          "request",
+          "rerun",
+          "rest"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "rest-client.rerun-last-request"
+        },
+        "inputs": {},
+        "side_effects": "read_only",
+        "embedding_text": "Rerun Last Request Rest Client rest-client.rerun-last-request"
+      },
+      {
+        "id": "vscode.rest-client.cancel-request",
+        "intent": "Cancel Request",
+        "keywords": [
+          "cancel",
+          "client",
+          "request",
+          "rest"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "vscode",
+          "command": "rest-client.cancel-request"
+        },
+        "inputs": {},
+        "side_effects": "read_only",
+        "embedding_text": "Cancel Request Rest Client rest-client.cancel-request"
+      }
+    ]
+  },
+  {
+    "plugin": {
+      "id": "rest.petstore",
+      "displayName": "petstore",
+      "version": "1.0.27",
+      "runtime": "rest",
+      "source": {
+        "kind": "openapi"
+      },
+      "auth": {
+        "type": "bearer"
+      },
+      "sandbox": "required"
+    },
+    "capabilities": [
+      {
+        "id": "rest.petstore.updatePet",
+        "intent": "Update an existing pet.",
+        "keywords": [
+          "pet",
+          "updatepet"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "rest",
+          "method": "PUT",
+          "path": "/pet",
+          "base_url": "/api/v3"
+        },
+        "inputs": {},
+        "side_effects": "reversible",
+        "embedding_text": "Update an existing pet. pet updatePet"
+      },
+      {
+        "id": "rest.petstore.addPet",
+        "intent": "Add a new pet to the store.",
+        "keywords": [
+          "addpet",
+          "pet"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "rest",
+          "method": "POST",
+          "path": "/pet",
+          "base_url": "/api/v3"
+        },
+        "inputs": {},
+        "side_effects": "reversible",
+        "embedding_text": "Add a new pet to the store. pet addPet"
+      },
+      {
+        "id": "rest.petstore.findPetsByStatus",
+        "intent": "Finds Pets by status.",
+        "keywords": [
+          "findpetsbystatus",
+          "pet"
+        ],
+        "when_to_use": "",
+        "when_not_to_use": "",
+        "invocation": {
+          "type": "rest",
+          "method": "GET",
+          "path": "/pet/findByStatus",
+          "base_url": "/api/v3"
+        },
+        "inputs": {
+          "status": {
+            "type": "string",
+            "required": true,
+            "description": "Status values that need to be considered for filter"
+          }
+        },
+        "side_effects": "read_only",
+        "embedding_text": "Finds Pets by status. pet findPetsByStatus"
+      }
+    ]
+  }
+]
