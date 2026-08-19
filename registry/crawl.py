@@ -27,6 +27,7 @@ for sub in ("ingest", "schemas", "enrich"):
 
 import openapi_to_manifest as oa  # noqa: E402
 import vscode_pkg_to_manifest as vs  # noqa: E402
+from ko_augment import augment as ko_augment  # noqa: E402
 from safety import classify_side_effects  # noqa: E402
 from validate import validate_manifest  # noqa: E402
 
@@ -59,6 +60,7 @@ def fetch_vscode(repo: str):
 def enrich_safety(manifest: dict) -> dict:
     for c in manifest["capabilities"]:
         c["side_effects"] = classify_side_effects(c.get("embedding_text") or c.get("intent", ""))
+        ko_augment(c)  # 한국어 동의어 주입 → KO 검색 개선
     return manifest
 
 

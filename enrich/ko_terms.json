@@ -1,0 +1,21 @@
+{
+  "_comment": "영어 dev 용어 → 한국어 동의어. 크롤한 영어 embedding_text에 주입해 한국어 질의 검색을 개선(API 불필요).",
+  "lint": ["린트"], "commit": ["커밋"], "branch": ["브랜치"], "merge": ["병합", "머지"],
+  "rebase": ["리베이스"], "stash": ["스태시", "임시저장"], "cherry": ["체리"], "pick": ["픽", "선택"],
+  "diff": ["비교", "차이", "변경점"], "compare": ["비교"], "blame": ["블레임", "책임"],
+  "format": ["포맷", "서식", "정렬"], "fix": ["수정", "고치기"], "revert": ["되돌리기"],
+  "reset": ["초기화"], "delete": ["삭제"], "remove": ["제거"], "clean": ["정리"],
+  "push": ["푸시", "밀어넣기"], "pull": ["풀", "가져오기"], "fetch": ["가져오기"],
+  "clone": ["복제"], "checkout": ["체크아웃"], "tag": ["태그"], "graph": ["그래프"],
+  "history": ["기록", "히스토리", "이력"], "log": ["로그"], "search": ["검색", "찾기"],
+  "find": ["찾기"], "open": ["열기"], "close": ["닫기"], "toggle": ["토글", "전환"],
+  "show": ["표시", "보기"], "hide": ["숨기기"], "view": ["보기"], "select": ["선택"],
+  "file": ["파일"], "folder": ["폴더"], "line": ["줄", "라인"], "column": ["열"],
+  "terminal": ["터미널"], "debug": ["디버그", "디버깅"], "run": ["실행"], "test": ["테스트"],
+  "python": ["파이썬"], "interpreter": ["인터프리터"], "environment": ["환경"],
+  "remote": ["원격"], "workspace": ["워크스페이스", "작업공간"], "settings": ["설정"],
+  "install": ["설치"], "uninstall": ["제거"], "update": ["업데이트", "갱신"],
+  "copy": ["복사"], "paste": ["붙여넣기"], "rename": ["이름변경"], "move": ["이동"],
+  "create": ["생성", "만들기"], "add": ["추가"], "annotations": ["주석"], "revision": ["리비전"],
+  "conflict": ["충돌"], "restore": ["복원"], "publish": ["배포", "발행"], "deploy": ["배포"]
+}
