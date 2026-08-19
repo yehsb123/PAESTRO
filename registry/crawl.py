@@ -58,6 +58,30 @@ def fetch_vscode(repo: str):
     return None, None
 
 
+def crawl_apiguru(providers: list[str], cap: int):
+    """apis.guru(수천 개 실제 OpenAPI 디렉토리)에서 지정 provider 스펙 크롤 → REST 매니페스트."""
+    idx = fetch_json("https://api.apis.guru/v2/list.json", timeout=40)
+    out = []
+    for prov in providers:
+        entry = idx.get(prov)
+        if not entry:
+            continue
+        vs = entry.get("versions", {})
+        ver = vs.get(entry.get("preferred")) or (next(iter(vs.values()), {}) if vs else {})
+        url = ver.get("swaggerUrl")
+        if not url:
+            continue
+        try:
+            spec = fetch_json(url, timeout=40)
+        except Exception:
+            continue
+        m = oa.convert(spec, re.sub(r"[^A-Za-z0-9]", "", prov.split(".")[0]), "")
+        m["capabilities"] = m["capabilities"][:cap]
+        if m["capabilities"]:
+            out.append((prov, m))
+    return out
+
+
 def crawl_mcp(url: str, limit: int) -> dict:
     """공식 MCP 레지스트리에서 서버 목록 크롤 → 서버 단위 capability(계층 라우팅용)."""
     servers, cursor = [], None
@@ -142,6 +166,18 @@ def main() -> int:
                 manifests.append(m)
         except Exception as e:
             rows.append((f"openapi:{s['name']}", f"FAIL {type(e).__name__}", 0))
+
+    ag = sources.get("apiguru")
+    if ag and ag.get("providers"):
+        try:
+            for prov, m in crawl_apiguru(ag["providers"], ag.get("cap", 30)):
+                m = enrich_safety(m)
+                ok = not validate_manifest(m)
+                rows.append((f"apiguru:{prov}", "OK" if ok else "INVALID", len(m["capabilities"])))
+                if ok:
+                    manifests.append(m)
+        except Exception as e:
+            rows.append(("apiguru", f"FAIL {type(e).__name__}", 0))
 
     mcp_cfg = sources.get("mcp")
     if mcp_cfg and mcp_cfg.get("url"):

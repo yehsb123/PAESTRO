@@ -21,5 +21,6 @@
   "openapi": [
     { "name": "petstore", "url": "https://petstore3.swagger.io/api/v3/openapi.json" }
   ],
-  "mcp": { "url": "https://registry.modelcontextprotocol.io/v0/servers", "limit": 80 }
+  "mcp": { "url": "https://registry.modelcontextprotocol.io/v0/servers", "limit": 80 },
+  "apiguru": { "providers": ["stripe.com", "slack.com", "notion.com", "digitalocean.com", "twilio.com", "github.com"], "cap": 40 }
 }
