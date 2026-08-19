@@ -60,7 +60,18 @@ def search(query: str, caps: list[dict], k: int) -> list[dict]:
         if score:
             scored.append((score, c))
     scored.sort(key=lambda x: -x[0])
-    return [c for _, c in scored[:k]]
+    # 같은 의도(intent) 중복 후보 제거 → 번호 목록 깔끔하게
+    seen: set[str] = set()
+    out = []
+    for _, c in scored:
+        key = re.sub(r"\W+", "", (c.get("intent") or "").lower())
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(c)
+        if len(out) >= k:
+            break
+    return out
 
 
 def main() -> int:
