@@ -8,7 +8,15 @@
     { "name": "go", "repo": "golang/vscode-go" },
     { "name": "vim", "repo": "VSCodeVim/Vim" },
     { "name": "gitgraph", "repo": "mhutchie/vscode-git-graph" },
-    { "name": "rest-client", "repo": "Huachao/vscode-restclient" }
+    { "name": "rest-client", "repo": "Huachao/vscode-restclient" },
+    { "name": "markdown-aio", "repo": "yzhang-gh/vscode-markdown" },
+    { "name": "error-lens", "repo": "usernamehw/vscode-error-lens" },
+    { "name": "code-runner", "repo": "formulahendry/vscode-code-runner" },
+    { "name": "yaml", "repo": "redhat-developer/vscode-yaml" },
+    { "name": "pr-github", "repo": "microsoft/vscode-pull-request-github" },
+    { "name": "hexeditor", "repo": "microsoft/vscode-hexeditor" },
+    { "name": "live-server", "repo": "ritwickdey/vscode-live-server" },
+    { "name": "todo-tree", "repo": "Gruntfuggly/todo-tree" }
   ],
   "openapi": [
     { "name": "petstore", "url": "https://petstore3.swagger.io/api/v3/openapi.json" }
