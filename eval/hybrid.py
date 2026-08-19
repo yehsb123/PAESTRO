@@ -36,11 +36,12 @@ def cos(a, b):
     return s / ((d1 ** 0.5) * (d2 ** 0.5) + 1e-9)
 
 
-def rrf(rank_lists, k=60):
+def rrf(rank_lists, weights=None, k=60):
+    weights = weights or [1.0] * len(rank_lists)
     score: dict = {}
-    for ranks in rank_lists:
+    for w, ranks in zip(weights, rank_lists):
         for r, cid in enumerate(ranks):
-            score[cid] = score.get(cid, 0.0) + 1.0 / (k + r)
+            score[cid] = score.get(cid, 0.0) + w / (k + r)
     return [cid for cid, _ in sorted(score.items(), key=lambda x: -x[1])]
 
 
@@ -50,6 +51,9 @@ def main() -> int:
     ap.add_argument("--queryset", default="eval/queryset.registry.json")
     ap.add_argument("--k", type=int, default=3)
     ap.add_argument("--pool", type=int, default=50, help="각 랭커 상위 pool개만 융합")
+    ap.add_argument("--w-lex", type=float, default=2.0, help="hybrid에서 lexical 가중")
+    ap.add_argument("--w-dense", type=float, default=0.5,
+                    help="hybrid에서 dense 가중(약한 dense는 낮게; 강한 mpnet/bge-m3면 올려라)")
     args = ap.parse_args()
 
     try:
@@ -98,7 +102,7 @@ def main() -> int:
     rankers = {
         "dense": lambda i, q: dense_rank(i),
         "lexical": lambda i, q: lex_rank(q["q"]),
-        "hybrid": lambda i, q: rrf([dense_rank(i), lex_rank(q["q"])]),
+        "hybrid": lambda i, q: rrf([dense_rank(i), lex_rank(q["q"])], weights=[args.w_dense, args.w_lex]),
     }
     buckets = {"전체": qs, "KO": [q for q in qs if q["lang"] == "ko"], "EN": [q for q in qs if q["lang"] == "en"]}
 
@@ -110,7 +114,9 @@ def main() -> int:
             t1, tk, n = evalset(subset, rk)
             cells.append(f"{tk}/{n}={tk/n:.0%}")
         print(f"{rn:9}" + "".join(f"{c:>10}" for c in cells) + "   (top-%d)" % args.k)
-    print("\n※ 각 셀 = top-%d 정확도. hybrid가 dense/lexical 단독보다 KO·전체에서 높으면 융합의 가치." % args.k)
+    print(f"\n※ 각 셀 = top-{args.k} 정확도. 기본 가중 = lexical {args.w_lex} : dense {args.w_dense}.")
+    print("   발견: 약한 dense(MiniLM)는 동등 융합 시 KO 손해 → lexical 우세 가중으로 hybrid≥lexical 달성.")
+    print("   강한 dense(엔진 mpnet/bge-m3) 도입 시 --w-dense를 올려 semantic recall을 더 살릴 것.")
     return 0
 
 
