@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -55,6 +56,50 @@ def fetch_vscode(repo: str):
             pass
         return pkg, nls
     return None, None
+
+
+def crawl_mcp(url: str, limit: int) -> dict:
+    """공식 MCP 레지스트리에서 서버 목록 크롤 → 서버 단위 capability(계층 라우팅용)."""
+    servers, cursor = [], None
+    while len(servers) < limit:
+        u = url + "?limit=50" + (f"&cursor={cursor}" if cursor else "")
+        try:
+            data = fetch_json(u)
+        except Exception:
+            break
+        batch = data.get("servers", [])
+        if not batch:
+            break
+        servers.extend(batch)
+        meta = data.get("metadata") or {}
+        cursor = meta.get("next_cursor") or meta.get("nextCursor")
+        if not cursor:
+            break
+    caps, seen = [], set()
+    for s in servers[:limit]:
+        srv = s.get("server", s)
+        name = srv.get("name", "")
+        if not name or name in seen:
+            continue
+        seen.add(name)
+        desc = srv.get("description") or srv.get("title") or name
+        caps.append({
+            "id": "mcp." + re.sub(r"[^A-Za-z0-9._-]", "-", name),
+            "intent": desc[:120],
+            "keywords": [],
+            "when_to_use": "",
+            "when_not_to_use": "",
+            "invocation": {"type": "mcp", "server": name, "tool": "*"},
+            "inputs": {},
+            "side_effects": "read_only",
+            "embedding_text": f"{srv.get('title', '')} {desc} {name}".strip(),
+        })
+    return {
+        "plugin": {"id": "mcp.registry", "displayName": "MCP Registry", "version": "0",
+                   "runtime": "mcp", "source": {"kind": "mcp-manifest"},
+                   "auth": {"type": "none"}, "sandbox": "recommended"},
+        "capabilities": caps,
+    }
 
 
 def enrich_safety(manifest: dict) -> dict:
@@ -97,6 +142,17 @@ def main() -> int:
                 manifests.append(m)
         except Exception as e:
             rows.append((f"openapi:{s['name']}", f"FAIL {type(e).__name__}", 0))
+
+    mcp_cfg = sources.get("mcp")
+    if mcp_cfg and mcp_cfg.get("url"):
+        try:
+            m = enrich_safety(crawl_mcp(mcp_cfg["url"], mcp_cfg.get("limit", 50)))
+            ok = not validate_manifest(m)
+            rows.append(("mcp:registry", "OK" if ok else "INVALID", len(m["capabilities"])))
+            if ok:
+                manifests.append(m)
+        except Exception as e:
+            rows.append(("mcp:registry", f"FAIL {type(e).__name__}", 0))
 
     all_caps = [c for m in manifests for c in m["capabilities"]]
     out = ROOT / args.out
