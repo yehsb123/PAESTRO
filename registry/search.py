@@ -29,7 +29,8 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def tokens(s: str) -> list[str]:
-    return [t for t in re.split(r"[\s._:/!-]+", (s or "").lower()) if len(t) > 1]
+    s = re.sub(r"([a-z0-9])([A-Z])", r"\1 \2", s or "")  # camelCase 분해
+    return [t for t in re.split(r"[\s._:/!-]+", s.lower()) if len(t) > 1]
 
 
 def load_catalog() -> list[dict]:

@@ -17,6 +17,12 @@ def _nls(s, nls: dict):
     return s
 
 
+def _toks(s: str) -> list[str]:
+    """구분자 + camelCase 분해. 'diffWithNext' → [diff, with, next] (검색 매칭 개선)."""
+    s = re.sub(r"([a-z0-9])([A-Z])", r"\1 \2", s or "")
+    return [t for t in re.split(r"[\s._:/!-]+", s.lower()) if len(t) > 1]
+
+
 def convert(pkg: dict, nls: dict | None = None, plugin: str | None = None) -> dict:
     nls = nls or {}
     name = str(pkg.get("name", ""))
@@ -42,14 +48,13 @@ def convert(pkg: dict, nls: dict | None = None, plugin: str | None = None) -> di
         caps.append({
             "id": f"vscode.{cmd}",
             "intent": title,
-            "keywords": sorted({*(category.lower().split() if category else []),
-                                *re.split(r"[\s._:/-]+", cmd.lower())} - {""})[:8],
+            "keywords": sorted({*_toks(category), *_toks(cmd), *_toks(title)})[:10],
             "when_to_use": "",
             "when_not_to_use": "",
             "invocation": {"type": "vscode", "command": cmd},
             "inputs": {},
             "side_effects": "read_only",  # crawl.py가 safety로 재분류
-            "embedding_text": " ".join(x for x in [title, category, cmd] if x),
+            "embedding_text": " ".join(x for x in [title, category, " ".join(_toks(cmd))] if x),
         })
     return {
         "plugin": {
