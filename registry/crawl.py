@@ -26,6 +26,7 @@ ROOT = Path(__file__).resolve().parent.parent
 for sub in ("ingest", "schemas", "enrich"):
     sys.path.insert(0, str(ROOT / sub))
 
+import cli_to_manifest as cli  # noqa: E402
 import openapi_to_manifest as oa  # noqa: E402
 import vscode_pkg_to_manifest as vs  # noqa: E402
 from ko_augment import augment as ko_augment  # noqa: E402
@@ -166,6 +167,21 @@ def main() -> int:
                 manifests.append(m)
         except Exception as e:
             rows.append((f"openapi:{s['name']}", f"FAIL {type(e).__name__}", 0))
+
+    cli_cfg = sources.get("cli")
+    if cli_cfg and cli_cfg.get("dir"):
+        cdir = ROOT / cli_cfg["dir"]
+        for f in sorted(cdir.glob("*.txt")) if cdir.exists() else []:
+            name = f.stem
+            subs = cli.parse_subcommands(f.read_text(encoding="utf-8", errors="replace"))
+            if not subs:
+                rows.append((f"cli:{name}", "no-commands", 0))
+                continue
+            m = enrich_safety(cli.convert(subs, name, name))
+            ok = not validate_manifest(m)
+            rows.append((f"cli:{name}", "OK" if ok else "INVALID", len(m["capabilities"])))
+            if ok:
+                manifests.append(m)
 
     ag = sources.get("apiguru")
     if ag and ag.get("providers"):

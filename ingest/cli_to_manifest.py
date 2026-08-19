@@ -14,7 +14,9 @@ import argparse
 import re
 from pathlib import Path
 
-_HEADER = re.compile(r"^\s*(available\s+)?(sub)?commands:?\s*$", re.I)
+# 다양한 헤더 형식: "Commands:", "Available Commands:", "CORE COMMANDS",
+# "Basic Commands (Beginner):", git의 "... common Git commands ...:" 등
+_HEADER = re.compile(r"^[A-Za-z][A-Za-z ()]*commands[A-Za-z ()]*:?\s*$", re.I)
 _OTHER_HEADER = re.compile(r"^\S.*:\s*$")  # 'Options:', 'Flags:' 등 다른 섹션 시작
 _ROW = re.compile(r"^\s+([a-zA-Z][\w:-]*)\s{2,}(\S.*)$")
 
@@ -60,6 +62,7 @@ def parse_subcommands(text: str) -> list[tuple[str, str]]:
 def convert(subs: list[tuple[str, str]], plugin: str, binary: str) -> dict:
     caps = []
     for name, desc in subs:
+        name = name.rstrip(":")  # gh 등 'auth:' 형식의 구분 콜론 제거
         cid = f"cli.{plugin}." + re.sub(r"[^A-Za-z0-9._-]", "_", name)
         caps.append({
             "id": cid,
