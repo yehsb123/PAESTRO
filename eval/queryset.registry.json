@@ -1,0 +1,19 @@
+{
+  "description": "크롤한 실제 레지스트리(catalog.json)에 대한 KO/EN 평가셋. 한국어 질의가 영어 명령을 찾는지(다국어 임베딩) 실데이터로 측정.",
+  "queries": [
+    { "q": "린트 자동 수정", "lang": "ko", "expected": ["vscode.eslint.executeAutofix"] },
+    { "q": "fix all lint problems", "lang": "en", "expected": ["vscode.eslint.executeAutofix"] },
+    { "q": "체리픽 커밋", "lang": "ko", "expected": ["vscode.gitlens.git.cherryPick", "vscode.gitlens.graph.cherryPick"] },
+    { "q": "cherry pick a commit", "lang": "en", "expected": ["vscode.gitlens.git.cherryPick", "vscode.gitlens.graph.cherryPick"] },
+    { "q": "파일 블레임 토글", "lang": "ko", "expected": ["vscode.gitlens.toggleFileBlame"] },
+    { "q": "toggle blame annotations", "lang": "en", "expected": ["vscode.gitlens.toggleFileBlame"] },
+    { "q": "강제로 문서 포맷", "lang": "ko", "expected": ["vscode.prettier.forceFormatDocument"] },
+    { "q": "force format document", "lang": "en", "expected": ["vscode.prettier.forceFormatDocument"] },
+    { "q": "파이썬 인터프리터 선택", "lang": "ko", "expected": ["vscode.python.setInterpreter"] },
+    { "q": "select python interpreter", "lang": "en", "expected": ["vscode.python.setInterpreter"] },
+    { "q": "깃 그래프 보기", "lang": "ko", "expected": ["vscode.git-graph.view"] },
+    { "q": "view git commit graph", "lang": "en", "expected": ["vscode.git-graph.view"] },
+    { "q": "스태시 적용", "lang": "ko", "expected": ["vscode.gitlens.stashApply"] },
+    { "q": "apply a stash", "lang": "en", "expected": ["vscode.gitlens.stashApply"] }
+  ]
+}
