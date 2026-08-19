@@ -23,10 +23,21 @@
 
 ## 지금 상태
 
-- 🟢 **검색 정확도 100%** (하이브리드 검색: dense 임베딩 + lexical 재랭크, `eval/`로 측정)
-- 🟢 **다국어** 임베딩(mpnet-base-v2, 768dim) — 한국어 질의로 영어 명령 검색
+- 🟢 **오픈소스 크롤 레지스트리 996 capability** — GitHub 확장 7 + Swagger REST를 실제 크롤(`registry/crawl.py`). 승인 대상(irreversible) 66개 자동 분류.
 - 🟢 **walking skeleton** end-to-end: 자연어 → 검색 → 번호선택 → 실행 + 승인 게이트
 - 🟢 **안전 게이트 실재화**: 파괴적 명령(삭제·배포·force)은 `irreversible`로 분류되어 승인 필요
+- 🟢 **다국어 검색**: 한국어 동의어 주입 + 다국어 임베딩. 실측(996개, top-3): lexical **KO 57%**·EN 86%, dense EN 86%. (엔진은 더 강한 mpnet-base-v2로 hybrid)
+
+## 레지스트리 (오픈소스 크롤)
+
+```bash
+python pae.py crawl              # GitHub/웹 오픈소스 → registry/catalog.json (996 capability)
+python pae.py stats              # 런타임·안전등급·플러그인 분포
+python pae.py search "체리픽"    # 자연어 → 번호 후보 목록
+python pae.py index --post http://127.0.0.1:8756   # 엔진에 색인
+```
+
+`registry/sources.json`에 repo/스펙 URL만 추가하면 크롤이 확장된다. VS Code 확장·MCP·REST·CLI를 각 `ingest/` 변환기로 정규화한다.
 
 ## 아키텍처
 
@@ -57,11 +68,12 @@ engine/        엔진 사이드카 (Python/FastAPI) + paestro/ 패키지
 schemas/       [계약] capability-manifest.schema.json + validate.py(검증기)
 examples/      [계약] 4런타임 정본 매니페스트 (vscode·mcp·rest·cli)
 tools/         scan.js — VS Code 확장 parse (오프라인)
-ingest/        오프라인 인제스트 — OpenAPI·MCP·CLI → 매니페스트
-enrich/        LLM 보강 배치 + safety(side_effects 분류·테스트)
-eval/          검색 정확도 평가 — run_eval(엔진) · baseline(오프라인)
+ingest/        오프라인 인제스트 — OpenAPI·MCP·CLI·VS Code pkg → 매니페스트
+enrich/        LLM 보강 + safety(side_effects) + ko_terms(한국어 주입)
+eval/          평가 — baseline·dense(semantic)·hybrid·run_eval(엔진)
 demo/          이질 소스 통합 파이프라인 데모
-registry/      [6] 거버넌스 — 팀 공유 레지스트리
+registry/      [6] 거버넌스 — 크롤(crawl)·검색(search)·통계(stats)·색인(to_index)
+pae.py         통합 CLI — crawl·search·stats·index·validate·demo·check
 ```
 
 ## 빠른 시작
