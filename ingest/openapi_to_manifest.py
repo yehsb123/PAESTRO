@@ -45,6 +45,8 @@ def convert(spec: dict, plugin: str, base_url: str) -> dict:
                 continue
             oid = op_id(m, path, op)
             intent = op.get("summary") or op.get("description") or f"{method.upper()} {path}"
+            intent = re.sub(r"<[^>]+>", "", intent).strip()  # OpenAPI 설명의 HTML 태그 제거
+            intent = re.sub(r"\s+", " ", intent)[:120]
             tags = [t for t in (op.get("tags") or []) if isinstance(t, str)]
             inputs = {}
             for p in op.get("parameters", []) or []:
