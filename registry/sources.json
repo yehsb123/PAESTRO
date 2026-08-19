@@ -1,0 +1,16 @@
+{
+  "_comment": "PAESTRO 레지스트리 크롤 소스. GitHub/웹의 실제 오픈소스에서 capability를 긁는다. 자유롭게 추가.",
+  "vscode": [
+    { "name": "eslint", "repo": "microsoft/vscode-eslint" },
+    { "name": "prettier", "repo": "prettier/prettier-vscode" },
+    { "name": "gitlens", "repo": "gitkraken/vscode-gitlens" },
+    { "name": "python", "repo": "microsoft/vscode-python" },
+    { "name": "go", "repo": "golang/vscode-go" },
+    { "name": "vim", "repo": "VSCodeVim/Vim" },
+    { "name": "gitgraph", "repo": "mhutchie/vscode-git-graph" },
+    { "name": "rest-client", "repo": "Huachao/vscode-restclient" }
+  ],
+  "openapi": [
+    { "name": "petstore", "url": "https://petstore3.swagger.io/api/v3/openapi.json" }
+  ]
+}

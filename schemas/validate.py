@@ -11,7 +11,7 @@ import re
 import sys
 from pathlib import Path
 
-ID_RE = re.compile(r"^[A-Za-z0-9._-]+$")  # command는 camelCase(fixAll 등) → 대문자 허용
+ID_RE = re.compile(r"^[A-Za-z0-9._:-]+$")  # command는 camelCase(fixAll 등) → 대문자 허용
 RUNTIMES = {"rest", "mcp", "cli", "graphql", "skill", "vscode"}
 SIDE_EFFECTS = {"none", "read_only", "reversible", "irreversible"}
 # runtime별 invocation 필수 필드 (type은 공통)
