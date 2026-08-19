@@ -23,7 +23,7 @@
 
 ## 지금 상태
 
-- 🟢 **오픈소스 크롤 레지스트리 996 capability** — GitHub 확장 7 + Swagger REST를 실제 크롤(`registry/crawl.py`). 승인 대상(irreversible) 66개 자동 분류.
+- 🟢 **오픈소스 크롤 레지스트리 1,475 capability · 21 소스 · 3 런타임** — VS Code 확장 · MCP 서버(공식 레지스트리) · REST API(apis.guru: Stripe·Slack·GitHub 등)를 실제 크롤(`registry/crawl.py`). 승인 대상(irreversible) 97개 자동 분류.
 - 🟢 **walking skeleton** end-to-end: 자연어 → 검색 → 번호선택 → 실행 + 승인 게이트
 - 🟢 **안전 게이트 실재화**: 파괴적 명령(삭제·배포·force)은 `irreversible`로 분류되어 승인 필요
 - 🟢 **다국어 검색**: 한국어 동의어 주입 + 다국어 임베딩. 실측(996개, top-3): lexical **KO 57%**·EN 86%, dense EN 86%. (엔진은 더 강한 mpnet-base-v2로 hybrid)
@@ -31,13 +31,13 @@
 ## 레지스트리 (오픈소스 크롤)
 
 ```bash
-python pae.py crawl              # GitHub/웹 오픈소스 → registry/catalog.json (996 capability)
+python pae.py crawl              # 오픈소스 크롤 → registry/catalog.json (1,475 capability)
 python pae.py stats              # 런타임·안전등급·플러그인 분포
-python pae.py search "체리픽"    # 자연어 → 번호 후보 목록
+python pae.py search "결제 환불" # 자연어 → 번호 후보 (Stripe refund 등)
 python pae.py index --post http://127.0.0.1:8756   # 엔진에 색인
 ```
 
-`registry/sources.json`에 repo/스펙 URL만 추가하면 크롤이 확장된다. VS Code 확장·MCP·REST·CLI를 각 `ingest/` 변환기로 정규화한다.
+`registry/sources.json`에 repo·MCP 레지스트리·apis.guru provider·스펙 URL만 추가하면 크롤이 확장된다. VS Code 확장·MCP·REST·CLI를 각 `ingest/` 변환기로 정규화한다.
 
 ## 아키텍처
 
