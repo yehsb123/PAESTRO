@@ -16,7 +16,7 @@ from pathlib import Path
 
 # 다양한 헤더 형식: "Commands:", "Available Commands:", "CORE COMMANDS",
 # "Basic Commands (Beginner):", git의 "... common Git commands ...:" 등
-_HEADER = re.compile(r"^[A-Za-z][A-Za-z ()]*commands[A-Za-z ()]*:?\s*$", re.I)
+_HEADER = re.compile(r"^\s*[A-Za-z ()]*\bcommands\b[A-Za-z ()]*:?\s*$", re.I)
 _OTHER_HEADER = re.compile(r"^\S.*:\s*$")  # 'Options:', 'Flags:' 등 다른 섹션 시작
 _ROW = re.compile(r"^\s+([a-zA-Z][\w:-]*)\s{2,}(\S.*)$")
 
