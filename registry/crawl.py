@@ -36,10 +36,16 @@ from validate import validate_manifest  # noqa: E402
 UA = {"User-Agent": "paestro-registry-crawler/0.1"}
 
 
-def fetch_json(url: str, timeout: int = 25):
-    req = urllib.request.Request(url, headers=UA)
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return json.loads(r.read().decode("utf-8"))
+def fetch_json(url: str, timeout: int = 25, retries: int = 2):
+    last: Exception | None = None
+    for _ in range(retries + 1):  # 일시적 네트워크 실패 재시도 → 크롤 안정화
+        try:
+            req = urllib.request.Request(url, headers=UA)
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return json.loads(r.read().decode("utf-8"))
+        except (urllib.error.URLError, TimeoutError, ValueError, ConnectionError) as e:
+            last = e
+    raise last if last else RuntimeError("fetch 실패")
 
 
 def fetch_vscode(repo: str):
