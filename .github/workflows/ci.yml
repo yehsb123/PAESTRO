@@ -22,3 +22,6 @@ jobs:
 
       - name: 오프라인 파이프라인 스모크 (ingest→검증)
         run: python demo/pipeline.py
+
+      - name: 검색 회귀 테스트 (eval)
+        run: python eval/regression.py

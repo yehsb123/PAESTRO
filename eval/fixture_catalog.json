@@ -1,0 +1,2074 @@
+[
+ {
+  "id": "vscode.eslint.executeAutofix",
+  "plugin": "vscode.eslint",
+  "intent": "Fix all auto-fixable Problems",
+  "side_effects": "reversible",
+  "embedding_text": "Fix all auto-fixable Problems ESLint eslint execute autofix 수정 고치기 이에스린트"
+ },
+ {
+  "id": "vscode.prettier.forceFormatDocument",
+  "plugin": "vscode.prettier",
+  "intent": "Format Document (Forced)",
+  "side_effects": "irreversible",
+  "embedding_text": "Format Document (Forced) prettier force format document 포맷 서식 정렬 프리티어"
+ },
+ {
+  "id": "vscode.gitlens.git.cherryPick",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Cherry Pick...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Cherry Pick... GitLens gitlens git cherry pick 체리 픽 선택 깃"
+ },
+ {
+  "id": "vscode.gitlens.graph.cherryPick",
+  "plugin": "vscode.gitlens",
+  "intent": "Cherry Pick Commit...",
+  "side_effects": "reversible",
+  "embedding_text": "Cherry Pick Commit... gitlens graph cherry pick 커밋 체리 픽 선택 그래프"
+ },
+ {
+  "id": "vscode.gitlens.stashApply",
+  "plugin": "vscode.gitlens",
+  "intent": "Apply / Pop Stash...",
+  "side_effects": "reversible",
+  "embedding_text": "Apply / Pop Stash... gitlens stash apply 스태시 임시저장"
+ },
+ {
+  "id": "vscode.gitlens.toggleFileBlame",
+  "plugin": "vscode.gitlens",
+  "intent": "Toggle File Blame",
+  "side_effects": "read_only",
+  "embedding_text": "Toggle File Blame GitLens gitlens toggle file blame 블레임 책임 토글 전환 파일 깃"
+ },
+ {
+  "id": "vscode.python.setInterpreter",
+  "plugin": "vscode.python",
+  "intent": "Select Interpreter",
+  "side_effects": "read_only",
+  "embedding_text": "Select Interpreter Python python set interpreter 선택 파이썬 인터프리터"
+ },
+ {
+  "id": "vscode.git-graph.view",
+  "plugin": "vscode.gitgraph",
+  "intent": "View Git Graph (git log)",
+  "side_effects": "read_only",
+  "embedding_text": "View Git Graph (git log) Git Graph git graph view 그래프 보기 깃"
+ },
+ {
+  "id": "vscode.issue.createIssueFromSelection",
+  "plugin": "vscode.pr-github",
+  "intent": "Create Issue From Selection",
+  "side_effects": "reversible",
+  "embedding_text": "Create Issue From Selection GitHub Issues issue create issue from selection 생성 만들기 이슈 깃"
+ },
+ {
+  "id": "vscode.issue.createIssueFromClipboard",
+  "plugin": "vscode.pr-github",
+  "intent": "Create Issue From Clipboard",
+  "side_effects": "reversible",
+  "embedding_text": "Create Issue From Clipboard GitHub Issues issue create issue from clipboard 생성 만들기 이슈 깃"
+ },
+ {
+  "id": "cli.docker.run",
+  "plugin": "cli.docker",
+  "intent": "Create and run a new container from an image",
+  "side_effects": "reversible",
+  "embedding_text": "Create and run a new container from an image docker run 실행 생성 만들기 컨테이너 이미지 도커"
+ },
+ {
+  "id": "cli.docker.ps",
+  "plugin": "cli.docker",
+  "intent": "List containers",
+  "side_effects": "read_only",
+  "embedding_text": "List containers docker ps 목록 리스트 도커"
+ },
+ {
+  "id": "cli.git.clone",
+  "plugin": "cli.git",
+  "intent": "Clone a repository into a new directory",
+  "side_effects": "read_only",
+  "embedding_text": "Clone a repository into a new directory git clone 복제 저장소 레포 깃"
+ },
+ {
+  "id": "cli.kubectl.create",
+  "plugin": "cli.kubectl",
+  "intent": "Create a resource from a file or from stdin",
+  "side_effects": "reversible",
+  "embedding_text": "Create a resource from a file or from stdin kubectl create 파일 생성 만들기 쿠버네티스 k8s"
+ },
+ {
+  "id": "rest.stripe.GetApplicationFeesFeeRefundsId",
+  "plugin": "rest.stripe",
+  "intent": "By default, you can see the 10 most recent refunds stored directly on the applic",
+  "side_effects": "read_only",
+  "embedding_text": "By default, you can see the 10 most recent refunds stored directly on the application fee object, but you can also retri GetApplicationFeesFeeRefundsId"
+ },
+ {
+  "id": "rest.stripe.PostApplicationFeesFeeRefundsId",
+  "plugin": "rest.stripe",
+  "intent": "Updates the specified application fee refund by setting the values of the parame",
+  "side_effects": "read_only",
+  "embedding_text": "Updates the specified application fee refund by setting the values of the parameters passed. Any parameters not provided PostApplicationFeesFeeRefundsId 환불"
+ },
+ {
+  "id": "vscode.eslint.createConfig",
+  "plugin": "vscode.eslint",
+  "intent": "Create ESLint configuration",
+  "side_effects": "reversible",
+  "embedding_text": "Create ESLint configuration ESLint eslint create config 생성 만들기 이에스린트"
+ },
+ {
+  "id": "vscode.eslint.showOutputChannel",
+  "plugin": "vscode.eslint",
+  "intent": "Show Output Channel",
+  "side_effects": "read_only",
+  "embedding_text": "Show Output Channel ESLint eslint show output channel 표시 보기 채널 이에스린트"
+ },
+ {
+  "id": "vscode.eslint.migrateSettings",
+  "plugin": "vscode.eslint",
+  "intent": "Migrate Settings",
+  "side_effects": "read_only",
+  "embedding_text": "Migrate Settings ESLint eslint migrate settings 설정 이에스린트"
+ },
+ {
+  "id": "vscode.eslint.restart",
+  "plugin": "vscode.eslint",
+  "intent": "Restart ESLint Server",
+  "side_effects": "read_only",
+  "embedding_text": "Restart ESLint Server ESLint eslint restart 재시작 이에스린트"
+ },
+ {
+  "id": "vscode.eslint.revalidate",
+  "plugin": "vscode.eslint",
+  "intent": "Revalidate all open files",
+  "side_effects": "read_only",
+  "embedding_text": "Revalidate all open files ESLint eslint revalidate 열기 이에스린트"
+ },
+ {
+  "id": "vscode.prettier.createConfigFile",
+  "plugin": "vscode.prettier",
+  "intent": "Prettier: Create Configuration File",
+  "side_effects": "reversible",
+  "embedding_text": "Prettier: Create Configuration File prettier create config file 파일 생성 만들기 프리티어"
+ },
+ {
+  "id": "vscode.gitlens.addAuthors",
+  "plugin": "vscode.gitlens",
+  "intent": "Add Co-authors...",
+  "side_effects": "reversible",
+  "embedding_text": "Add Co-authors... GitLens gitlens add authors 추가 깃"
+ },
+ {
+  "id": "vscode.gitlens.agents.focusSessionWorktreeInGraph",
+  "plugin": "vscode.gitlens",
+  "intent": "Focus in Commit Graph",
+  "side_effects": "reversible",
+  "embedding_text": "Focus in Commit Graph gitlens agents focus session worktree in graph 커밋 그래프"
+ },
+ {
+  "id": "vscode.gitlens.agents.installHooks",
+  "plugin": "vscode.gitlens",
+  "intent": "Install GitKraken Hooks for All AI Agents",
+  "side_effects": "reversible",
+  "embedding_text": "Install GitKraken Hooks for All AI Agents GitLens gitlens agents install hooks 설치 깃"
+ },
+ {
+  "id": "vscode.gitlens.agents.installHooksForAgent",
+  "plugin": "vscode.gitlens",
+  "intent": "Install GitKraken Hooks for Agent",
+  "side_effects": "reversible",
+  "embedding_text": "Install GitKraken Hooks for Agent gitlens agents install hooks for agent 설치 깃"
+ },
+ {
+  "id": "vscode.gitlens.agents.openSession",
+  "plugin": "vscode.gitlens",
+  "intent": "Open AI Agent Session",
+  "side_effects": "read_only",
+  "embedding_text": "Open AI Agent Session GitLens gitlens agents open session 열기 깃"
+ },
+ {
+  "id": "vscode.gitlens.agents.openSessionWorktreeInNewWindow",
+  "plugin": "vscode.gitlens",
+  "intent": "Open in New Window",
+  "side_effects": "read_only",
+  "embedding_text": "Open in New Window gitlens agents open session worktree in new window 열기"
+ },
+ {
+  "id": "vscode.gitlens.agents.showSessionWorktreeInGraph",
+  "plugin": "vscode.gitlens",
+  "intent": "Open in Commit Graph",
+  "side_effects": "reversible",
+  "embedding_text": "Open in Commit Graph gitlens agents show session worktree in graph 커밋 그래프 열기 표시 보기"
+ },
+ {
+  "id": "vscode.gitlens.agents.switchDefaultAgent",
+  "plugin": "vscode.gitlens",
+  "intent": "Switch Default Agent...",
+  "side_effects": "read_only",
+  "embedding_text": "Switch Default Agent... GitLens gitlens agents switch default agent 깃"
+ },
+ {
+  "id": "vscode.gitlens.agents.uninstallHooks",
+  "plugin": "vscode.gitlens",
+  "intent": "Uninstall GitKraken Hooks for All AI Agents",
+  "side_effects": "irreversible",
+  "embedding_text": "Uninstall GitKraken Hooks for All AI Agents GitLens gitlens agents uninstall hooks 제거 깃"
+ },
+ {
+  "id": "vscode.gitlens.agents.uninstallHooksForAgent",
+  "plugin": "vscode.gitlens",
+  "intent": "Uninstall GitKraken Hooks for Agent",
+  "side_effects": "irreversible",
+  "embedding_text": "Uninstall GitKraken Hooks for Agent gitlens agents uninstall hooks for agent 제거 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.autoRebase",
+  "plugin": "vscode.gitlens",
+  "intent": "Automatic Rebase...",
+  "side_effects": "read_only",
+  "embedding_text": "Automatic Rebase... GitLens gitlens ai auto rebase 리베이스 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.autoRebase.undo",
+  "plugin": "vscode.gitlens",
+  "intent": "Undo Automatic Rebase",
+  "side_effects": "read_only",
+  "embedding_text": "Undo Automatic Rebase gitlens ai auto rebase undo 리베이스"
+ },
+ {
+  "id": "vscode.gitlens.ai.connectAgents",
+  "plugin": "vscode.gitlens",
+  "intent": "Connect AI Agents (Install MCP and Hooks)",
+  "side_effects": "reversible",
+  "embedding_text": "Connect AI Agents (Install MCP and Hooks) GitLens gitlens ai connect agents 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.continueRebase",
+  "plugin": "vscode.gitlens",
+  "intent": "Continue Automatic Rebase",
+  "side_effects": "read_only",
+  "embedding_text": "Continue Automatic Rebase GitLens gitlens ai continue rebase 리베이스 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.enable",
+  "plugin": "vscode.gitlens",
+  "intent": "Enable AI Features...",
+  "side_effects": "read_only",
+  "embedding_text": "Enable AI Features... GitLens gitlens ai enable 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.explainBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Explain Branch Changes...",
+  "side_effects": "read_only",
+  "embedding_text": "Explain Branch Changes... GitLens gitlens ai explain branch 브랜치 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.explainCommit",
+  "plugin": "vscode.gitlens",
+  "intent": "Explain Commit Changes...",
+  "side_effects": "reversible",
+  "embedding_text": "Explain Commit Changes... GitLens gitlens ai explain commit 커밋 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.explainStash",
+  "plugin": "vscode.gitlens",
+  "intent": "Explain Stash Changes...",
+  "side_effects": "read_only",
+  "embedding_text": "Explain Stash Changes... GitLens gitlens ai explain stash 스태시 임시저장 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.explainUnpushed",
+  "plugin": "vscode.gitlens",
+  "intent": "Explain Unpushed Changes",
+  "side_effects": "read_only",
+  "embedding_text": "Explain Unpushed Changes gitlens ai explain unpushed"
+ },
+ {
+  "id": "vscode.gitlens.ai.explainWip",
+  "plugin": "vscode.gitlens",
+  "intent": "Explain Working Changes...",
+  "side_effects": "read_only",
+  "embedding_text": "Explain Working Changes... GitLens gitlens ai explain wip 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.feedback.helpful",
+  "plugin": "vscode.gitlens",
+  "intent": "Helpful",
+  "side_effects": "read_only",
+  "embedding_text": "Helpful gitlens ai feedback helpful"
+ },
+ {
+  "id": "vscode.gitlens.ai.feedback.helpful.chosen",
+  "plugin": "vscode.gitlens",
+  "intent": "Helpful",
+  "side_effects": "read_only",
+  "embedding_text": "Helpful gitlens ai feedback helpful chosen"
+ },
+ {
+  "id": "vscode.gitlens.ai.feedback.unhelpful",
+  "plugin": "vscode.gitlens",
+  "intent": "Unhelpful",
+  "side_effects": "read_only",
+  "embedding_text": "Unhelpful gitlens ai feedback unhelpful"
+ },
+ {
+  "id": "vscode.gitlens.ai.feedback.unhelpful.chosen",
+  "plugin": "vscode.gitlens",
+  "intent": "Unhelpful",
+  "side_effects": "read_only",
+  "embedding_text": "Unhelpful gitlens ai feedback unhelpful chosen"
+ },
+ {
+  "id": "vscode.gitlens.ai.generateChangelog",
+  "plugin": "vscode.gitlens",
+  "intent": "Generate Changelog...",
+  "side_effects": "reversible",
+  "embedding_text": "Generate Changelog... GitLens gitlens ai generate changelog 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.generateChangelogFrom",
+  "plugin": "vscode.gitlens",
+  "intent": "Generate Changelog...",
+  "side_effects": "reversible",
+  "embedding_text": "Generate Changelog... gitlens ai generate changelog from"
+ },
+ {
+  "id": "vscode.gitlens.ai.generateCommitMessage",
+  "plugin": "vscode.gitlens",
+  "intent": "Generate Commit Message",
+  "side_effects": "reversible",
+  "embedding_text": "Generate Commit Message GitLens gitlens ai generate commit message 커밋 메시지 메세지 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.mcp.install",
+  "plugin": "vscode.gitlens",
+  "intent": "Install GitKraken MCP Server",
+  "side_effects": "reversible",
+  "embedding_text": "Install GitKraken MCP Server GitLens gitlens ai mcp install 설치 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.mcp.installForAgent",
+  "plugin": "vscode.gitlens",
+  "intent": "Install GitKraken MCP for Agent",
+  "side_effects": "reversible",
+  "embedding_text": "Install GitKraken MCP for Agent gitlens ai mcp install for agent 설치 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.mcp.installForAllAgents",
+  "plugin": "vscode.gitlens",
+  "intent": "Connect GitKraken MCP to All Detected Agents",
+  "side_effects": "reversible",
+  "embedding_text": "Connect GitKraken MCP to All Detected Agents GitLens gitlens ai mcp install for all agents 설치 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.mcp.reinstall",
+  "plugin": "vscode.gitlens",
+  "intent": "Reinstall GitKraken MCP Server",
+  "side_effects": "read_only",
+  "embedding_text": "Reinstall GitKraken MCP Server GitLens gitlens ai mcp reinstall 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.mcp.uninstallForAgent",
+  "plugin": "vscode.gitlens",
+  "intent": "Uninstall GitKraken MCP for Agent",
+  "side_effects": "irreversible",
+  "embedding_text": "Uninstall GitKraken MCP for Agent gitlens ai mcp uninstall for agent 제거 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.recomposeBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Recompose Commits...",
+  "side_effects": "read_only",
+  "embedding_text": "Recompose Commits... GitLens gitlens ai recompose branch 브랜치 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.recomposeFromCommit",
+  "plugin": "vscode.gitlens",
+  "intent": "Recompose Commits from Here...",
+  "side_effects": "reversible",
+  "embedding_text": "Recompose Commits from Here... GitLens gitlens ai recompose from commit 커밋 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.recomposeSelectedCommits",
+  "plugin": "vscode.gitlens",
+  "intent": "Recompose Selected Commits...",
+  "side_effects": "read_only",
+  "embedding_text": "Recompose Selected Commits... GitLens gitlens ai recompose selected commits 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.resolveAllConflicts",
+  "plugin": "vscode.gitlens",
+  "intent": "Resolve Conflicts...",
+  "side_effects": "read_only",
+  "embedding_text": "Resolve Conflicts... gitlens ai resolve all conflicts"
+ },
+ {
+  "id": "vscode.gitlens.ai.resolveConflicts",
+  "plugin": "vscode.gitlens",
+  "intent": "Resolve Conflicts...",
+  "side_effects": "read_only",
+  "embedding_text": "Resolve Conflicts... GitLens gitlens ai resolve conflicts 깃"
+ },
+ {
+  "id": "vscode.gitlens.ai.resolveConflicts.multi",
+  "plugin": "vscode.gitlens",
+  "intent": "Resolve Conflicts...",
+  "side_effects": "read_only",
+  "embedding_text": "Resolve Conflicts... gitlens ai resolve conflicts multi"
+ },
+ {
+  "id": "vscode.gitlens.ai.switchProvider",
+  "plugin": "vscode.gitlens",
+  "intent": "Switch AI Provider/Model...",
+  "side_effects": "read_only",
+  "embedding_text": "Switch AI Provider/Model... GitLens gitlens ai switch provider 깃"
+ },
+ {
+  "id": "vscode.gitlens.annotations.nextChange",
+  "plugin": "vscode.gitlens",
+  "intent": "Next Change",
+  "side_effects": "read_only",
+  "embedding_text": "Next Change gitlens annotations next change 주석"
+ },
+ {
+  "id": "vscode.gitlens.annotations.previousChange",
+  "plugin": "vscode.gitlens",
+  "intent": "Previous Change",
+  "side_effects": "read_only",
+  "embedding_text": "Previous Change gitlens annotations previous change 주석"
+ },
+ {
+  "id": "vscode.gitlens.applyPatchFromClipboard",
+  "plugin": "vscode.gitlens",
+  "intent": "Apply Copied Changes (Patch)",
+  "side_effects": "reversible",
+  "embedding_text": "Apply Copied Changes (Patch) GitLens gitlens apply patch from clipboard 깃"
+ },
+ {
+  "id": "vscode.gitlens.associateIssueWithBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Associate Issue with Branch...",
+  "side_effects": "read_only",
+  "embedding_text": "Associate Issue with Branch... GitLens gitlens associate issue with branch 브랜치 이슈 깃"
+ },
+ {
+  "id": "vscode.gitlens.browseRepoAtRevision",
+  "plugin": "vscode.gitlens",
+  "intent": "Browse Repository from Revision",
+  "side_effects": "read_only",
+  "embedding_text": "Browse Repository from Revision GitLens gitlens browse repo at revision 리비전 저장소 레포 저장소 레포 깃"
+ },
+ {
+  "id": "vscode.gitlens.browseRepoAtRevisionInNewWindow",
+  "plugin": "vscode.gitlens",
+  "intent": "Browse Repository from Revision in New Window",
+  "side_effects": "read_only",
+  "embedding_text": "Browse Repository from Revision in New Window GitLens gitlens browse repo at revision in new window 리비전 저장소 레포 저장소 레포 깃"
+ },
+ {
+  "id": "vscode.gitlens.browseRepoBeforeRevision",
+  "plugin": "vscode.gitlens",
+  "intent": "Browse Repository from Before Revision",
+  "side_effects": "read_only",
+  "embedding_text": "Browse Repository from Before Revision GitLens gitlens browse repo before revision 리비전 저장소 레포 저장소 레포 깃"
+ },
+ {
+  "id": "vscode.gitlens.browseRepoBeforeRevisionInNewWindow",
+  "plugin": "vscode.gitlens",
+  "intent": "Browse Repository from Before Revision in New Window",
+  "side_effects": "read_only",
+  "embedding_text": "Browse Repository from Before Revision in New Window GitLens gitlens browse repo before revision in new window 리비전 저장소 레포 저장소 레포 깃"
+ },
+ {
+  "id": "vscode.gitlens.changeUpstream",
+  "plugin": "vscode.gitlens",
+  "intent": "Change Upstream...",
+  "side_effects": "read_only",
+  "embedding_text": "Change Upstream... gitlens change upstream"
+ },
+ {
+  "id": "vscode.gitlens.clearFileAnnotations",
+  "plugin": "vscode.gitlens",
+  "intent": "Clear File Annotations",
+  "side_effects": "read_only",
+  "embedding_text": "Clear File Annotations GitLens gitlens clear file annotations 파일 주석 깃"
+ },
+ {
+  "id": "vscode.gitlens.closeUnchangedFiles",
+  "plugin": "vscode.gitlens",
+  "intent": "Close Unchanged Files",
+  "side_effects": "read_only",
+  "embedding_text": "Close Unchanged Files GitLens gitlens close unchanged files 닫기 깃"
+ },
+ {
+  "id": "vscode.gitlens.compareHeadWith",
+  "plugin": "vscode.gitlens",
+  "intent": "Compare HEAD with...",
+  "side_effects": "read_only",
+  "embedding_text": "Compare HEAD with... GitLens gitlens compare head with 비교 깃"
+ },
+ {
+  "id": "vscode.gitlens.compareWith",
+  "plugin": "vscode.gitlens",
+  "intent": "Compare References...",
+  "side_effects": "read_only",
+  "embedding_text": "Compare References... GitLens gitlens compare with 비교 깃"
+ },
+ {
+  "id": "vscode.gitlens.compareWorkingWith",
+  "plugin": "vscode.gitlens",
+  "intent": "Compare Working Tree with...",
+  "side_effects": "read_only",
+  "embedding_text": "Compare Working Tree with... GitLens gitlens compare working with 비교 깃"
+ },
+ {
+  "id": "vscode.gitlens.composeCommits",
+  "plugin": "vscode.gitlens",
+  "intent": "Compose Commits...",
+  "side_effects": "read_only",
+  "embedding_text": "Compose Commits... GitLens gitlens compose commits 깃"
+ },
+ {
+  "id": "vscode.gitlens.computingFileAnnotations",
+  "plugin": "vscode.gitlens",
+  "intent": "Computing File Annotations...",
+  "side_effects": "read_only",
+  "embedding_text": "Computing File Annotations... gitlens computing file annotations 파일 주석"
+ },
+ {
+  "id": "vscode.gitlens.connectRemoteProvider",
+  "plugin": "vscode.gitlens",
+  "intent": "Connect Remote Integration",
+  "side_effects": "read_only",
+  "embedding_text": "Connect Remote Integration GitLens gitlens connect remote provider 원격 깃"
+ },
+ {
+  "id": "vscode.gitlens.copyCurrentBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Current Branch Name",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Current Branch Name GitLens gitlens copy current branch 브랜치 복사 깃"
+ },
+ {
+  "id": "vscode.gitlens.copyDeepLinkToBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Link to Branch",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Link to Branch gitlens copy deep link to branch 브랜치 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyDeepLinkToCommit",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Link to Commit",
+  "side_effects": "reversible",
+  "embedding_text": "Copy Link to Commit gitlens copy deep link to commit 커밋 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyDeepLinkToComparison",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Link to Comparison",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Link to Comparison gitlens copy deep link to comparison 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyDeepLinkToFile",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Link to File",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Link to File gitlens copy deep link to file 파일 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyDeepLinkToFileAtRevision",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Link to File at Revision...",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Link to File at Revision... gitlens copy deep link to file at revision 파일 복사 리비전"
+ },
+ {
+  "id": "vscode.gitlens.copyDeepLinkToLines",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Link to Code",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Link to Code gitlens copy deep link to lines 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyDeepLinkToRepo",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Link to Repository",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Link to Repository GitLens gitlens copy deep link to repo 복사 저장소 레포 저장소 레포 깃"
+ },
+ {
+  "id": "vscode.gitlens.copyDeepLinkToTag",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Link to Tag",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Link to Tag gitlens copy deep link to tag 태그 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyDeepLinkToWorkspace",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Link to Workspace",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Link to Workspace gitlens copy deep link to workspace 워크스페이스 작업공간 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyMessageToClipboard",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Message",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Message GitLens gitlens copy message to clipboard 복사 메시지 메세지 깃"
+ },
+ {
+  "id": "vscode.gitlens.copyPatchToClipboard",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Changes (Patch)",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Changes (Patch) GitLens gitlens copy patch to clipboard 복사 깃"
+ },
+ {
+  "id": "vscode.gitlens.copyPatchToClipboard.multi",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Changes (Patch)",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Changes (Patch) gitlens copy patch to clipboard multi 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyPath",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Path",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Path gitlens copy path 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyPath.multi",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Paths",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Paths gitlens copy path multi 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyRelativePathToClipboard",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Relative Path",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Relative Path GitLens gitlens copy relative path to clipboard 복사 깃"
+ },
+ {
+  "id": "vscode.gitlens.copyRelativePathToClipboard.multi",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Relative Paths",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Relative Paths gitlens copy relative path to clipboard multi 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyRemoteBranchesUrl",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Remote Branches URL",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Remote Branches URL gitlens copy remote branches url 원격 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyRemoteBranchUrl",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Remote Branch URL",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Remote Branch URL gitlens copy remote branch url 브랜치 원격 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyRemoteCommitUrl",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Remote Commit URL",
+  "side_effects": "reversible",
+  "embedding_text": "Copy Remote Commit URL GitLens gitlens copy remote commit url 커밋 원격 복사 깃"
+ },
+ {
+  "id": "vscode.gitlens.copyRemoteComparisonUrl",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Remote Comparison URL",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Remote Comparison URL gitlens copy remote comparison url 원격 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyRemoteFileUrlFrom",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Remote File URL From...",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Remote File URL From... GitLens gitlens copy remote file url from 파일 원격 복사 깃"
+ },
+ {
+  "id": "vscode.gitlens.copyRemoteFileUrlToClipboard",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Remote File URL",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Remote File URL GitLens gitlens copy remote file url to clipboard 파일 원격 복사 깃"
+ },
+ {
+  "id": "vscode.gitlens.copyRemoteFileUrlWithoutRange",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Remote File URL",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Remote File URL gitlens copy remote file url without range 파일 원격 복사"
+ },
+ {
+  "id": "vscode.gitlens.copyRemotePullRequestUrl",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Pull Request URL",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Pull Request URL gitlens copy remote pull request url 가져오기 풀 원격 복사 요청"
+ },
+ {
+  "id": "vscode.gitlens.copyRemoteRepositoryUrl",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Remote Repository URL",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Remote Repository URL gitlens copy remote repository url 원격 복사 저장소 레포"
+ },
+ {
+  "id": "vscode.gitlens.copyShaToClipboard",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy SHA",
+  "side_effects": "read_only",
+  "embedding_text": "Copy SHA GitLens gitlens copy sha to clipboard 복사 깃"
+ },
+ {
+  "id": "vscode.gitlens.copyWorkingChangesToWorktree",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Working Changes to Worktree...",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Working Changes to Worktree... GitLens gitlens copy working changes to worktree 복사 깃"
+ },
+ {
+  "id": "vscode.gitlens.createBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Create Branch...",
+  "side_effects": "reversible",
+  "embedding_text": "Create Branch... gitlens create branch 브랜치 생성 만들기"
+ },
+ {
+  "id": "vscode.gitlens.createCloudPatch",
+  "plugin": "vscode.gitlens",
+  "intent": "Create Patch...",
+  "side_effects": "reversible",
+  "embedding_text": "Create Patch... GitLens gitlens create cloud patch 생성 만들기 깃"
+ },
+ {
+  "id": "vscode.gitlens.createPatch",
+  "plugin": "vscode.gitlens",
+  "intent": "Create Patch...",
+  "side_effects": "reversible",
+  "embedding_text": "Create Patch... GitLens gitlens create patch 생성 만들기 깃"
+ },
+ {
+  "id": "vscode.gitlens.createPullRequest",
+  "plugin": "vscode.gitlens",
+  "intent": "Create Pull Request...",
+  "side_effects": "reversible",
+  "embedding_text": "Create Pull Request... gitlens create pull request 가져오기 풀 생성 만들기 요청"
+ },
+ {
+  "id": "vscode.gitlens.createPullRequestOnRemote",
+  "plugin": "vscode.gitlens",
+  "intent": "Create Pull Request on Remote",
+  "side_effects": "reversible",
+  "embedding_text": "Create Pull Request on Remote GitLens gitlens create pull request on remote 가져오기 풀 원격 생성 만들기 요청 깃"
+ },
+ {
+  "id": "vscode.gitlens.diffDirectory",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Directory Compare (difftool) with...",
+  "side_effects": "read_only",
+  "embedding_text": "Open Directory Compare (difftool) with... GitLens gitlens diff directory 비교 차이 변경점 비교 열기 깃"
+ },
+ {
+  "id": "vscode.gitlens.diffDirectoryWithHead",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Directory Compare (difftool)",
+  "side_effects": "read_only",
+  "embedding_text": "Open Directory Compare (difftool) GitLens gitlens diff directory with head 비교 차이 변경점 비교 열기 깃"
+ },
+ {
+  "id": "vscode.gitlens.diffFolderWithRevision",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Folder Changes with Revision...",
+  "side_effects": "read_only",
+  "embedding_text": "Open Folder Changes with Revision... GitLens gitlens diff folder with revision 비교 차이 변경점 열기 폴더 리비전 깃"
+ },
+ {
+  "id": "vscode.gitlens.diffFolderWithRevisionFrom",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Folder Changes with Branch or Tag...",
+  "side_effects": "read_only",
+  "embedding_text": "Open Folder Changes with Branch or Tag... GitLens gitlens diff folder with revision from 브랜치 비교 차이 변경점 태그 열기 폴더 리비전 깃"
+ },
+ {
+  "id": "vscode.gitlens.diffLineWithPrevious",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Line Changes with Previous Revision",
+  "side_effects": "read_only",
+  "embedding_text": "Open Line Changes with Previous Revision GitLens gitlens diff line with previous 비교 차이 변경점 열기 줄 라인 리비전 깃"
+ },
+ {
+  "id": "vscode.gitlens.diffLineWithWorking",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Line Changes with Working File",
+  "side_effects": "read_only",
+  "embedding_text": "Open Line Changes with Working File GitLens gitlens diff line with working 비교 차이 변경점 열기 파일 줄 라인 깃"
+ },
+ {
+  "id": "vscode.gitlens.diffWithNext",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Changes with Next Revision",
+  "side_effects": "read_only",
+  "embedding_text": "Open Changes with Next Revision GitLens gitlens diff with next 비교 차이 변경점 열기 리비전 깃"
+ },
+ {
+  "id": "vscode.gitlens.diffWithPrevious",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Changes with Previous Revision",
+  "side_effects": "read_only",
+  "embedding_text": "Open Changes with Previous Revision GitLens gitlens diff with previous 비교 차이 변경점 열기 리비전 깃"
+ },
+ {
+  "id": "vscode.gitlens.diffWithRevision",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Changes with Revision...",
+  "side_effects": "read_only",
+  "embedding_text": "Open Changes with Revision... GitLens gitlens diff with revision 비교 차이 변경점 열기 리비전 깃"
+ },
+ {
+  "id": "vscode.gitlens.diffWithRevisionFrom",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Changes with Branch or Tag...",
+  "side_effects": "read_only",
+  "embedding_text": "Open Changes with Branch or Tag... GitLens gitlens diff with revision from 브랜치 비교 차이 변경점 태그 열기 리비전 깃"
+ },
+ {
+  "id": "vscode.gitlens.diffWithWorking",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Changes with Working File",
+  "side_effects": "read_only",
+  "embedding_text": "Open Changes with Working File GitLens gitlens diff with working 비교 차이 변경점 열기 파일 깃"
+ },
+ {
+  "id": "vscode.gitlens.disableDebugLogging",
+  "plugin": "vscode.gitlens",
+  "intent": "Disable Debug (Trace) Logging",
+  "side_effects": "read_only",
+  "embedding_text": "Disable Debug (Trace) Logging GitLens gitlens disable debug logging 디버그 디버깅 깃"
+ },
+ {
+  "id": "vscode.gitlens.discardChanges",
+  "plugin": "vscode.gitlens",
+  "intent": "Discard Changes...",
+  "side_effects": "irreversible",
+  "embedding_text": "Discard Changes... gitlens discard changes"
+ },
+ {
+  "id": "vscode.gitlens.discardChanges.multi",
+  "plugin": "vscode.gitlens",
+  "intent": "Discard Changes...",
+  "side_effects": "irreversible",
+  "embedding_text": "Discard Changes... gitlens discard changes multi"
+ },
+ {
+  "id": "vscode.gitlens.disconnectRemoteProvider",
+  "plugin": "vscode.gitlens",
+  "intent": "Disconnect Remote Integration",
+  "side_effects": "read_only",
+  "embedding_text": "Disconnect Remote Integration GitLens gitlens disconnect remote provider 원격 깃"
+ },
+ {
+  "id": "vscode.gitlens.enableDebugLogging",
+  "plugin": "vscode.gitlens",
+  "intent": "Enable Debug (Trace) Logging",
+  "side_effects": "read_only",
+  "embedding_text": "Enable Debug (Trace) Logging GitLens gitlens enable debug logging 디버그 디버깅 깃"
+ },
+ {
+  "id": "vscode.gitlens.externalDiff",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Changes (difftool)",
+  "side_effects": "read_only",
+  "embedding_text": "Open Changes (difftool) GitLens gitlens external diff 비교 차이 변경점 열기 깃"
+ },
+ {
+  "id": "vscode.gitlens.externalDiffAll",
+  "plugin": "vscode.gitlens",
+  "intent": "Open All Changes (difftool)",
+  "side_effects": "read_only",
+  "embedding_text": "Open All Changes (difftool) GitLens gitlens external diff all 비교 차이 변경점 열기 깃"
+ },
+ {
+  "id": "vscode.gitlens.fetch",
+  "plugin": "vscode.gitlens",
+  "intent": "Fetch",
+  "side_effects": "read_only",
+  "embedding_text": "Fetch gitlens fetch 가져오기"
+ },
+ {
+  "id": "vscode.gitlens.fetchRemote",
+  "plugin": "vscode.gitlens",
+  "intent": "Fetch",
+  "side_effects": "read_only",
+  "embedding_text": "Fetch gitlens fetch remote 가져오기 원격"
+ },
+ {
+  "id": "vscode.gitlens.fetchRepositories",
+  "plugin": "vscode.gitlens",
+  "intent": "Fetch",
+  "side_effects": "read_only",
+  "embedding_text": "Fetch GitLens gitlens fetch repositories 가져오기 깃"
+ },
+ {
+  "id": "vscode.gitlens.focusBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Focus on Branch",
+  "side_effects": "read_only",
+  "embedding_text": "Focus on Branch gitlens focus branch 브랜치"
+ },
+ {
+  "id": "vscode.gitlens.focusPullRequest",
+  "plugin": "vscode.gitlens",
+  "intent": "Focus on Pull Request",
+  "side_effects": "read_only",
+  "embedding_text": "Focus on Pull Request gitlens focus pull request 가져오기 풀 요청"
+ },
+ {
+  "id": "vscode.gitlens.focusWorktree",
+  "plugin": "vscode.gitlens",
+  "intent": "Focus on Worktree",
+  "side_effects": "read_only",
+  "embedding_text": "Focus on Worktree gitlens focus worktree"
+ },
+ {
+  "id": "vscode.gitlens.getStarted",
+  "plugin": "vscode.gitlens",
+  "intent": "Get Started",
+  "side_effects": "read_only",
+  "embedding_text": "Get Started GitLens gitlens get started 깃"
+ },
+ {
+  "id": "vscode.gitlens.ghpr.views.openOrCreateWorktree",
+  "plugin": "vscode.gitlens",
+  "intent": "Checkout Pull Request in Worktree (GitLens)...",
+  "side_effects": "reversible",
+  "embedding_text": "Checkout Pull Request in Worktree (GitLens)... gitlens ghpr views open or create worktree 가져오기 풀 체크아웃 열기 생성 만들기 요청"
+ },
+ {
+  "id": "vscode.gitlens.git.branch",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Branch...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Branch... GitLens gitlens git branch 브랜치 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.branch.create",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Create Branch...",
+  "side_effects": "reversible",
+  "embedding_text": "Git Create Branch... GitLens gitlens git branch create 브랜치 생성 만들기 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.branch.delete",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Delete Branch...",
+  "side_effects": "irreversible",
+  "embedding_text": "Git Delete Branch... GitLens gitlens git branch delete 브랜치 삭제 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.branch.prune",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Prune Branches...",
+  "side_effects": "irreversible",
+  "embedding_text": "Git Prune Branches... GitLens gitlens git branch prune 브랜치 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.branch.rename",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Rename Branch...",
+  "side_effects": "reversible",
+  "embedding_text": "Git Rename Branch... GitLens gitlens git branch rename 브랜치 이름변경 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.branch.setMergeTarget",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Change Branch Merge Target...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Change Branch Merge Target... GitLens gitlens git branch set merge target 브랜치 병합 머지 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.branch.setUpstream",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Change Branch Upstream...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Change Branch Upstream... GitLens gitlens git branch set upstream 브랜치 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.checkout",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Checkout...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Checkout... GitLens gitlens git checkout 체크아웃 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.editAllowedSigners",
+  "plugin": "vscode.gitlens",
+  "intent": "Edit SSH Allowed Signers...",
+  "side_effects": "reversible",
+  "embedding_text": "Edit SSH Allowed Signers... GitLens gitlens git edit allowed signers 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.history",
+  "plugin": "vscode.gitlens",
+  "intent": "Git History (log)...",
+  "side_effects": "read_only",
+  "embedding_text": "Git History (log)... GitLens gitlens git history 기록 히스토리 이력 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.merge",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Merge...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Merge... GitLens gitlens git merge 병합 머지 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.rebase",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Rebase...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Rebase... GitLens gitlens git rebase 리베이스 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.remote",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Remote...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Remote... GitLens gitlens git remote 원격 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.remote.add",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Add Remote...",
+  "side_effects": "reversible",
+  "embedding_text": "Git Add Remote... GitLens gitlens git remote add 원격 추가 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.remote.prune",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Prune Remote...",
+  "side_effects": "irreversible",
+  "embedding_text": "Git Prune Remote... GitLens gitlens git remote prune 원격 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.remote.remove",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Remove Remote...",
+  "side_effects": "irreversible",
+  "embedding_text": "Git Remove Remote... GitLens gitlens git remote remove 제거 원격 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.reset",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Reset...",
+  "side_effects": "irreversible",
+  "embedding_text": "Git Reset... GitLens gitlens git reset 초기화 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.revert",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Revert...",
+  "side_effects": "irreversible",
+  "embedding_text": "Git Revert... GitLens gitlens git revert 되돌리기 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.setupCommitSigning",
+  "plugin": "vscode.gitlens",
+  "intent": "Setup Commit Signing...",
+  "side_effects": "reversible",
+  "embedding_text": "Setup Commit Signing... GitLens gitlens git setup commit signing 커밋 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.show",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Show...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Show... GitLens gitlens git show 표시 보기 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.stash",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Stash...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Stash... GitLens gitlens git stash 스태시 임시저장 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.stash.drop",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Drop Stash...",
+  "side_effects": "irreversible",
+  "embedding_text": "Git Drop Stash... GitLens gitlens git stash drop 스태시 임시저장 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.stash.list",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Stash List...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Stash List... GitLens gitlens git stash list 스태시 임시저장 목록 리스트 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.stash.pop",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Pop Stash...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Pop Stash... GitLens gitlens git stash pop 스태시 임시저장 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.stash.push",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Push Stash...",
+  "side_effects": "irreversible",
+  "embedding_text": "Git Push Stash... GitLens gitlens git stash push 스태시 임시저장 푸시 밀어넣기 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.stash.rename",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Rename Stash...",
+  "side_effects": "reversible",
+  "embedding_text": "Git Rename Stash... GitLens gitlens git stash rename 스태시 임시저장 이름변경 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.status",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Status...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Status... GitLens gitlens git status 상태 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.switch",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Switch to...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Switch to... GitLens gitlens git switch 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.tag",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Tag...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Tag... GitLens gitlens git tag 태그 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.tag.create",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Create Tag...",
+  "side_effects": "reversible",
+  "embedding_text": "Git Create Tag... GitLens gitlens git tag create 태그 생성 만들기 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.tag.delete",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Delete Tag...",
+  "side_effects": "irreversible",
+  "embedding_text": "Git Delete Tag... GitLens gitlens git tag delete 삭제 태그 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.tag.push",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Push Tag...",
+  "side_effects": "irreversible",
+  "embedding_text": "Git Push Tag... GitLens gitlens git tag push 푸시 밀어넣기 태그 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.worktree",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Worktree...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Worktree... GitLens gitlens git worktree 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.worktree.copyWorkingChangesTo",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Copy Working Changes to Worktree...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Copy Working Changes to Worktree... GitLens gitlens git worktree copy working changes to 복사 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.worktree.create",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Create Worktree...",
+  "side_effects": "reversible",
+  "embedding_text": "Git Create Worktree... GitLens gitlens git worktree create 생성 만들기 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.worktree.delete",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Delete Worktree...",
+  "side_effects": "irreversible",
+  "embedding_text": "Git Delete Worktree... GitLens gitlens git worktree delete 삭제 깃"
+ },
+ {
+  "id": "vscode.gitlens.git.worktree.open",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Open Worktree...",
+  "side_effects": "read_only",
+  "embedding_text": "Git Open Worktree... GitLens gitlens git worktree open 열기 깃"
+ },
+ {
+  "id": "vscode.gitlens.gitCommands",
+  "plugin": "vscode.gitlens",
+  "intent": "Git Command Palette",
+  "side_effects": "read_only",
+  "embedding_text": "Git Command Palette GitLens gitlens git commands 깃"
+ },
+ {
+  "id": "vscode.gitlens.gk.switchOrganization",
+  "plugin": "vscode.gitlens",
+  "intent": "Switch Organization...",
+  "side_effects": "read_only",
+  "embedding_text": "Switch Organization... GitLens gitlens gk switch organization 깃"
+ },
+ {
+  "id": "vscode.gitlens.graph.addAuthor",
+  "plugin": "vscode.gitlens",
+  "intent": "Add as Co-author",
+  "side_effects": "reversible",
+  "embedding_text": "Add as Co-author gitlens graph add author 그래프 추가"
+ },
+ {
+  "id": "vscode.gitlens.graph.cherryPick.multi",
+  "plugin": "vscode.gitlens",
+  "intent": "Cherry Pick Commits...",
+  "side_effects": "read_only",
+  "embedding_text": "Cherry Pick Commits... gitlens graph cherry pick multi 체리 픽 선택 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnAuthorOff",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Author Column",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Author Column gitlens graph column author off 그래프 숨기기 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnAuthorOn",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Author Column",
+  "side_effects": "read_only",
+  "embedding_text": "Show Author Column gitlens graph column author on 그래프 표시 보기 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnChangesOff",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Changes Column",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Changes Column gitlens graph column changes off 그래프 숨기기 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnChangesOn",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Changes Column",
+  "side_effects": "read_only",
+  "embedding_text": "Show Changes Column gitlens graph column changes on 그래프 표시 보기 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnDateTimeOff",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Date Column",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Date Column gitlens graph column date time off 그래프 숨기기 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnDateTimeOn",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Date Column",
+  "side_effects": "read_only",
+  "embedding_text": "Show Date Column gitlens graph column date time on 그래프 표시 보기 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnGraphCompact",
+  "plugin": "vscode.gitlens",
+  "intent": "Use Compact Graph Column",
+  "side_effects": "read_only",
+  "embedding_text": "Use Compact Graph Column gitlens graph column graph compact 그래프 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnGraphDefault",
+  "plugin": "vscode.gitlens",
+  "intent": "Use Expanded Graph Column",
+  "side_effects": "read_only",
+  "embedding_text": "Use Expanded Graph Column gitlens graph column graph default 그래프 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnGraphGroup",
+  "plugin": "vscode.gitlens",
+  "intent": "Group Graph Column",
+  "side_effects": "read_only",
+  "embedding_text": "Group Graph Column gitlens graph column graph group 그래프 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnGraphOff",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Graph Column",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Graph Column gitlens graph column graph off 그래프 숨기기 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnGraphOn",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Graph Column",
+  "side_effects": "read_only",
+  "embedding_text": "Show Graph Column gitlens graph column graph on 그래프 표시 보기 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnGraphUngroup",
+  "plugin": "vscode.gitlens",
+  "intent": "Ungroup Graph Column",
+  "side_effects": "read_only",
+  "embedding_text": "Ungroup Graph Column gitlens graph column graph ungroup 그래프 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnMessageOff",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Commit Message Column",
+  "side_effects": "reversible",
+  "embedding_text": "Hide Commit Message Column gitlens graph column message off 커밋 그래프 숨기기 열 메시지 메세지"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnMessageOn",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Commit Message Column",
+  "side_effects": "reversible",
+  "embedding_text": "Show Commit Message Column gitlens graph column message on 커밋 그래프 표시 보기 열 메시지 메세지"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnRefGroup",
+  "plugin": "vscode.gitlens",
+  "intent": "Group Branches / Tags Column",
+  "side_effects": "read_only",
+  "embedding_text": "Group Branches / Tags Column gitlens graph column ref group 그래프 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnRefOff",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Branches / Tags Column",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Branches / Tags Column gitlens graph column ref off 그래프 숨기기 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnRefOn",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Branches / Tags Column",
+  "side_effects": "read_only",
+  "embedding_text": "Show Branches / Tags Column gitlens graph column ref on 그래프 표시 보기 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnRefUngroup",
+  "plugin": "vscode.gitlens",
+  "intent": "Ungroup Branches / Tags Column",
+  "side_effects": "read_only",
+  "embedding_text": "Ungroup Branches / Tags Column gitlens graph column ref ungroup 그래프 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnShaOff",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide SHA Column",
+  "side_effects": "read_only",
+  "embedding_text": "Hide SHA Column gitlens graph column sha off 그래프 숨기기 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.columnShaOn",
+  "plugin": "vscode.gitlens",
+  "intent": "Show SHA Column",
+  "side_effects": "read_only",
+  "embedding_text": "Show SHA Column gitlens graph column sha on 그래프 표시 보기 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.commitViaSCM",
+  "plugin": "vscode.gitlens",
+  "intent": "Commit via Source Control...",
+  "side_effects": "reversible",
+  "embedding_text": "Commit via Source Control... gitlens graph commit via scm 커밋 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.compareAncestryWithWorking",
+  "plugin": "vscode.gitlens",
+  "intent": "Compare Working Tree to Common Base",
+  "side_effects": "read_only",
+  "embedding_text": "Compare Working Tree to Common Base gitlens graph compare ancestry with working 비교 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.compareBranchWithHead",
+  "plugin": "vscode.gitlens",
+  "intent": "Compare with HEAD",
+  "side_effects": "read_only",
+  "embedding_text": "Compare with HEAD gitlens graph compare branch with head 브랜치 비교 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.compareSelectedCommits.multi",
+  "plugin": "vscode.gitlens",
+  "intent": "Compare Selected Commits",
+  "side_effects": "read_only",
+  "embedding_text": "Compare Selected Commits gitlens graph compare selected commits multi 비교 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.compareWithHead",
+  "plugin": "vscode.gitlens",
+  "intent": "Compare to/from HEAD",
+  "side_effects": "read_only",
+  "embedding_text": "Compare to/from HEAD gitlens graph compare with head 비교 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.compareWithMergeBase",
+  "plugin": "vscode.gitlens",
+  "intent": "Compare with Common Base",
+  "side_effects": "read_only",
+  "embedding_text": "Compare with Common Base gitlens graph compare with merge base 병합 머지 비교 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.compareWithUpstream",
+  "plugin": "vscode.gitlens",
+  "intent": "Compare with Upstream",
+  "side_effects": "read_only",
+  "embedding_text": "Compare with Upstream gitlens graph compare with upstream 비교 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.compareWithWorking",
+  "plugin": "vscode.gitlens",
+  "intent": "Compare Working Tree to Here",
+  "side_effects": "read_only",
+  "embedding_text": "Compare Working Tree to Here gitlens graph compare with working 비교 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.copy",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy",
+  "side_effects": "read_only",
+  "embedding_text": "Copy gitlens graph copy 그래프 복사"
+ },
+ {
+  "id": "vscode.gitlens.graph.copyDeepLinkToBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Link to Branch",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Link to Branch gitlens graph copy deep link to branch 브랜치 그래프 복사"
+ },
+ {
+  "id": "vscode.gitlens.graph.copyDeepLinkToCommit",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Link to Commit",
+  "side_effects": "reversible",
+  "embedding_text": "Copy Link to Commit gitlens graph copy deep link to commit 커밋 그래프 복사"
+ },
+ {
+  "id": "vscode.gitlens.graph.copyDeepLinkToRepo",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Link to Repository",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Link to Repository gitlens graph copy deep link to repo 그래프 복사 저장소 레포 저장소 레포"
+ },
+ {
+  "id": "vscode.gitlens.graph.copyDeepLinkToTag",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Link to Tag",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Link to Tag gitlens graph copy deep link to tag 태그 그래프 복사"
+ },
+ {
+  "id": "vscode.gitlens.graph.copyMessage",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Message",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Message gitlens graph copy message 그래프 복사 메시지 메세지"
+ },
+ {
+  "id": "vscode.gitlens.graph.copyRemoteBranchUrl",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Remote Branch URL",
+  "side_effects": "read_only",
+  "embedding_text": "Copy Remote Branch URL gitlens graph copy remote branch url 브랜치 그래프 원격 복사"
+ },
+ {
+  "id": "vscode.gitlens.graph.copyRemoteCommitUrl",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Remote Commit URL",
+  "side_effects": "reversible",
+  "embedding_text": "Copy Remote Commit URL gitlens graph copy remote commit url 커밋 그래프 원격 복사"
+ },
+ {
+  "id": "vscode.gitlens.graph.copyRemoteCommitUrl.multi",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy Remote Commit URLs",
+  "side_effects": "reversible",
+  "embedding_text": "Copy Remote Commit URLs gitlens graph copy remote commit url multi 커밋 그래프 원격 복사"
+ },
+ {
+  "id": "vscode.gitlens.graph.copySha",
+  "plugin": "vscode.gitlens",
+  "intent": "Copy SHA",
+  "side_effects": "read_only",
+  "embedding_text": "Copy SHA gitlens graph copy sha 그래프 복사"
+ },
+ {
+  "id": "vscode.gitlens.graph.createPatch",
+  "plugin": "vscode.gitlens",
+  "intent": "Create Patch...",
+  "side_effects": "reversible",
+  "embedding_text": "Create Patch... gitlens graph create patch 그래프 생성 만들기"
+ },
+ {
+  "id": "vscode.gitlens.graph.createTag",
+  "plugin": "vscode.gitlens",
+  "intent": "Create Tag...",
+  "side_effects": "reversible",
+  "embedding_text": "Create Tag... gitlens graph create tag 태그 그래프 생성 만들기"
+ },
+ {
+  "id": "vscode.gitlens.graph.createWorktree",
+  "plugin": "vscode.gitlens",
+  "intent": "Create Worktree...",
+  "side_effects": "reversible",
+  "embedding_text": "Create Worktree... gitlens graph create worktree 그래프 생성 만들기"
+ },
+ {
+  "id": "vscode.gitlens.graph.deleteBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Delete Branch...",
+  "side_effects": "irreversible",
+  "embedding_text": "Delete Branch... gitlens graph delete branch 브랜치 삭제 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.deleteTag",
+  "plugin": "vscode.gitlens",
+  "intent": "Delete Tag...",
+  "side_effects": "irreversible",
+  "embedding_text": "Delete Tag... gitlens graph delete tag 삭제 태그 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.deleteWorktree",
+  "plugin": "vscode.gitlens",
+  "intent": "Delete Worktree...",
+  "side_effects": "irreversible",
+  "embedding_text": "Delete Worktree... gitlens graph delete worktree 삭제 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.dropCommits.multi",
+  "plugin": "vscode.gitlens",
+  "intent": "Drop Commits...",
+  "side_effects": "irreversible",
+  "embedding_text": "Drop Commits... gitlens graph drop commits multi 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.fixupCommit",
+  "plugin": "vscode.gitlens",
+  "intent": "Fixup Commit...",
+  "side_effects": "reversible",
+  "embedding_text": "Fixup Commit... gitlens graph fixup commit 커밋 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.focusTerminalWorktree",
+  "plugin": "vscode.gitlens",
+  "intent": "Focus in Commit Graph",
+  "side_effects": "reversible",
+  "embedding_text": "Focus in Commit Graph gitlens graph focus terminal worktree 커밋 그래프 터미널"
+ },
+ {
+  "id": "vscode.gitlens.graph.followTerminalOff",
+  "plugin": "vscode.gitlens",
+  "intent": "Stop Following Active Terminal",
+  "side_effects": "read_only",
+  "embedding_text": "Stop Following Active Terminal GitLens gitlens graph follow terminal off 그래프 터미널 중지 정지 깃"
+ },
+ {
+  "id": "vscode.gitlens.graph.followTerminalOn",
+  "plugin": "vscode.gitlens",
+  "intent": "Follow Active Terminal",
+  "side_effects": "read_only",
+  "embedding_text": "Follow Active Terminal GitLens gitlens graph follow terminal on 그래프 터미널 깃"
+ },
+ {
+  "id": "vscode.gitlens.graph.hideLocalBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Local Branch",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Local Branch gitlens graph hide local branch 브랜치 그래프 숨기기"
+ },
+ {
+  "id": "vscode.gitlens.graph.hideRefGroup",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide",
+  "side_effects": "read_only",
+  "embedding_text": "Hide gitlens graph hide ref group 그래프 숨기기"
+ },
+ {
+  "id": "vscode.gitlens.graph.hideRemote",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Remote",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Remote gitlens graph hide remote 그래프 숨기기 원격"
+ },
+ {
+  "id": "vscode.gitlens.graph.hideRemoteBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Remote Branch",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Remote Branch gitlens graph hide remote branch 브랜치 그래프 숨기기 원격"
+ },
+ {
+  "id": "vscode.gitlens.graph.hideTag",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Tag",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Tag gitlens graph hide tag 태그 그래프 숨기기"
+ },
+ {
+  "id": "vscode.gitlens.graph.mergeBranchInto",
+  "plugin": "vscode.gitlens",
+  "intent": "Merge Branch into Current Branch...",
+  "side_effects": "read_only",
+  "embedding_text": "Merge Branch into Current Branch... gitlens graph merge branch into 브랜치 병합 머지 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.modifyCommits",
+  "plugin": "vscode.gitlens",
+  "intent": "Modify (Rebase) Commits from Here...",
+  "side_effects": "read_only",
+  "embedding_text": "Modify (Rebase) Commits from Here... gitlens graph modify commits 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.modifyCommits.multi",
+  "plugin": "vscode.gitlens",
+  "intent": "Modify (Rebase) Selected Commits...",
+  "side_effects": "read_only",
+  "embedding_text": "Modify (Rebase) Selected Commits... gitlens graph modify commits multi 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.openBranchOnRemote",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Branch on Remote",
+  "side_effects": "read_only",
+  "embedding_text": "Open Branch on Remote gitlens graph open branch on remote 브랜치 그래프 열기 원격"
+ },
+ {
+  "id": "vscode.gitlens.graph.openChangedFileDiffs",
+  "plugin": "vscode.gitlens",
+  "intent": "Open All Changes",
+  "side_effects": "read_only",
+  "embedding_text": "Open All Changes gitlens graph open changed file diffs 그래프 열기 파일"
+ },
+ {
+  "id": "vscode.gitlens.graph.openChangedFileDiffsIndividually",
+  "plugin": "vscode.gitlens",
+  "intent": "Open All Changes Individually",
+  "side_effects": "read_only",
+  "embedding_text": "Open All Changes Individually gitlens graph open changed file diffs individually 그래프 열기 파일"
+ },
+ {
+  "id": "vscode.gitlens.graph.openChangedFileDiffsWithMergeBase",
+  "plugin": "vscode.gitlens",
+  "intent": "Open All Changes with Common Base",
+  "side_effects": "read_only",
+  "embedding_text": "Open All Changes with Common Base gitlens graph open changed file diffs with merge base 병합 머지 그래프 열기 파일"
+ },
+ {
+  "id": "vscode.gitlens.graph.openChangedFileDiffsWithWorking",
+  "plugin": "vscode.gitlens",
+  "intent": "Open All Changes with Working Tree",
+  "side_effects": "read_only",
+  "embedding_text": "Open All Changes with Working Tree gitlens graph open changed file diffs with working 그래프 열기 파일"
+ },
+ {
+  "id": "vscode.gitlens.graph.openChangedFileDiffsWithWorkingIndividually",
+  "plugin": "vscode.gitlens",
+  "intent": "Open All Changes with Working Tree Individually",
+  "side_effects": "read_only",
+  "embedding_text": "Open All Changes with Working Tree Individually gitlens graph open changed file diffs with working individually 그래프 열기 파일"
+ },
+ {
+  "id": "vscode.gitlens.graph.openChangedFileRevisions",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Files at Revision",
+  "side_effects": "read_only",
+  "embedding_text": "Open Files at Revision gitlens graph open changed file revisions 그래프 열기 파일 리비전"
+ },
+ {
+  "id": "vscode.gitlens.graph.openChangedFiles",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Files",
+  "side_effects": "read_only",
+  "embedding_text": "Open Files gitlens graph open changed files 그래프 열기"
+ },
+ {
+  "id": "vscode.gitlens.graph.openCommitOnRemote",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Commit on Remote",
+  "side_effects": "reversible",
+  "embedding_text": "Open Commit on Remote gitlens graph open commit on remote 커밋 그래프 열기 원격"
+ },
+ {
+  "id": "vscode.gitlens.graph.openCommitOnRemote.multi",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Commits on Remote",
+  "side_effects": "reversible",
+  "embedding_text": "Open Commits on Remote gitlens graph open commit on remote multi 커밋 그래프 열기 원격"
+ },
+ {
+  "id": "vscode.gitlens.graph.openInWorktree",
+  "plugin": "vscode.gitlens",
+  "intent": "Open in Worktree",
+  "side_effects": "read_only",
+  "embedding_text": "Open in Worktree gitlens graph open in worktree 그래프 열기"
+ },
+ {
+  "id": "vscode.gitlens.graph.openOnlyChangedFiles",
+  "plugin": "vscode.gitlens",
+  "intent": "Open Changed & Close Unchanged Files",
+  "side_effects": "read_only",
+  "embedding_text": "Open Changed & Close Unchanged Files gitlens graph open only changed files 그래프 열기 닫기"
+ },
+ {
+  "id": "vscode.gitlens.graph.pinBranchToEdge",
+  "plugin": "vscode.gitlens",
+  "intent": "Pin Branch to Edge",
+  "side_effects": "read_only",
+  "embedding_text": "Pin Branch to Edge gitlens graph pin branch to edge 브랜치 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.pull",
+  "plugin": "vscode.gitlens",
+  "intent": "Pull",
+  "side_effects": "read_only",
+  "embedding_text": "Pull gitlens graph pull 가져오기 풀 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.push",
+  "plugin": "vscode.gitlens",
+  "intent": "Push",
+  "side_effects": "irreversible",
+  "embedding_text": "Push gitlens graph push 푸시 밀어넣기 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.pushTag",
+  "plugin": "vscode.gitlens",
+  "intent": "Push Tag...",
+  "side_effects": "irreversible",
+  "embedding_text": "Push Tag... gitlens graph push tag 푸시 밀어넣기 태그 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.pushToCommit",
+  "plugin": "vscode.gitlens",
+  "intent": "Push to Here...",
+  "side_effects": "irreversible",
+  "embedding_text": "Push to Here... gitlens graph push to commit 커밋 푸시 밀어넣기 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.pushWithForce",
+  "plugin": "vscode.gitlens",
+  "intent": "Push (force)",
+  "side_effects": "irreversible",
+  "embedding_text": "Push (force) gitlens graph push with force 푸시 밀어넣기 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.rebaseOntoBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Rebase Current Branch onto Branch...",
+  "side_effects": "read_only",
+  "embedding_text": "Rebase Current Branch onto Branch... gitlens graph rebase onto branch 브랜치 리베이스 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.rebaseOntoCommit",
+  "plugin": "vscode.gitlens",
+  "intent": "Rebase Current Branch onto Here...",
+  "side_effects": "reversible",
+  "embedding_text": "Rebase Current Branch onto Here... gitlens graph rebase onto commit 커밋 브랜치 리베이스 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.rebaseOntoUpstream",
+  "plugin": "vscode.gitlens",
+  "intent": "Rebase Current Branch onto Upstream...",
+  "side_effects": "read_only",
+  "embedding_text": "Rebase Current Branch onto Upstream... gitlens graph rebase onto upstream 브랜치 리베이스 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.refresh",
+  "plugin": "vscode.gitlens",
+  "intent": "Refresh",
+  "side_effects": "read_only",
+  "embedding_text": "Refresh gitlens graph refresh 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.renameBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Rename Branch...",
+  "side_effects": "reversible",
+  "embedding_text": "Rename Branch... gitlens graph rename branch 브랜치 그래프 이름변경"
+ },
+ {
+  "id": "vscode.gitlens.graph.resetColumnsCompact",
+  "plugin": "vscode.gitlens",
+  "intent": "Reset Columns to Compact Layout",
+  "side_effects": "irreversible",
+  "embedding_text": "Reset Columns to Compact Layout gitlens graph reset columns compact 초기화 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.resetColumnsDefault",
+  "plugin": "vscode.gitlens",
+  "intent": "Reset Columns to Default Layout",
+  "side_effects": "irreversible",
+  "embedding_text": "Reset Columns to Default Layout gitlens graph reset columns default 초기화 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.resetToCommit",
+  "plugin": "vscode.gitlens",
+  "intent": "Reset Current Branch to Here...",
+  "side_effects": "irreversible",
+  "embedding_text": "Reset Current Branch to Here... gitlens graph reset to commit 커밋 브랜치 초기화 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.resetToTag",
+  "plugin": "vscode.gitlens",
+  "intent": "Reset Current Branch to Tag...",
+  "side_effects": "irreversible",
+  "embedding_text": "Reset Current Branch to Tag... gitlens graph reset to tag 브랜치 초기화 태그 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.resetToTip",
+  "plugin": "vscode.gitlens",
+  "intent": "Reset Current Branch to Tip...",
+  "side_effects": "irreversible",
+  "embedding_text": "Reset Current Branch to Tip... gitlens graph reset to tip 브랜치 초기화 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.resumeAgentSession",
+  "plugin": "vscode.gitlens",
+  "intent": "Resume Agent Session...",
+  "side_effects": "read_only",
+  "embedding_text": "Resume Agent Session... gitlens graph resume agent session 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.revealWorktreeInExplorer",
+  "plugin": "vscode.gitlens",
+  "intent": "Reveal in File Explorer",
+  "side_effects": "read_only",
+  "embedding_text": "Reveal in File Explorer gitlens graph reveal worktree in explorer 그래프 파일"
+ },
+ {
+  "id": "vscode.gitlens.graph.revert",
+  "plugin": "vscode.gitlens",
+  "intent": "Revert Commit...",
+  "side_effects": "irreversible",
+  "embedding_text": "Revert Commit... gitlens graph revert 커밋 되돌리기 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.rewordCommit",
+  "plugin": "vscode.gitlens",
+  "intent": "Reword Commit...",
+  "side_effects": "reversible",
+  "embedding_text": "Reword Commit... gitlens graph reword commit 커밋 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.scrollMarkerLocalBranchOff",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Local Branch Markers",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Local Branch Markers gitlens graph scroll marker local branch off 브랜치 그래프 숨기기"
+ },
+ {
+  "id": "vscode.gitlens.graph.scrollMarkerLocalBranchOn",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Local Branch Markers",
+  "side_effects": "read_only",
+  "embedding_text": "Show Local Branch Markers gitlens graph scroll marker local branch on 브랜치 그래프 표시 보기"
+ },
+ {
+  "id": "vscode.gitlens.graph.scrollMarkerPullRequestOff",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Pull Request Markers",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Pull Request Markers gitlens graph scroll marker pull request off 가져오기 풀 그래프 숨기기 요청"
+ },
+ {
+  "id": "vscode.gitlens.graph.scrollMarkerPullRequestOn",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Pull Request Markers",
+  "side_effects": "read_only",
+  "embedding_text": "Show Pull Request Markers gitlens graph scroll marker pull request on 가져오기 풀 그래프 표시 보기 요청"
+ },
+ {
+  "id": "vscode.gitlens.graph.scrollMarkerRemoteBranchOff",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Remote Branch Markers",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Remote Branch Markers gitlens graph scroll marker remote branch off 브랜치 그래프 숨기기 원격"
+ },
+ {
+  "id": "vscode.gitlens.graph.scrollMarkerRemoteBranchOn",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Remote Branch Markers",
+  "side_effects": "read_only",
+  "embedding_text": "Show Remote Branch Markers gitlens graph scroll marker remote branch on 브랜치 그래프 표시 보기 원격"
+ },
+ {
+  "id": "vscode.gitlens.graph.scrollMarkerStashOff",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Stash Markers",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Stash Markers gitlens graph scroll marker stash off 스태시 임시저장 그래프 숨기기"
+ },
+ {
+  "id": "vscode.gitlens.graph.scrollMarkerStashOn",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Stash Markers",
+  "side_effects": "read_only",
+  "embedding_text": "Show Stash Markers gitlens graph scroll marker stash on 스태시 임시저장 그래프 표시 보기"
+ },
+ {
+  "id": "vscode.gitlens.graph.scrollMarkerTagOff",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Tag Markers",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Tag Markers gitlens graph scroll marker tag off 태그 그래프 숨기기"
+ },
+ {
+  "id": "vscode.gitlens.graph.scrollMarkerTagOn",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Tag Markers",
+  "side_effects": "read_only",
+  "embedding_text": "Show Tag Markers gitlens graph scroll marker tag on 태그 그래프 표시 보기"
+ },
+ {
+  "id": "vscode.gitlens.graph.scrollMarkerWipOff",
+  "plugin": "vscode.gitlens",
+  "intent": "Hide Working Tree Markers",
+  "side_effects": "read_only",
+  "embedding_text": "Hide Working Tree Markers gitlens graph scroll marker wip off 그래프 숨기기"
+ },
+ {
+  "id": "vscode.gitlens.graph.scrollMarkerWipOn",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Working Tree Markers",
+  "side_effects": "read_only",
+  "embedding_text": "Show Working Tree Markers gitlens graph scroll marker wip on 그래프 표시 보기"
+ },
+ {
+  "id": "vscode.gitlens.graph.setLaneDensityToCompact",
+  "plugin": "vscode.gitlens",
+  "intent": "Use Compact Density Graph Column Lanes",
+  "side_effects": "read_only",
+  "embedding_text": "Use Compact Density Graph Column Lanes gitlens graph set lane density to compact 그래프 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.setLaneDensityToExpanded",
+  "plugin": "vscode.gitlens",
+  "intent": "Use Expanded Density Graph Column Lanes",
+  "side_effects": "read_only",
+  "embedding_text": "Use Expanded Density Graph Column Lanes gitlens graph set lane density to expanded 그래프 열"
+ },
+ {
+  "id": "vscode.gitlens.graph.setStyleAuto",
+  "plugin": "vscode.gitlens",
+  "intent": "View Graph as Auto",
+  "side_effects": "read_only",
+  "embedding_text": "View Graph as Auto gitlens graph set style auto 그래프 보기"
+ },
+ {
+  "id": "vscode.gitlens.graph.setStyleList",
+  "plugin": "vscode.gitlens",
+  "intent": "View Graph as List",
+  "side_effects": "read_only",
+  "embedding_text": "View Graph as List gitlens graph set style list 그래프 보기 목록 리스트"
+ },
+ {
+  "id": "vscode.gitlens.graph.setStyleTable",
+  "plugin": "vscode.gitlens",
+  "intent": "View Graph as Table",
+  "side_effects": "read_only",
+  "embedding_text": "View Graph as Table gitlens graph set style table 그래프 보기"
+ },
+ {
+  "id": "vscode.gitlens.graph.shareAsCloudPatch",
+  "plugin": "vscode.gitlens",
+  "intent": "Share as Cloud Patch...",
+  "side_effects": "read_only",
+  "embedding_text": "Share as Cloud Patch... gitlens graph share as cloud patch 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.showLocalBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Local Branch",
+  "side_effects": "read_only",
+  "embedding_text": "Show Local Branch gitlens graph show local branch 브랜치 그래프 표시 보기"
+ },
+ {
+  "id": "vscode.gitlens.graph.showRemote",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Remote",
+  "side_effects": "read_only",
+  "embedding_text": "Show Remote gitlens graph show remote 그래프 표시 보기 원격"
+ },
+ {
+  "id": "vscode.gitlens.graph.showRemoteBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Remote Branch",
+  "side_effects": "read_only",
+  "embedding_text": "Show Remote Branch gitlens graph show remote branch 브랜치 그래프 표시 보기 원격"
+ },
+ {
+  "id": "vscode.gitlens.graph.showTag",
+  "plugin": "vscode.gitlens",
+  "intent": "Show Tag",
+  "side_effects": "read_only",
+  "embedding_text": "Show Tag gitlens graph show tag 태그 그래프 표시 보기"
+ },
+ {
+  "id": "vscode.gitlens.graph.showTerminalWorktree",
+  "plugin": "vscode.gitlens",
+  "intent": "Open in Commit Graph",
+  "side_effects": "reversible",
+  "embedding_text": "Open in Commit Graph gitlens graph show terminal worktree 커밋 그래프 열기 표시 보기 터미널"
+ },
+ {
+  "id": "vscode.gitlens.graph.soloBranch",
+  "plugin": "vscode.gitlens",
+  "intent": "Solo Branch",
+  "side_effects": "read_only",
+  "embedding_text": "Solo Branch GitLens gitlens graph solo branch 브랜치 그래프 깃"
+ },
+ {
+  "id": "vscode.gitlens.graph.soloTag",
+  "plugin": "vscode.gitlens",
+  "intent": "Solo Tag",
+  "side_effects": "read_only",
+  "embedding_text": "Solo Tag GitLens gitlens graph solo tag 태그 그래프 깃"
+ },
+ {
+  "id": "vscode.gitlens.graph.split",
+  "plugin": "vscode.gitlens",
+  "intent": "Split Commit Graph",
+  "side_effects": "reversible",
+  "embedding_text": "Split Commit Graph GitLens gitlens graph split 커밋 그래프 깃"
+ },
+ {
+  "id": "vscode.gitlens.graph.squashCommits.multi",
+  "plugin": "vscode.gitlens",
+  "intent": "Squash Commits...",
+  "side_effects": "read_only",
+  "embedding_text": "Squash Commits... gitlens graph squash commits multi 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.squashFixups",
+  "plugin": "vscode.gitlens",
+  "intent": "Squash Fixups...",
+  "side_effects": "read_only",
+  "embedding_text": "Squash Fixups... gitlens graph squash fixups 그래프"
+ },
+ {
+  "id": "vscode.gitlens.graph.stageConflictCurrentChanges",
+  "plugin": "vscode.gitlens",
+  "intent": "Stage Current Changes",
+  "side_effects": "reversible",
+  "embedding_text": "Stage Current Changes gitlens graph stage conflict current changes 그래프 충돌"
+ }
+]

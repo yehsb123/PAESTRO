@@ -27,7 +27,7 @@ SCRIPTS = {
     "eval": "eval/run_eval.py",
     "demo": "demo/pipeline.py",
 }
-CHECK = ["enrich/test_safety.py", "schemas/validate.py", "demo/pipeline.py"]
+CHECK = ["enrich/test_safety.py", "schemas/validate.py", "demo/pipeline.py", "eval/regression.py"]
 
 
 def run(script: str, args: list[str]) -> int:
@@ -42,7 +42,7 @@ def main() -> int:
 
     if cmd == "check":
         failed = [s for s in CHECK if run(s, []) != 0]
-        print(("\n✗ 실패: " + ", ".join(failed)) if failed else "\n✓ CI 3종 통과")
+        print(("\n✗ 실패: " + ", ".join(failed)) if failed else f"\n✓ CI {len(CHECK)}종 통과")
         return 1 if failed else 0
     if cmd not in SCRIPTS:
         print(f"알 수 없는 명령: {cmd}\n")
