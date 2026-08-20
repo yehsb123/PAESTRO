@@ -25,7 +25,7 @@
 
 - 🟢 **오픈소스 크롤 레지스트리 1,824 capability · 30 소스 · 4 런타임** — VS Code 확장 · MCP 서버(공식 레지스트리) · REST API(apis.guru: Stripe·Slack·GitHub 등) · CLI(git·docker·gh·kubectl)를 실제 크롤(`registry/crawl.py`). 승인 대상(irreversible) 133개 자동 분류.
 - 🟢 **END-TO-END 검증**: 크롤 → 정규화 → 엔진(mpnet+Chroma) 색인 → 의미 검색. 실측 top-3 전체 64%·KO 57%·EN 71%.
-- 🟢 **walking skeleton** end-to-end: 자연어 → 검색 → 번호선택 → 실행 + 승인 게이트
+- 🟢 **멀티스텝 오케스트레이션**: 복합 요구 → 단계 분해(규칙기반, 키 있으면 LLM planner) → 크로스-런타임 계획 → 단계별 승인·실행 (엔진 `/orchestrate` + 확장 `paestro.orchestrate`)
 - 🟢 **안전 게이트 실재화**: 파괴적 명령(삭제·배포·force)은 `irreversible`로 분류되어 승인 필요
 - 🟢 **다국어 검색**: 한국어 동의어 주입(도구명·도메인 용어) + 복합어 부분매칭. 실측 top-3(레지스트리 26문항): lexical **KO 77%**·EN 92%. (엔진은 mpnet-base-v2 dense)
 
@@ -35,7 +35,9 @@
 python pae.py crawl              # 오픈소스 크롤 → registry/catalog.json (1,824 capability · 4 런타임)
 python pae.py stats              # 런타임·안전등급·플러그인 분포
 python pae.py search "결제 환불" # 자연어 → 번호 후보 (Stripe refund 등)
+python pae.py orchestrate "환불하고 이슈 생성"  # 멀티스텝 → 크로스런타임 계획
 python pae.py index --post http://127.0.0.1:8756   # 엔진에 색인
+python pae.py doctor            # 환경 진단(의존성·엔진·키)
 ```
 
 `registry/sources.json`에 repo·MCP 레지스트리·apis.guru provider·스펙 URL만 추가하면 크롤이 확장된다. VS Code 확장·MCP·REST·CLI를 각 `ingest/` 변환기로 정규화한다.
