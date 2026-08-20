@@ -31,5 +31,10 @@
   "restart": ["재시작"], "status": ["상태"], "token": ["토큰"], "secret": ["시크릿", "비밀"],
   "webhook": ["웹훅"], "event": ["이벤트"], "schedule": ["일정", "스케줄"], "backup": ["백업"],
   "snapshot": ["스냅샷"], "firewall": ["방화벽"], "domain": ["도메인"], "pull": ["가져오기", "풀"],
-  "request": ["요청"], "response": ["응답"], "auth": ["인증"], "login": ["로그인"], "logout": ["로그아웃"]
+  "request": ["요청"], "response": ["응답"], "auth": ["인증"], "login": ["로그인"], "logout": ["로그아웃"],
+  "docker": ["도커"], "kubernetes": ["쿠버네티스"], "kubectl": ["쿠버네티스", "k8s"], "git": ["깃"],
+  "github": ["깃허브"], "gitlab": ["깃랩"], "npm": ["엔피엠"], "node": ["노드"], "helm": ["헬름"],
+  "terraform": ["테라폼"], "aws": ["아마존", "에이더블유에스"], "slack": ["슬랙"], "stripe": ["스트라이프"],
+  "notion": ["노션"], "spotify": ["스포티파이"], "zoom": ["줌"], "asana": ["아사나"], "box": ["박스"],
+  "sendgrid": ["센드그리드"], "eslint": ["이에스린트"], "prettier": ["프리티어"], "vscode": ["브이에스코드"]
 }
