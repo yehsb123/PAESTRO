@@ -17,5 +17,19 @@
   "install": ["설치"], "uninstall": ["제거"], "update": ["업데이트", "갱신"],
   "copy": ["복사"], "paste": ["붙여넣기"], "rename": ["이름변경"], "move": ["이동"],
   "create": ["생성", "만들기"], "add": ["추가"], "annotations": ["주석"], "revision": ["리비전"],
-  "conflict": ["충돌"], "restore": ["복원"], "publish": ["배포", "발행"], "deploy": ["배포"]
+  "conflict": ["충돌"], "restore": ["복원"], "publish": ["배포", "발행"], "deploy": ["배포"],
+  "payment": ["결제"], "refund": ["환불"], "charge": ["청구"], "invoice": ["청구서", "인보이스"],
+  "subscription": ["구독"], "customer": ["고객"], "order": ["주문"], "checkout": ["체크아웃"],
+  "message": ["메시지", "메세지"], "channel": ["채널"], "notification": ["알림"], "notify": ["알림"],
+  "issue": ["이슈"], "repository": ["저장소", "레포"], "repo": ["저장소", "레포"], "account": ["계정"],
+  "user": ["사용자", "유저"], "database": ["데이터베이스", "디비"], "container": ["컨테이너"],
+  "image": ["이미지"], "volume": ["볼륨"], "pod": ["파드"], "namespace": ["네임스페이스"],
+  "cluster": ["클러스터"], "node": ["노드"], "service": ["서비스"], "deployment": ["배포"],
+  "page": ["페이지"], "block": ["블록"], "upload": ["업로드"], "download": ["다운로드"],
+  "send": ["보내기", "전송"], "cancel": ["취소"], "list": ["목록", "리스트"], "comment": ["댓글", "코멘트"],
+  "review": ["리뷰", "검토"], "build": ["빌드"], "run": ["실행"], "start": ["시작"], "stop": ["중지", "정지"],
+  "restart": ["재시작"], "status": ["상태"], "token": ["토큰"], "secret": ["시크릿", "비밀"],
+  "webhook": ["웹훅"], "event": ["이벤트"], "schedule": ["일정", "스케줄"], "backup": ["백업"],
+  "snapshot": ["스냅샷"], "firewall": ["방화벽"], "domain": ["도메인"], "pull": ["가져오기", "풀"],
+  "request": ["요청"], "response": ["응답"], "auth": ["인증"], "login": ["로그인"], "logout": ["로그아웃"]
 }
