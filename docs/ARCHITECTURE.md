@@ -21,15 +21,15 @@ PAESTRO/
 │   └─ src/
 │       ├─ extension.ts                   ✓  진입점 (activate, 명령 등록)
 │       ├─ engineClient.ts                ✓  엔진 HTTP 클라이언트 (index·retrieve·orchestrate)
-│       └─ ui/                            ☐  입력·후보메뉴·승인 다이얼로그
+│       └─ (UI는 extension.ts)            ✓  입력·번호메뉴·승인 다이얼로그·orchestrate
 │
 ├─ engine/                                ✓  [엔진 사이드카] Python/FastAPI
 │   ├─ app.py                             ✓  FastAPI 진입점 (현재 색인·검색 인라인)
 │   ├─ requirements.txt                   ✓
 │   └─ paestro/                           ·  파이썬 패키지 (app.py 로직이 이리로 이관)
 │       ├─ index/                         ✓  [3. 지식] store.py·embedding.py (리랭커 예정)
-│       ├─ orchestrator/                  ✓  [4. 오케스트레이터] pipeline.py 단일-스텝 (planner 예정)
-│       ├─ harness/                       ·  [5. 안전] side_effects 승인 게이트
+│       ├─ orchestrator/                  ✓  [4] pipeline.py 멀티스텝(분해→검색→계획) + LLM planner 폴백
+│       ├─ harness/                       ✓  [5] gate.py side_effects 승인 게이트
 │       ├─ adapters/                      ·  [2. 어댑터] enrich.py(결정적: side_effects+한국어) ✓ / rest·mcp·cli·LLM보강 예정
 │       └─ llm/                           ·  Claude 클라이언트
 │
