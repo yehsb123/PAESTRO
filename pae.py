@@ -4,6 +4,7 @@
   python pae.py crawl              오픈소스 크롤 → 레지스트리
   python pae.py stats [--risky]    레지스트리 통계/관측
   python pae.py search "질의"      번호 후보 검색
+  python pae.py orchestrate "복합요청"  멀티스텝 → 크로스-런타임 계획
   python pae.py index [--post URL] 엔진 색인 레코드 생성/투입
   python pae.py validate           매니페스트 계약 검증
   python pae.py demo               이질 소스 통합 파이프라인
@@ -20,6 +21,7 @@ except Exception:
 SCRIPTS = {
     "crawl": "registry/crawl.py",
     "search": "registry/search.py",
+    "orchestrate": "registry/orchestrate.py",
     "stats": "registry/stats.py",
     "index": "registry/to_index.py",
     "validate": "schemas/validate.py",
