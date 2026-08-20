@@ -54,9 +54,12 @@ def search(query: str, caps: list[dict], k: int) -> list[dict]:
     scored = []
     for c in caps:
         text = set(tokens(c.get("embedding_text") or c.get("intent", "")))
+        intent_tok = set(tokens(c.get("intent", "")))
         kw = set(t.lower() for t in c.get("keywords", []))
-        # 토큰 겹침(길이 가중) + 키워드 정확 일치 보너스
-        score = sum(len(t) for t in q if t in text) + 3 * len(qset & kw)
+        # 토큰 겹침(길이 가중) + 키워드 일치 + intent(제목) 일치 가중 + 전체 커버리지 보너스
+        score = sum(len(t) for t in q if t in text) + 3 * len(qset & kw) + 2 * len(qset & intent_tok)
+        if qset and qset <= text:
+            score += 4
         if score:
             scored.append((score, c))
     scored.sort(key=lambda x: -x[0])
