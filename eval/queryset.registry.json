@@ -14,6 +14,19 @@
     { "q": "깃 그래프 보기", "lang": "ko", "expected": ["vscode.git-graph.view"] },
     { "q": "view git commit graph", "lang": "en", "expected": ["vscode.git-graph.view"] },
     { "q": "스태시 적용", "lang": "ko", "expected": ["vscode.gitlens.stashApply"] },
-    { "q": "apply a stash", "lang": "en", "expected": ["vscode.gitlens.stashApply"] }
+    { "q": "apply a stash", "lang": "en", "expected": ["vscode.gitlens.stashApply"] },
+
+    { "q": "결제 환불", "lang": "ko", "expected": ["rest.stripe.PostApplicationFeesFeeRefundsId", "rest.stripe.GetApplicationFeesFeeRefundsId"] },
+    { "q": "refund a payment", "lang": "en", "expected": ["rest.stripe.PostApplicationFeesFeeRefundsId", "rest.stripe.GetApplicationFeesFeeRefundsId"] },
+    { "q": "컨테이너 실행", "lang": "ko", "expected": ["cli.docker.run"] },
+    { "q": "run a container", "lang": "en", "expected": ["cli.docker.run"] },
+    { "q": "실행 중인 컨테이너 목록", "lang": "ko", "expected": ["cli.docker.ps"] },
+    { "q": "list running containers", "lang": "en", "expected": ["cli.docker.ps"] },
+    { "q": "이슈 생성", "lang": "ko", "expected": ["vscode.issue.createIssueFromSelection", "vscode.issue.createIssueFromClipboard"] },
+    { "q": "create an issue", "lang": "en", "expected": ["vscode.issue.createIssueFromSelection", "vscode.issue.createIssueFromClipboard"] },
+    { "q": "저장소 복제", "lang": "ko", "expected": ["cli.git.clone"] },
+    { "q": "clone a repository", "lang": "en", "expected": ["cli.git.clone"] },
+    { "q": "쿠버네티스 리소스 생성", "lang": "ko", "expected": ["cli.kubectl.create"] },
+    { "q": "create a kubernetes resource", "lang": "en", "expected": ["cli.kubectl.create"] }
   ]
 }
