@@ -31,15 +31,30 @@ export async function retrieve(query: string, k = 5): Promise<Hit[]> {
   return json.hits ?? [];
 }
 
-// [4] 오케스트레이터 — 요구 → 후보. 현재는 검색과 동일, 이후 다중-스텝으로 확장.
-export async function orchestrate(query: string, k = 4): Promise<Hit[]> {
+export interface Chosen extends Hit {
+  needs_approval: boolean;
+}
+export interface Step {
+  n: number;
+  step: string;
+  chosen: Chosen | null;
+  alternatives: Hit[];
+}
+export interface Plan {
+  query: string;
+  multi_step: boolean;
+  steps: Step[];
+  needs_approval: number;
+}
+
+// [4] 오케스트레이터 — 복합 요구 → 멀티스텝 실행 계획.
+export async function orchestrate(query: string, k = 3): Promise<Plan> {
   const res = await fetch(`${ENGINE}/orchestrate`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ query, k }),
   });
-  const json = (await res.json()) as { query: string; candidates: Hit[] };
-  return json.candidates ?? [];
+  return (await res.json()) as Plan;
 }
 
 export async function health(): Promise<boolean> {

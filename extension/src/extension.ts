@@ -51,7 +51,7 @@ async function ask(): Promise<void> {
   });
   if (!query) return;
 
-  const hits = await engine.orchestrate(query, 4);
+  const hits = await engine.retrieve(query, 4);
   const items: MenuItem[] = hits.map((h, i) => ({
     label: `${i + 1}. ${h.intent || h.id}`,
     description: h.plugin,
@@ -86,6 +86,57 @@ async function ask(): Promise<void> {
   await vscode.commands.executeCommand(command);
 }
 
+// [4] 멀티스텝 오케스트레이션: 복합 요구 → 단계 계획 → 승인 게이트 → 순차 실행.
+async function orchestrate(): Promise<void> {
+  if (!(await engine.health())) {
+    vscode.window.showErrorMessage("PAESTRO: 엔진에 연결할 수 없습니다. 엔진을 먼저 실행하세요.");
+    return;
+  }
+  const query = await vscode.window.showInputBox({
+    prompt: "복합 요구를 입력하세요 (여러 단계 가능)",
+    placeHolder: "예: lint 자동수정하고 커밋 메시지 생성",
+  });
+  if (!query) return;
+
+  const plan = await engine.orchestrate(query, 3);
+  if (!plan.steps.length) {
+    vscode.window.showWarningMessage("PAESTRO: 계획을 세우지 못했습니다.");
+    return;
+  }
+
+  const lines = plan.steps.map(
+    (s) => `${s.n}. ${s.step} → ${s.chosen ? s.chosen.intent : "(매칭 없음)"}${s.chosen?.needs_approval ? "  ⚠승인" : ""}`
+  );
+  const header = `실행 계획 (${plan.steps.length}단계${plan.needs_approval ? `, 승인 ${plan.needs_approval}건` : ""})`;
+  const runAll = await vscode.window.showInformationMessage(
+    `${header}\n\n${lines.join("\n")}`,
+    { modal: true },
+    "전체 실행"
+  );
+  if (runAll !== "전체 실행") return;
+
+  let ran = 0;
+  for (const s of plan.steps) {
+    if (!s.chosen) continue;
+    const runtime = s.chosen.id.split(".")[0];
+    if (runtime !== "vscode") {
+      vscode.window.showInformationMessage(`PAESTRO: ${s.n}단계 [${runtime}]는 확장에서 직접 실행 불가 — 건너뜀`);
+      continue;
+    }
+    if (s.chosen.needs_approval) {
+      const ok = await vscode.window.showWarningMessage(
+        `되돌릴 수 없는 작업: ${s.chosen.intent}. 실행할까요?`,
+        { modal: true },
+        "실행"
+      );
+      if (ok !== "실행") continue;
+    }
+    await vscode.commands.executeCommand(s.chosen.id.replace(/^vscode\./, ""));
+    ran++;
+  }
+  vscode.window.showInformationMessage(`PAESTRO: 계획 실행 완료 (${ran}/${plan.steps.length}단계)`);
+}
+
 export function activate(context: vscode.ExtensionContext): void {
   context.subscriptions.push(
     vscode.commands.registerCommand("paestro.ask", () =>
@@ -93,6 +144,9 @@ export function activate(context: vscode.ExtensionContext): void {
     ),
     vscode.commands.registerCommand("paestro.reindex", () =>
       reindex().catch((e) => vscode.window.showErrorMessage(`PAESTRO: ${e}`))
+    ),
+    vscode.commands.registerCommand("paestro.orchestrate", () =>
+      orchestrate().catch((e) => vscode.window.showErrorMessage(`PAESTRO: ${e}`))
     )
   );
 }
