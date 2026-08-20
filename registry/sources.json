@@ -22,6 +22,6 @@
     { "name": "petstore", "url": "https://petstore3.swagger.io/api/v3/openapi.json" }
   ],
   "mcp": { "url": "https://registry.modelcontextprotocol.io/v0/servers", "limit": 80 },
-  "apiguru": { "providers": ["stripe.com", "slack.com", "notion.com", "digitalocean.com", "twilio.com", "github.com", "box.com", "sendgrid.com", "asana.com", "spotify.com", "mailchimp.com", "zoom.us", "trello.com", "bitbucket.org", "gitlab.com", "cloudflare.com", "shopify.com", "figma.com", "atlassian.com", "square.com"], "cap": 35 },
+  "apiguru": { "providers": ["stripe.com", "slack.com", "notion.com", "digitalocean.com", "twilio.com", "github.com", "box.com", "sendgrid.com", "asana.com", "spotify.com", "mailchimp.com", "zoom.us", "trello.com", "bitbucket.org", "gitlab.com", "cloudflare.com", "shopify.com", "figma.com", "atlassian.com", "square.com", "adobe.com", "paypal.com", "hubspot.com", "pagerduty.com", "datadoghq.com", "docusign.net", "twilio.com", "linode.com"], "cap": 35 },
   "cli": { "dir": "ingest/cli_help" }
 }
