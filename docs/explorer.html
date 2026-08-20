@@ -93,6 +93,9 @@
   .fbtn{font-family:var(--mono);font-size:12px;padding:5px 11px;border-radius:100px;border:1px solid var(--line2);background:var(--card);color:var(--soft);cursor:pointer}
   .fbtn.active{background:var(--ochreSoft);border-color:transparent;color:var(--ochre);font-weight:600}
   .fbtn.risky.active{background:var(--dangerSoft);color:var(--danger)}
+  .res{border-left:3px solid var(--line2)}
+  .res[data-se="reversible"]{border-left-color:var(--ochre)}
+  .res[data-se="irreversible"]{border-left-color:var(--danger)}
   footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
   @media(max-width:640px){.stats{grid-template-columns:1fr 1fr}.bars{grid-template-columns:1fr}.bar{grid-template-columns:96px 1fr 40px}}
 </style>
@@ -227,7 +230,7 @@ function run(){
   if(!hits.length){results.innerHTML='<div class="empty">매칭 없음 — 다른 표현으로 시도해 보세요</div>';}
   hits.forEach((c,i)=>{
     const [cls,label]=SE[c.s]||SE.read_only;
-    const el=document.createElement('div');el.className='res';
+    const el=document.createElement('div');el.className='res';el.dataset.se=c.s;
     el.innerHTML=`<span class="num">${i+1}</span><span class="it"><div class="t">${esc(c.i)}</div><div class="id">${esc(c.id)}</div></span><span class="${cls}">${c.s==='irreversible'?label:c.p}</span>`;
     results.appendChild(el);
   });
