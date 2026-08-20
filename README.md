@@ -27,7 +27,7 @@
 - 🟢 **END-TO-END 검증**: 크롤 → 정규화 → 엔진(mpnet+Chroma) 색인 → 의미 검색. 실측 top-3 전체 64%·KO 57%·EN 71%.
 - 🟢 **walking skeleton** end-to-end: 자연어 → 검색 → 번호선택 → 실행 + 승인 게이트
 - 🟢 **안전 게이트 실재화**: 파괴적 명령(삭제·배포·force)은 `irreversible`로 분류되어 승인 필요
-- 🟢 **다국어 검색**: 한국어 동의어 주입 + 다국어 임베딩. 실측(996개, top-3): lexical **KO 57%**·EN 86%, dense EN 86%. (엔진은 더 강한 mpnet-base-v2로 hybrid)
+- 🟢 **다국어 검색**: 한국어 동의어 주입(도구명·도메인 용어) + 복합어 부분매칭. 실측 top-3(레지스트리 26문항): lexical **KO 77%**·EN 92%. (엔진은 mpnet-base-v2 dense)
 
 ## 레지스트리 (오픈소스 크롤)
 
@@ -112,5 +112,5 @@ python schemas/validate.py     # 매니페스트 계약 검증
 ## 개발 원칙
 
 - 검색 단위 = **capability**(플러그인 아님). 새 소스는 어댑터/인제스트로 매니페스트만 만들면 편입된다.
-- 매 변경은 `schemas/validate.py`·`enrich/test_safety.py`·`demo/pipeline.py`가 **CI(GitHub Actions)** 로 자동 검증 — 계약을 깨면 즉시 실패한다.
+- 매 변경은 `pae.py check`(validate·safety·pipeline·**검색 회귀**)가 **CI(GitHub Actions)** 로 자동 검증 — 계약·검색 품질이 깨지면 즉시 실패한다.
 - 언어 경계: 사용자 접점은 TS, 무거운 로직은 Python. 둘은 로컬 HTTP로만 통신.
