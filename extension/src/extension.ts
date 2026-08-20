@@ -39,6 +39,20 @@ async function reindex(): Promise<void> {
 
 type MenuItem = vscode.QuickPickItem & { hit?: engine.Hit };
 
+// invocation(JSON 문자열)에서 실행할 vscode command 추출. 다른 런타임이거나 파싱 실패 시 처리.
+// 반환: {command} 실행 가능 · {runtime} 확장에서 실행 불가(REST/CLI/MCP) · null 알 수 없음
+function resolveExec(hit: engine.Hit): { command?: string; runtime?: string } {
+  try {
+    const inv = JSON.parse(hit.invocation || "{}");
+    if (inv.type === "vscode" && inv.command) return { command: inv.command };
+    if (inv.type && inv.type !== "vscode") return { runtime: inv.type };
+  } catch {
+    /* 구형 데이터 등 → id 폴백 */
+  }
+  if (hit.id.startsWith("vscode.")) return { command: hit.id.replace(/^vscode\./, "") };
+  return { runtime: hit.id.split(".")[0] };
+}
+
 // [4] 오케스트레이터 흐름: 요구 → 후보 번호 메뉴 → [5]게이트 → 실행.
 async function ask(): Promise<void> {
   if (!(await engine.health())) {
@@ -82,8 +96,14 @@ async function ask(): Promise<void> {
     if (ok !== "실행") return;
   }
 
-  const command = pick.hit.id.replace(/^vscode\./, "");
-  await vscode.commands.executeCommand(command);
+  const exec = resolveExec(pick.hit);
+  if (!exec.command) {
+    vscode.window.showInformationMessage(
+      `PAESTRO: 이 도구는 [${exec.runtime ?? "?"}] 런타임이라 확장에서 직접 실행할 수 없습니다: ${pick.hit.intent}`
+    );
+    return;
+  }
+  await vscode.commands.executeCommand(exec.command);
 }
 
 // [4] 멀티스텝 오케스트레이션: 복합 요구 → 단계 계획 → 승인 게이트 → 순차 실행.
@@ -118,9 +138,9 @@ async function orchestrate(): Promise<void> {
   let ran = 0;
   for (const s of plan.steps) {
     if (!s.chosen) continue;
-    const runtime = s.chosen.id.split(".")[0];
-    if (runtime !== "vscode") {
-      vscode.window.showInformationMessage(`PAESTRO: ${s.n}단계 [${runtime}]는 확장에서 직접 실행 불가 — 건너뜀`);
+    const exec = resolveExec(s.chosen);
+    if (!exec.command) {
+      vscode.window.showInformationMessage(`PAESTRO: ${s.n}단계 [${exec.runtime ?? "?"}]는 확장에서 직접 실행 불가 — 건너뜀`);
       continue;
     }
     if (s.chosen.needs_approval) {
@@ -131,7 +151,7 @@ async function orchestrate(): Promise<void> {
       );
       if (ok !== "실행") continue;
     }
-    await vscode.commands.executeCommand(s.chosen.id.replace(/^vscode\./, ""));
+    await vscode.commands.executeCommand(exec.command);
     ran++;
   }
   vscode.window.showInformationMessage(`PAESTRO: 계획 실행 완료 (${ran}/${plan.steps.length}단계)`);

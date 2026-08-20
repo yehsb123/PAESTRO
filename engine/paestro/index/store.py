@@ -5,6 +5,7 @@ Chroma 메타는 스칼라만 허용 → invocation(dict)은 직렬화해 저장
 """
 from __future__ import annotations
 
+import json
 from typing import Any
 
 import chromadb
@@ -26,7 +27,7 @@ def upsert(caps: list[dict[str, Any]]) -> int:
             "runtime": c.get("runtime", "vscode"),
             "intent": c.get("intent", ""),
             "side_effects": c.get("side_effects", "read_only"),
-            "invocation": str(c.get("invocation", {})),
+            "invocation": json.dumps(c.get("invocation", {}), ensure_ascii=False),
         }
         for c in caps
     ]
