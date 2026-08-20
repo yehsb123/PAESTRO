@@ -60,6 +60,11 @@ def search(query: str, caps: list[dict], k: int) -> list[dict]:
         score = sum(len(t) for t in q if t in text) + 3 * len(qset & kw) + 2 * len(qset & intent_tok)
         if qset and qset <= text:
             score += 4
+        # 복합어 부분 일치: 정확히 안 걸린 질의 토큰이 텍스트/키워드 토큰의 부분 문자열이면 소폭 가점
+        for qt in q:
+            if qt not in text and len(qt) >= 3:
+                if any(qt in tt or tt in qt for tt in text | kw):
+                    score += 1
         if score:
             scored.append((score, c))
     scored.sort(key=lambda x: -x[0])
