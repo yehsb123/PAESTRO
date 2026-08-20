@@ -212,8 +212,11 @@ function search(query,k){
   if(FILT.risky) pool=pool.filter(c=>c.s==="irreversible");
   const scored=[];
   for(const c of pool){
-    const tt=new Set(toks(c.t));
+    const tt=new Set(toks(c.t)), it=new Set(toks(c.i));
     let s=0; for(const t of qt) if(tt.has(t)) s+=t.length;
+    for(const t of qt) if(it.has(t)) s+=2;            // intent(제목) 가중
+    if(qt.every(t=>tt.has(t))) s+=4;                  // 전체 커버리지 보너스
+    for(const t of qt){ if(!tt.has(t)&&t.length>=3){ for(const x of tt){ if(x.includes(t)||t.includes(x)){s+=1;break;} } } } // 복합어 부분매칭
     if(s) scored.push([s,c]);
   }
   scored.sort((a,b)=>b[0]-a[0]);
