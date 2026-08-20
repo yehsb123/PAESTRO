@@ -6,6 +6,8 @@ LLM planner는 ANTHROPIC_API_KEY가 있을 때 rule-based를 대체(향후) — 
 """
 from __future__ import annotations
 
+import json
+import os
 import re
 from typing import Any
 
@@ -16,9 +18,36 @@ from ..index import store
 _SPLIT = re.compile(r"\s*(?:그리고|그다음|그\s*다음|한\s*[뒤후]|,|;|\bthen\b|\band\b)\s*|(?<=[가-힣])고\s+", re.I)
 
 
-def decompose(query: str) -> list[str]:
+def _rule_decompose(query: str) -> list[str]:
     parts = [p.strip(" .·-") for p in _SPLIT.split(query) if p and p.strip(" .·-")]
     return parts or [query]
+
+
+def _llm_decompose(query: str) -> list[str] | None:
+    """ANTHROPIC_API_KEY가 있으면 Claude planner로 분해. 없거나 실패하면 None(규칙기반 폴백)."""
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        return None
+    try:
+        from anthropic import Anthropic
+
+        client = Anthropic()
+        model = os.environ.get("PAESTRO_PLANNER_MODEL", "claude-sonnet-5")
+        msg = client.messages.create(
+            model=model, max_tokens=512,
+            messages=[{"role": "user", "content":
+                       f"사용자 요구를 실행 가능한 개별 작업 단계로 분해해라. 각 단계는 도구 하나로 수행 가능한 짧은 구.\n"
+                       f"JSON 문자열 배열만 출력(설명 금지).\n\n요구: {query}"}],
+        )
+        text = re.sub(r"^```(?:json)?|```$", "", msg.content[0].text.strip(), flags=re.M).strip()
+        steps = [str(s).strip() for s in json.loads(text) if str(s).strip()]
+        return steps or None
+    except Exception:
+        return None
+
+
+def decompose(query: str) -> list[str]:
+    """LLM planner 우선(키 있을 때), 실패 시 규칙 기반."""
+    return _llm_decompose(query) or _rule_decompose(query)
 
 
 def orchestrate(query: str, k: int = 5) -> dict[str, Any]:
