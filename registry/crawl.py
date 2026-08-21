@@ -133,10 +133,30 @@ def crawl_mcp(url: str, limit: int) -> dict:
     }
 
 
+_OVERLAY: dict | None = None
+
+
+def _overlay() -> dict:
+    global _OVERLAY
+    if _OVERLAY is None:
+        p = ROOT / "enrich" / "overlay.json"
+        raw = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+        _OVERLAY = {k: v for k, v in raw.items() if not k.startswith("_")}
+    return _OVERLAY
+
+
 def enrich_safety(manifest: dict) -> dict:
     for c in manifest["capabilities"]:
         c["side_effects"] = classify_side_effects(c.get("embedding_text") or c.get("intent", ""))
         ko_augment(c)  # 한국어 동의어 주입 → KO 검색 개선
+        ov = _overlay().get(c["id"])  # 수동 고가치 보강(when_to_use·키워드) 병합
+        if ov:
+            kws = ov.get("keywords", [])
+            wtu = ov.get("when_to_use", "")
+            c["keywords"] = sorted(set((c.get("keywords") or []) + kws))
+            if wtu:
+                c["when_to_use"] = wtu
+            c["embedding_text"] = " ".join(x for x in [c.get("embedding_text", ""), " ".join(kws), wtu] if x).strip()
     return manifest
 
 

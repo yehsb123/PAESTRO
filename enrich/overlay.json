@@ -1,0 +1,29 @@
+{
+  "_comment": "고가치 capability 수동 보강(Claude 생성, 키 불필요). id → when_to_use + 한국어 키워드. crawl이 embedding_text/keywords에 병합. LLM 배치 보강(enrich.py)의 정밀 버전.",
+
+  "vscode.eslint.executeAutofix": { "when_to_use": "저장·리뷰 전에 자동 수정 가능한 린트 오류를 한 번에 정리할 때", "keywords": ["린트", "자동수정", "오류 수정", "eslint 고치기", "코드 정리"] },
+  "vscode.eslint.restart": { "when_to_use": "ESLint가 응답 없거나 설정 변경이 반영 안 될 때", "keywords": ["린트 재시작", "eslint 먹통", "서버 재시작"] },
+  "vscode.eslint.createConfig": { "when_to_use": "프로젝트에 ESLint 설정 파일을 새로 만들 때", "keywords": ["린트 설정", "eslint 설정 생성"] },
+  "vscode.prettier.forceFormatDocument": { "when_to_use": "코드를 강제로 정렬·포맷할 때(무시 규칙 우회)", "keywords": ["강제 포맷", "코드 정렬", "서식", "프리티어 포맷"] },
+
+  "vscode.python.setInterpreter": { "when_to_use": "이 프로젝트에서 쓸 파이썬 인터프리터를 고를 때", "keywords": ["파이썬 인터프리터", "인터프리터 선택", "파이썬 버전"] },
+  "vscode.python.createTerminal": { "when_to_use": "파이썬 환경이 활성화된 터미널을 새로 열 때", "keywords": ["파이썬 터미널", "터미널 열기"] },
+  "vscode.python.createEnvironment": { "when_to_use": "가상환경(venv/conda)을 새로 만들 때", "keywords": ["가상환경", "환경 생성", "venv 만들기"] },
+  "vscode.python.execInTerminal": { "when_to_use": "현재 파이썬 파일을 터미널에서 실행할 때", "keywords": ["파이썬 실행", "파일 실행", "run python"] },
+
+  "vscode.toggleVim": { "when_to_use": "Vim 키 모드를 켜거나 끌 때", "keywords": ["빔 모드", "vim 토글", "빔 켜기"] },
+
+  "cli.docker.run": { "when_to_use": "이미지로 새 컨테이너를 만들어 실행할 때", "keywords": ["컨테이너 실행", "도커 실행", "컨테이너 생성"] },
+  "cli.docker.ps": { "when_to_use": "실행 중인 컨테이너 목록을 볼 때", "keywords": ["컨테이너 목록", "도커 목록", "실행 중 컨테이너"] },
+  "cli.docker.build": { "when_to_use": "Dockerfile로 이미지를 빌드할 때", "keywords": ["이미지 빌드", "도커 빌드"] },
+  "cli.docker.pull": { "when_to_use": "레지스트리에서 이미지를 받을 때", "keywords": ["이미지 받기", "도커 풀"] },
+  "cli.docker.push": { "when_to_use": "이미지를 레지스트리에 올릴 때", "keywords": ["이미지 올리기", "도커 푸시"] },
+  "cli.docker.exec": { "when_to_use": "실행 중인 컨테이너 안에서 명령을 실행할 때", "keywords": ["컨테이너 접속", "컨테이너 명령"] },
+
+  "cli.git.clone": { "when_to_use": "원격 저장소를 로컬로 복제할 때", "keywords": ["저장소 복제", "클론", "레포 받기"] },
+  "cli.git.add": { "when_to_use": "변경한 파일을 스테이징할 때", "keywords": ["스테이징", "파일 추가", "git add"] },
+  "cli.git.restore": { "when_to_use": "작업 트리의 변경을 되돌릴 때", "keywords": ["되돌리기", "변경 취소", "복원"] },
+  "cli.git.rm": { "when_to_use": "추적 중인 파일을 삭제할 때", "keywords": ["파일 삭제", "추적 제거"] },
+  "cli.git.diff": { "when_to_use": "변경 내용을 비교해서 볼 때", "keywords": ["변경 비교", "차이 보기", "diff"] },
+  "cli.git.init": { "when_to_use": "새 Git 저장소를 초기화할 때", "keywords": ["저장소 초기화", "git 시작"] }
+}
