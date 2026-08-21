@@ -8,7 +8,7 @@
   python pae.py index [--post URL] 엔진 색인 레코드 생성/투입
   python pae.py validate           매니페스트 계약 검증
   python pae.py demo               이질 소스 통합 파이프라인
-  python pae.py check              CI(safety·validate·demo·regression) 로컬 실행
+  python pae.py check              CI(safety·validate·demo·regression·overlay) 로컬 실행
   python pae.py doctor             환경 진단(의존성·카탈로그·엔진)
 """
 import json
@@ -36,7 +36,8 @@ SCRIPTS = {
     "eval": "eval/run_eval.py",
     "demo": "demo/pipeline.py",
 }
-CHECK = ["enrich/test_safety.py", "schemas/validate.py", "demo/pipeline.py", "eval/regression.py"]
+CHECK = ["enrich/test_safety.py", "schemas/validate.py", "demo/pipeline.py",
+         "eval/regression.py", "eval/overlay_regression.py"]
 
 
 def run(script: str, args: list[str]) -> int:
