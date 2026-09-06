@@ -41,41 +41,61 @@ def upsert(caps: list[dict[str, Any]]) -> int:
 
 
 _LEX_WEIGHT = 0.4  # 하이브리드: dense(임베딩) + LEX_WEIGHT * lexical(토큰 겹침)
+_LEX_TERMS = 5  # lexical 리콜 서브쿼리에 쓸 질의 토큰 최대 수
 
 
-def query(text: str, k: int = 5) -> list[dict[str, Any]]:
-    # 넉넉히 뽑아(dense) 렉시컬 겹침으로 재랭크 → 소형 다국어 모델의 KO 약점 보완.
-    pool = max(k * 6, 30)
-    res = _col.query(
-        query_embeddings=[embedding.embed_query(text)],
-        n_results=pool,
-        include=["metadatas", "documents", "distances"],
-    )
+def _collect(emb: list[float], n: int, where_document: dict | None,
+             cand: dict[str, tuple]) -> None:
+    """dense 근접 결과를 후보 dict에 병합(id 기준, 최초 거리 유지)."""
+    kw: dict[str, Any] = {"query_embeddings": [emb], "n_results": n,
+                          "include": ["metadatas", "documents", "distances"]}
+    if where_document:
+        kw["where_document"] = where_document
+    res = _col.query(**kw)
     ids = res.get("ids", [[]])[0]
     metas = res["metadatas"][0]
     docs = res.get("documents", [[]])[0]
     dists = res["distances"][0]
-
-    qtokens = [t for t in text.lower().split() if len(t) >= 2]
-    scored: list[tuple[float, int]] = []
     for i in range(len(ids)):
-        doc = f"{(docs[i] or '')} {metas[i].get('intent', '')}".lower()
-        lex = (sum(1 for t in qtokens if t in doc) / len(qtokens)) if qtokens else 0.0
-        dense = 1.0 - float(dists[i])  # cosine distance → similarity
-        scored.append((dense + _LEX_WEIGHT * lex, i))
-    scored.sort(reverse=True)
+        cand.setdefault(ids[i], (metas[i], docs[i], dists[i]))
+
+
+def query(text: str, k: int = 5) -> list[dict[str, Any]]:
+    # 하이브리드 리콜: (1) dense 풀 + (2) lexical 리콜(질의 토큰을 포함하는 문서를
+    # 실거리와 함께 별도로 끌어옴) → 합집합 재랭크. 소형 다국어 모델이 음차/한글을
+    # 크게 놓쳐(dense 랭크 수백 위) 정확 키워드 매치가 dense 풀에 못 드는 문제를 구제.
+    emb = embedding.embed_query(text)
+    pool = max(k * 6, 30)
+    cand: dict[str, tuple] = {}
+    _collect(emb, pool, None, cand)  # (1) dense 리콜
+
+    # (2) lexical 리콜 — 대소문자 보존 위해 원문 토큰으로 $contains
+    raw_tokens = [t for t in text.split() if len(t) >= 2]
+    for t in raw_tokens[:_LEX_TERMS]:
+        try:
+            _collect(emb, 10, {"$contains": t}, cand)
+        except Exception:
+            pass  # 필터 미지원/빈 결과는 무시(dense 풀로 폴백)
+
+    qtokens = [t.lower() for t in raw_tokens]
+    scored: list[tuple[float, str, dict, float]] = []
+    for cid, (meta, doc, dist) in cand.items():
+        d = f"{(doc or '')} {meta.get('intent', '')}".lower()
+        lex = (sum(1 for t in qtokens if t in d) / len(qtokens)) if qtokens else 0.0
+        dense = 1.0 - float(dist)  # cosine distance → similarity
+        scored.append((dense + _LEX_WEIGHT * lex, cid, meta, dist))
+    scored.sort(key=lambda x: x[0], reverse=True)
 
     hits: list[dict[str, Any]] = []
-    for score, i in scored[:k]:
-        m = metas[i]
+    for score, cid, m, dist in scored[:k]:
         hits.append(
             {
-                "id": ids[i],
+                "id": cid,
                 "intent": m.get("intent"),
                 "plugin": m.get("plugin"),
                 "side_effects": m.get("side_effects"),
                 "invocation": m.get("invocation"),
-                "distance": dists[i],
+                "distance": dist,
                 "score": round(score, 4),
             }
         )

@@ -24,7 +24,8 @@ sys.path.insert(0, str(ROOT / "registry"))
 import search as S  # noqa: E402
 
 # 접속: 그리고/그다음 · 한국어 순차 연결어미 '-고 ' · 콤마 · then/and
-SPLIT = re.compile(r"\s*(?:그리고|그다음|그\s*다음|한\s*[뒤후]|,|;|\bthen\b|\band\b)\s*|(?<=[가-힣])고\s+", re.I)
+# '-고' 앞의 경동사 어간 '하/해'를 함께 소비 → "자동수정하고"→"자동수정"(어간 뭉갬 방지)
+SPLIT = re.compile(r"\s*(?:그리고|그다음|그\s*다음|한\s*[뒤후]|,|;|\bthen\b|\band\b)\s*|(?<=[가-힣])(?:하|해)?고\s+", re.I)
 
 
 def decompose(req: str) -> list[str]:
