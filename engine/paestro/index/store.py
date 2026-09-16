@@ -41,6 +41,7 @@ def upsert(caps: list[dict[str, Any]]) -> int:
 
 
 _LEX_WEIGHT = 0.4  # 하이브리드: dense(임베딩) + LEX_WEIGHT * lexical(토큰 겹침)
+_PHRASE_WEIGHT = 0.5  # 질의 전체가 문서에 연속 부분문자열로 나타날 때 보너스
 _LEX_TERMS = 5  # lexical 리콜 서브쿼리에 쓸 질의 토큰 최대 수
 
 
@@ -71,19 +72,32 @@ def query(text: str, k: int = 5) -> list[dict[str, Any]]:
 
     # (2) lexical 리콜 — 대소문자 보존 위해 원문 토큰으로 $contains
     raw_tokens = [t for t in text.split() if len(t) >= 2]
-    for t in raw_tokens[:_LEX_TERMS]:
+    terms = raw_tokens[:_LEX_TERMS]
+    # (2a) 모든 토큰을 동시에 포함하는 문서(AND) — 완전 렉시컬 매치를 직접 리콜.
+    #      흔한 토큰('저장소'·'목록')이라 토큰별 dense-top-N 밖으로 밀리는 정답을 구제.
+    if len(terms) >= 2:
         try:
-            _collect(emb, 10, {"$contains": t}, cand)
+            _collect(emb, 10, {"$and": [{"$contains": t} for t in terms]}, cand)
+        except Exception:
+            pass
+    # (2b) 토큰별 리콜(부분 매치 커버)
+    for t in terms:
+        try:
+            _collect(emb, 15, {"$contains": t}, cand)
         except Exception:
             pass  # 필터 미지원/빈 결과는 무시(dense 풀로 폴백)
 
     qtokens = [t.lower() for t in raw_tokens]
+    phrase = text.strip().lower()
     scored: list[tuple[float, str, dict, float]] = []
     for cid, (meta, doc, dist) in cand.items():
         d = f"{(doc or '')} {meta.get('intent', '')}".lower()
         lex = (sum(1 for t in qtokens if t in d) / len(qtokens)) if qtokens else 0.0
+        # 연속 구절 매치 보너스 — overlay 키워드는 문서에 연속 구절로 저장됨. 형제 명령이
+        # 흩어진 토큰으로 lex 1.0을 동점받을 때, 질의를 통째로 담은 정답을 변별.
+        phrase_hit = 1.0 if len(qtokens) >= 2 and phrase in d else 0.0
         dense = 1.0 - float(dist)  # cosine distance → similarity
-        scored.append((dense + _LEX_WEIGHT * lex, cid, meta, dist))
+        scored.append((dense + _LEX_WEIGHT * lex + _PHRASE_WEIGHT * phrase_hit, cid, meta, dist))
     scored.sort(key=lambda x: x[0], reverse=True)
 
     hits: list[dict[str, Any]] = []
