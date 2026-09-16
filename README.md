@@ -23,11 +23,11 @@
 
 ## 지금 상태
 
-- 🟢 **오픈소스 크롤 레지스트리 1,824 capability · 30 소스 · 4 런타임** — VS Code 확장 · MCP 서버(공식 레지스트리) · REST API(apis.guru: Stripe·Slack·GitHub 등) · CLI(git·docker·gh·kubectl)를 실제 크롤(`registry/crawl.py`). 승인 대상(irreversible) 133개 자동 분류.
-- 🟢 **END-TO-END 검증**: 크롤 → 정규화 → 엔진(mpnet+Chroma) 색인 → 의미 검색. 실측 top-3 전체 64%·KO 57%·EN 71%.
+- 🟢 **오픈소스 크롤 레지스트리 1,955 capability · 47 소스 · 4 런타임** — VS Code 확장 · MCP 서버(공식 레지스트리) · REST API(apis.guru: Stripe·Slack·GitHub 등) · CLI(git·docker·gh·kubectl)를 실제 크롤(`registry/crawl.py`). 승인 대상(irreversible) 138개 자동 분류.
+- 🟢 **END-TO-END 검증**: 크롤 → 정규화 → 엔진(mpnet+Chroma) 색인 → 의미 검색. 실측(레지스트리 정렬 26문항) top-3 **전체 80.8%·KO 76.9%·EN 84.6%**, MRR 0.699 (`eval/run_eval.py`).
 - 🟢 **멀티스텝 오케스트레이션**: 복합 요구 → 단계 분해(규칙기반, 키 있으면 LLM planner) → 크로스-런타임 계획 → 단계별 승인·실행 (엔진 `/orchestrate` + 확장 `paestro.orchestrate`)
 - 🟢 **안전 게이트 실재화**: 파괴적 명령(삭제·배포·force)은 `irreversible`로 분류되어 승인 필요
-- 🟢 **다국어 검색**: 한국어 동의어 주입(도구명·도메인 용어) + 복합어 부분매칭. 실측 top-3(레지스트리 26문항): lexical **KO 77%**·EN 92%. (엔진은 mpnet-base-v2 dense)
+- 🟢 **하이브리드 검색**: mpnet-base-v2 dense + lexical 리콜(구절·AND·토큰 `$contains`) + 연속구절 보너스로, 소형 다국어 모델이 음차/한글을 놓치는 약점을 보완. 고가치 34개 한국어 실측 top-3 **엔진 100%**(`eval/engine_overlay_eval.py`).
 
 ## 레지스트리 (오픈소스 크롤)
 

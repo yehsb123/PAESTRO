@@ -40,7 +40,9 @@ def retrieve(engine: str, query: str, k: int) -> list[str]:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--engine", default="http://127.0.0.1:8756")
-    ap.add_argument("--queryset", default="eval/queryset.json")
+    # 기본 = 크롤 레지스트리 정렬 셋. queryset.json은 확장이 런타임에 수집하는 VS Code
+    # 내장 command(vscode.git.clean 등) 기대 → 크롤 레지스트리엔 없어 매칭 불가(다른 카탈로그용).
+    ap.add_argument("--queryset", default="eval/queryset.registry.json")
     ap.add_argument("--k", type=int, default=3)
     ap.add_argument("--lang", choices=["ko", "en"], help="언어 필터(미지정=전체)")
     args = ap.parse_args()
