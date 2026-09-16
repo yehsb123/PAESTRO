@@ -32,7 +32,7 @@
 ## 레지스트리 (오픈소스 크롤)
 
 ```bash
-python pae.py crawl              # 오픈소스 크롤 → registry/catalog.json (1,824 capability · 4 런타임)
+python pae.py crawl              # 오픈소스 크롤 → registry/catalog.json (1,955 capability · 4 런타임)
 python pae.py stats              # 런타임·안전등급·플러그인 분포
 python pae.py search "결제 환불" # 자연어 → 번호 후보 (Stripe refund 등)
 python pae.py orchestrate "환불하고 이슈 생성"  # 멀티스텝 → 크로스런타임 계획

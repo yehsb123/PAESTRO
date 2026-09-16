@@ -2,13 +2,13 @@
 
 크롤 결과 요약 (전체 `catalog.json`은 생성물이라 gitignore — 이 파일은 버전관리용 기록).
 
-- **총 1954 capability · 35 소스 · 4 런타임**
+- **총 1955 capability · 47 소스 · 4 런타임**
 
 ## 런타임
 
 | 런타임 | capability |
 |---|---|
-| vscode | 1228 |
+| vscode | 1229 |
 | rest | 522 |
 | cli | 149 |
 | mcp | 55 |
@@ -17,7 +17,7 @@
 
 | 등급 | 수 |
 |---|---|
-| read_only | 1473 |
+| read_only | 1474 |
 | reversible | 343 |
 | irreversible | 138 |
 
@@ -27,7 +27,7 @@
 
 | 소스 | 런타임 | caps |
 |---|---|---|
-| vscode.gitlens | vscode | 914 |
+| vscode.gitlens | vscode | 915 |
 | vscode.pr-github | vscode | 172 |
 | mcp.registry | mcp | 55 |
 | cli.docker | cli | 51 |
