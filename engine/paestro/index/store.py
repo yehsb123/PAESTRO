@@ -73,7 +73,16 @@ def query(text: str, k: int = 5) -> list[dict[str, Any]]:
     # (2) lexical 리콜 — 대소문자 보존 위해 원문 토큰으로 $contains
     raw_tokens = [t for t in text.split() if len(t) >= 2]
     terms = raw_tokens[:_LEX_TERMS]
-    # (2a) 모든 토큰을 동시에 포함하는 문서(AND) — 완전 렉시컬 매치를 직접 리콜.
+    # (2a-phrase) 질의 구절 전체를 연속 부분문자열로 포함하는 문서를 직접 리콜.
+    #      정답이 dense로 크게 밀리고(rank 100+) 형제들이 개별 토큰을 나눠 가져
+    #      토큰/AND 채널까지 다 차지할 때, 연속 구절 매치 문서를 확실히 풀에 넣음.
+    stripped = text.strip()
+    if len(terms) >= 2 and " " in stripped:
+        try:
+            _collect(emb, 10, {"$contains": stripped}, cand)
+        except Exception:
+            pass
+    # (2b-AND) 모든 토큰을 동시에 포함하는 문서(AND) — 완전 렉시컬 매치를 직접 리콜.
     #      흔한 토큰('저장소'·'목록')이라 토큰별 dense-top-N 밖으로 밀리는 정답을 구제.
     if len(terms) >= 2:
         try:
