@@ -4,13 +4,14 @@
 
 개발자가 자연어로 시키면, PAESTRO가 벡터DB에서 관련 도구(VS Code 확장 명령 · MCP · REST · CLI)를 찾아 **번호가 붙은 후보 목록**으로 띄운다. 사용자가 고르면 실행하고, 위험한 작업(`irreversible`)은 실행 직전 승인을 받는다.
 
-```
-"이 파일 lint 정리하고 싶어"
-  1. ESLint: Fix all auto-fixable Problems   (reversible)
-  2. Format Document                          (read_only)
-  3. Prettier: Format                         (reversible)
-  5. 직접 지정 / 설정…
-> _
+![PAESTRO 터미널 데모 — 한국어로 도구 검색 + 복합 요청 단계 분해 + 승인 게이트](docs/demo.svg)
+
+> 위는 실제 CLI 출력이다. `pae s "..."` 로 뜻만 말하면 후보를 골라주고, `pae o "..."` 로 복합 요청을 단계로 분해·계획하며 되돌릴 수 없는 작업엔 ⚠ 승인을 붙인다.
+
+**바로 써보기** (엔진·설치 불필요, 오프라인):
+```bash
+pae s "린트 에러 자동으로 고쳐줘"      # 뜻으로 도구 검색 → 번호 후보
+pae o "저장소 복제하고 브랜치 삭제"    # 복합 요청 → 단계 계획 (⚠ 승인 표시)
 ```
 
 ---
