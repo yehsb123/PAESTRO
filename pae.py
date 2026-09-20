@@ -10,6 +10,9 @@
   python pae.py demo               이질 소스 통합 파이프라인
   python pae.py check              CI(safety·validate·demo·regression·overlay) 로컬 실행
   python pae.py doctor             환경 진단(의존성·카탈로그·엔진)
+
+  단축: 런처(pae.cmd·pae)로 `pae ...`, 별칭으로 `pae s "질의"` `pae o "복합요청"`
+        (s=search o=orchestrate c=check d=doctor st=stats i=index e=eval v=validate)
 """
 import json
 import subprocess
@@ -38,6 +41,10 @@ SCRIPTS = {
 }
 CHECK = ["enrich/test_safety.py", "schemas/validate.py", "demo/pipeline.py",
          "eval/regression.py", "eval/overlay_regression.py"]
+
+# 짧은 별칭 — `pae s "질의"`, `pae o "복합요청"` 처럼 쓸 수 있게.
+ALIASES = {"s": "search", "o": "orchestrate", "c": "check", "d": "doctor",
+           "st": "stats", "i": "index", "e": "eval", "v": "validate"}
 
 
 def run(script: str, args: list[str]) -> int:
@@ -84,6 +91,7 @@ def main() -> int:
         print(__doc__)
         return 0
     cmd, rest = sys.argv[1], sys.argv[2:]
+    cmd = ALIASES.get(cmd, cmd)  # 별칭 → 정식 명령
 
     if cmd == "check":
         failed = [s for s in CHECK if run(s, []) != 0]

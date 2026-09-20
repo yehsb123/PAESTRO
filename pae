@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# PAESTRO 런처(bash/mac/linux/Git Bash) — `./pae s "질의"` 처럼 쓰기 위한 래퍼.
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec python "$DIR/pae.py" "$@"
