@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAESTRO — 유사 OSS 지형 · 비교표</title>
+<style>
+  :root{
+    --ink:#111418; --sub:#4b5563; --line:#d1d5db; --line2:#e5e7eb;
+    --bg:#ffffff; --band:#f6f7f8; --ours:#eef2f4; --ours-line:#9aa7ad;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Nanum Myeongjo","Noto Serif KR",Batang,"Times New Roman",serif;
+    line-height:1.7; font-size:16px;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:40px 16px 80px}
+  header.doc{border-bottom:2px solid var(--ink); padding-bottom:16px; margin-bottom:8px}
+  h1{font-size:24px; margin:0 0 6px; letter-spacing:-.01em}
+  .meta{color:var(--sub); font-size:13.5px; font-family:system-ui,sans-serif}
+  h2{font-size:18px; margin:34px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--line)}
+  p{margin:8px 0}
+  .lead{color:var(--sub); font-size:15px}
+  .tablewrap{overflow-x:auto; margin:12px 0; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:760px; font-size:13.5px;
+        font-family:system-ui,"Malgun Gothic",sans-serif}
+  th,td{border:1px solid var(--line2); padding:9px 11px; vertical-align:top; text-align:left}
+  thead th{background:var(--band); font-weight:700; white-space:nowrap}
+  tbody th{background:var(--band); font-weight:700; white-space:nowrap}
+  col.ours,.ours-cell{background:var(--ours)}
+  tr.ours td,tr.ours th{background:var(--ours); border-color:var(--ours-line)}
+  .tag{display:inline-block; font-size:11.5px; padding:1px 7px; border:1px solid var(--line);
+       border-radius:2px; color:var(--sub); font-family:system-ui,sans-serif}
+  ul{margin:8px 0; padding-left:20px} li{margin:4px 0}
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+  @media(max-width:640px){.two{grid-template-columns:1fr}}
+  .box{border:1px solid var(--line); padding:14px 16px}
+  .box h3{margin:0 0 8px; font-size:15px}
+  .keep{border-left:3px solid var(--ink)}
+  footer{margin-top:40px; padding-top:14px; border-top:1px solid var(--line);
+          color:var(--sub); font-size:12.5px; font-family:system-ui,sans-serif}
+  a{color:var(--ink)}
+  small.src{color:var(--sub); font-family:system-ui,sans-serif}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <h1>PAESTRO — 유사 오픈소스 지형 &amp; 비교표</h1>
+  <div class="meta">작성 2026-09-20 · 목적: 우리 것과 겹치는 OSS를 파악하고 “빌릴 것 / 지킬 것”을 정한다 · 조사 단계(구현 전)</div>
+</header>
+
+<p class="lead">
+  PAESTRO는 “뜻으로 도구를 고르는 <b>시맨틱 라우터 + 오케스트레이터</b>”이며 접점은 VS Code 확장이다.
+  2026년 이 분야는 MCP 표준으로 정리되며 세 갈래의 OSS가 형성됐다 — <b>시맨틱 라우터형</b>,
+  <b>검색전략 연구</b>, <b>게이트웨이형</b>. 아래는 각 대표 프로젝트와 PAESTRO의 대조다.
+</p>
+
+<h2>1. 시맨틱 라우터란</h2>
+<p>
+  도구가 수백~수천 개면 정의를 전부 프롬프트에 넣을 수 없다(에이전트당 도구 상한 128개, 토큰 폭증).
+  시맨틱 라우터는 도구 설명을 <b>벡터로 색인</b>해 두고, 요구가 오면 <b>의미가 가까운 것만 검색</b>해 꺼낸다.
+  예: OmniMCP은 도구 58개(≈55K 토큰)를 노출하는 대신 <b>단일 <code>semantic_router</code> 도구(≈500 토큰)</b>만 두고
+  나머지는 런타임 검색으로 찾는다. PAESTRO의 ③검색 계층이 이것이며, 우리는 한국어 하이브리드 리콜까지 얹었다.
+</p>
+
+<h2>2. 비교표</h2>
+<div class="tablewrap">
+<table>
+  <colgroup><col><col class="ours"><col><col><col><col><col></colgroup>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th class="ours-cell">PAESTRO (우리)</th>
+      <th>OmniMCP</th>
+      <th>ScaleMCP <span class="tag">연구</span></th>
+      <th>ToolShed <span class="tag">연구</span></th>
+      <th>IBM ContextForge</th>
+      <th>MCPJungle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>유형</th>
+      <td class="ours-cell">시맨틱 라우터 + 오케스트레이터 + 에디터 확장</td>
+      <td>시맨틱 라우터(MCP)</td>
+      <td>도구 검색 방법론(TDWA)</td>
+      <td>도구 검색 방법론(RAG-Fusion)</td>
+      <td>MCP 게이트웨이</td>
+      <td>경량 게이트웨이+레지스트리</td>
+    </tr>
+    <tr>
+      <th>런타임 커버리지</th>
+      <td class="ours-cell"><b>4종</b>: VS Code·MCP·REST·CLI</td>
+      <td>MCP 전용</td>
+      <td>MCP 전용</td>
+      <td>범용(도구 문서)</td>
+      <td>MCP·A2A·REST·gRPC</td>
+      <td>MCP 전용</td>
+    </tr>
+    <tr>
+      <th>검색/라우팅</th>
+      <td class="ours-cell">하이브리드: dense(mpnet) + lexical 리콜(구절·AND·토큰) + 구절 보너스. <b>한국어 우선</b></td>
+      <td>벡터 검색(의도 기반), 사전 색인</td>
+      <td>TDWA — 도구문서 요소별(이름·설명·인자·합성질문) 가중 임베딩</td>
+      <td>enriched-doc + 사전보강·질의변환·재랭크 3단</td>
+      <td>가상 서버로 카탈로그·페더레이션(검색은 부차)</td>
+      <td>레지스트리 조회 중심</td>
+    </tr>
+    <tr>
+      <th>안전/정책</th>
+      <td class="ours-cell">side_effects 분류 → <b>irreversible 승인 게이트</b></td>
+      <td>—(라우팅 중심)</td>
+      <td>—</td>
+      <td>—</td>
+      <td><b>정책·identity·플러그인·OpenTelemetry</b>(최다)</td>
+      <td>기본 RBAC(엔터프라이즈 모드)</td>
+    </tr>
+    <tr>
+      <th>인터페이스</th>
+      <td class="ours-cell"><b>VS Code 확장</b>(번호 후보 UI·승인 모달)</td>
+      <td>MCP 클라이언트(단일 도구)</td>
+      <td>연구 코드</td>
+      <td>연구 코드</td>
+      <td>게이트웨이 API/콘솔</td>
+      <td>CLI/게이트웨이</td>
+    </tr>
+    <tr>
+      <th>오프라인/의존성</th>
+      <td class="ours-cell">오프라인 툴체인 의존성0(검색·CI), 엔진만 모델</td>
+      <td>MCP 서버 필요</td>
+      <td>—</td>
+      <td>—</td>
+      <td>서버 인프라</td>
+      <td>경량 배포</td>
+    </tr>
+    <tr>
+      <th>라이선스</th>
+      <td class="ours-cell">자체(레포)</td>
+      <td>MIT</td>
+      <td>논문(arXiv 2505.06416)</td>
+      <td>논문(SCITEPRESS 2025)</td>
+      <td>오픈소스</td>
+      <td>오픈소스</td>
+    </tr>
+    <tr class="ours">
+      <th>PAESTRO와 관계</th>
+      <td>—</td>
+      <td><b>코어 벤치마킹</b> 대상(가장 닮음). 단 MCP 전용이라 4런타임·에디터·KO는 우리 몫</td>
+      <td><b>검색 고도화</b> 방법 차용(요소별 가중)</td>
+      <td><b>보강 파이프라인</b> 차용(overlay 전체 확장 시)</td>
+      <td><b>auth/정책 위임</b> 후보(재발명 회피)</td>
+      <td>경량 대안 참고</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p><small class="src">근거: OmniMCP(milkymap, MIT) · ScaleMCP(arXiv 2505.06416) · ToolShed(SCITEPRESS 2025) · MCP 게이트웨이 2026 비교(ContextForge·MCPJungle) — URL은 이 문서 하단 및 대화 소스 참조.</small></p>
+
+<h2>3. 빌릴 것 vs 지킬 것</h2>
+<div class="two">
+  <div class="box">
+    <h3>빌려온다(커스터마이징)</h3>
+    <ul>
+      <li><b>검색 전략</b> — ScaleMCP TDWA / ToolShed enriched-doc를 우리 하이브리드 리콜에 접목. 지금의 수동 overlay 34개를 이 방법론으로 전체(1,955개)로 확장.</li>
+      <li><b>auth·정책·로깅</b> — MCP 게이트웨이(ContextForge 등) 패턴을 엔진 뒤에 두어 ⑤안전을 재발명하지 않음.</li>
+      <li><b>단일 진입 라우터 발상</b> — OmniMCP의 “도구 1개만 노출” 구조를 확장/엔진 계약에 참고.</li>
+    </ul>
+  </div>
+  <div class="box keep">
+    <h3>우리 것으로 지킨다(차별점)</h3>
+    <ul>
+      <li><b>VS Code 확장 = 인터페이스</b> — 경쟁 OSS는 게이트웨이/CLI형. 에디터 안에서 지휘하는 건 우리뿐.</li>
+      <li><b>4런타임 통합 매니페스트</b>(vscode+mcp+rest+cli) — 경쟁작 대부분 MCP 전용.</li>
+      <li><b>한국어 우선 하이브리드 검색</b>(이번 튜닝: 음차·구절 리콜) + 오프라인 의존성0 툴체인.</li>
+      <li><b>side_effects 승인 게이트</b>가 검색·오케스트레이션과 한 몸.</li>
+    </ul>
+  </div>
+</div>
+
+<h2>4. 전략적 관찰</h2>
+<p>
+  MCP가 표준이 됐고(2025-11 스펙에 Tasks·OAuth 2.1·중앙 레지스트리 추가), 초기 3,000+ 서버가 등록돼 있다(우리 이미 크롤 중).
+  게이트웨이형 OSS가 auth·정책을 성숙시키는 중이므로, PAESTRO는 이를 직접 만들기보다
+  <b>“MCP 레지스트리 위에 얹는 한국어 시맨틱 라우터 + 에디터 인터페이스”</b>로 포지셔닝하면
+  우리 강점만 남기고 나머지는 OSS에 위임할 수 있다.
+</p>
+
+<footer>
+  소스 —
+  <a href="https://github.com/milkymap/omnimcp">OmniMCP(milkymap)</a> ·
+  <a href="https://arxiv.org/html/2505.06416">ScaleMCP</a> ·
+  <a href="https://www.scitepress.org/Papers/2025/133030/133030.pdf">ToolShed</a> ·
+  <a href="https://www.lunar.dev/post/the-best-open-source-mcp-gateways-in-2026">MCP 게이트웨이 2026</a> ·
+  <a href="https://www.getmaxim.ai/articles/top-5-semantic-routing-platforms-for-llm-applications/">시맨틱 라우팅 플랫폼</a>
+  <br>PAESTRO 내부 조사 문서 · 구현 전 방향 정리용.
+</footer>
+
+</div>
+</body>
+</html>
