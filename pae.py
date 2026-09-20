@@ -48,7 +48,8 @@ ALIASES = {"s": "search", "o": "orchestrate", "c": "check", "d": "doctor",
 
 
 def run(script: str, args: list[str]) -> int:
-    return subprocess.call([sys.executable, script, *args])
+    # ROOT 기준 절대경로로 호출 — 레포 밖(전역 런처)에서 실행해도 하위 스크립트를 찾도록.
+    return subprocess.call([sys.executable, str(ROOT / script), *args])
 
 
 def doctor() -> int:
