@@ -39,18 +39,94 @@ async function reindex(): Promise<void> {
 
 type MenuItem = vscode.QuickPickItem & { hit?: engine.Hit };
 
-// invocation(JSON 문자열)에서 실행할 vscode command 추출. 다른 런타임이거나 파싱 실패 시 처리.
-// 반환: {command} 실행 가능 · {runtime} 확장에서 실행 불가(REST/CLI/MCP) · null 알 수 없음
-function resolveExec(hit: engine.Hit): { command?: string; runtime?: string } {
+// 실행 가능한 hit의 최소 형태(ask의 Hit·orchestrate의 Chosen 공용).
+type Runnable = { id: string; intent?: string; invocation?: string };
+
+type Exec =
+  | { kind: "vscode"; command: string; args: unknown[] }
+  | { kind: "cli"; argv: string[] }
+  | { kind: "rest"; method: string; url: string }
+  | { kind: "mcp"; server: string; tool: string }
+  | { kind: "unknown"; runtime: string };
+
+// invocation(JSON 문자열) → 런타임별 실행 계획. 파싱 실패 시 id 접두로 폴백.
+function parseExec(hit: Runnable): Exec {
   try {
     const inv = JSON.parse(hit.invocation || "{}");
-    if (inv.type === "vscode" && inv.command) return { command: inv.command };
-    if (inv.type && inv.type !== "vscode") return { runtime: inv.type };
+    if (inv.type === "vscode" && inv.command)
+      return { kind: "vscode", command: inv.command, args: Array.isArray(inv.args) ? inv.args : [] };
+    if (inv.type === "cli" && Array.isArray(inv.argv_template))
+      return { kind: "cli", argv: inv.argv_template.map(String) };
+    if (inv.type === "rest")
+      return { kind: "rest", method: String(inv.method || "GET"), url: `${inv.base_url || ""}${inv.path || ""}` };
+    if (inv.type === "mcp")
+      return { kind: "mcp", server: String(inv.server || "?"), tool: String(inv.tool || "*") };
+    if (inv.type && inv.type !== "vscode") return { kind: "unknown", runtime: String(inv.type) };
   } catch {
     /* 구형 데이터 등 → id 폴백 */
   }
-  if (hit.id.startsWith("vscode.")) return { command: hit.id.replace(/^vscode\./, "") };
-  return { runtime: hit.id.split(".")[0] };
+  if (hit.id.startsWith("vscode.")) return { kind: "vscode", command: hit.id.replace(/^vscode\./, ""), args: [] };
+  return { kind: "unknown", runtime: hit.id.split(".")[0] };
+}
+
+let paeTerminal: vscode.Terminal | undefined;
+function cliTerminal(): vscode.Terminal {
+  if (!paeTerminal || paeTerminal.exitStatus !== undefined) {
+    paeTerminal = vscode.window.createTerminal("PAESTRO");
+  }
+  return paeTerminal;
+}
+
+// argv_template의 {placeholder} 를 사용자 입력으로 채운다(#2 인자 전달). 취소 시 null.
+async function fillPlaceholders(argv: string[]): Promise<string[] | null> {
+  const out: string[] = [];
+  for (const tok of argv) {
+    const m = tok.match(/^\{(.+)\}$/);
+    if (!m) { out.push(tok); continue; }
+    const val = await vscode.window.showInputBox({ prompt: `인자 '${m[1]}' 값`, ignoreFocusOut: true });
+    if (val === undefined) return null; // 사용자 취소
+    out.push(val);
+  }
+  return out;
+}
+
+// 런타임별 실제 실행. 승인 게이트는 호출부(ask/orchestrate)에서 이미 처리한다.
+// 반환: 사용자에게 보일 결과 요약.
+async function executeHit(hit: Runnable): Promise<string> {
+  const ex = parseExec(hit);
+  const name = hit.intent || hit.id;
+  switch (ex.kind) {
+    case "vscode":
+      await vscode.commands.executeCommand(ex.command, ...ex.args); // #2 인자 전달(invocation.args)
+      return `실행: ${name}`;
+    case "cli": {
+      const argv = await fillPlaceholders(ex.argv); // #1 CLI 실행 + #2 인자 채움
+      if (!argv) return "취소됨";
+      const cmd = argv.join(" ");
+      const t = cliTerminal();
+      t.show();
+      t.sendText(cmd, false); // 자동 실행 대신 터미널에 '준비' — 검토 후 Enter (안전)
+      vscode.window.showInformationMessage(`PAESTRO: 터미널에 준비됨 (검토 후 Enter): ${cmd}`);
+      return `CLI 준비: ${cmd}`;
+    }
+    case "rest": {
+      const req = `${ex.method} ${ex.url}`; // 인증·외부호출 위험 → 자동 호출 금지, 표시+복사만
+      const pick = await vscode.window.showInformationMessage(
+        `PAESTRO: REST 요청은 자동 실행하지 않습니다(인증·외부호출). 요청: ${req}`,
+        "복사"
+      );
+      if (pick === "복사") await vscode.env.clipboard.writeText(req);
+      return `REST 표시: ${req}`;
+    }
+    case "mcp":
+      await vscode.window.showInformationMessage(
+        `PAESTRO: MCP 도구 ${ex.server}/${ex.tool} — MCP 클라이언트 연결이 필요해 자동 실행은 아직 미지원입니다.`
+      );
+      return `MCP 안내: ${ex.server}/${ex.tool}`;
+    default:
+      vscode.window.showInformationMessage(`PAESTRO: [${ex.runtime}] 런타임은 아직 실행을 지원하지 않습니다: ${name}`);
+      return `미지원(${ex.runtime})`;
+  }
 }
 
 // [4] 오케스트레이터 흐름: 요구 → 후보 번호 메뉴 → [5]게이트 → 실행.
@@ -96,14 +172,7 @@ async function ask(): Promise<void> {
     if (ok !== "실행") return;
   }
 
-  const exec = resolveExec(pick.hit);
-  if (!exec.command) {
-    vscode.window.showInformationMessage(
-      `PAESTRO: 이 도구는 [${exec.runtime ?? "?"}] 런타임이라 확장에서 직접 실행할 수 없습니다: ${pick.hit.intent}`
-    );
-    return;
-  }
-  await vscode.commands.executeCommand(exec.command);
+  await executeHit(pick.hit);
 }
 
 // [4] 멀티스텝 오케스트레이션: 복합 요구 → 단계 계획 → 승인 게이트 → 순차 실행.
@@ -138,11 +207,6 @@ async function orchestrate(): Promise<void> {
   let ran = 0;
   for (const s of plan.steps) {
     if (!s.chosen) continue;
-    const exec = resolveExec(s.chosen);
-    if (!exec.command) {
-      vscode.window.showInformationMessage(`PAESTRO: ${s.n}단계 [${exec.runtime ?? "?"}]는 확장에서 직접 실행 불가 — 건너뜀`);
-      continue;
-    }
     if (s.chosen.needs_approval) {
       const ok = await vscode.window.showWarningMessage(
         `되돌릴 수 없는 작업: ${s.chosen.intent}. 실행할까요?`,
@@ -151,7 +215,7 @@ async function orchestrate(): Promise<void> {
       );
       if (ok !== "실행") continue;
     }
-    await vscode.commands.executeCommand(exec.command);
+    await executeHit(s.chosen); // 런타임별 실행(vscode 실행 · cli 터미널 준비 · rest/mcp 안내)
     ran++;
   }
   vscode.window.showInformationMessage(`PAESTRO: 계획 실행 완료 (${ran}/${plan.steps.length}단계)`);
