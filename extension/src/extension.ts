@@ -1,5 +1,37 @@
 import * as vscode from "vscode";
+import * as http from "node:http";
+import * as https from "node:https";
+import { URL } from "node:url";
 import * as engine from "./engineClient";
+
+// 최소 HTTP 클라이언트(node 빌트인). 본문은 2KB로 잘라 요약 표시용.
+function httpRequest(
+  method: string,
+  urlStr: string,
+  headers: Record<string, string>,
+  body?: string
+): Promise<{ status: number; body: string }> {
+  return new Promise((resolve, reject) => {
+    let u: URL;
+    try {
+      u = new URL(urlStr);
+    } catch {
+      reject(new Error(`잘못된 URL: ${urlStr}`));
+      return;
+    }
+    const mod = u.protocol === "http:" ? http : https;
+    const req = mod.request(u, { method, headers }, (res) => {
+      const chunks: Buffer[] = [];
+      res.on("data", (d) => chunks.push(Buffer.from(d)));
+      res.on("end", () =>
+        resolve({ status: res.statusCode ?? 0, body: Buffer.concat(chunks).toString("utf8").slice(0, 2000) })
+      );
+    });
+    req.on("error", reject);
+    if (body) req.write(body);
+    req.end();
+  });
+}
 
 // [2] VS Code 어댑터 parse — 설치된 확장의 command 를 capability 로 수집(런타임).
 function collectCapabilities(): Array<Record<string, unknown>> {
@@ -110,13 +142,58 @@ async function executeHit(hit: Runnable): Promise<string> {
       return `CLI 준비: ${cmd}`;
     }
     case "rest": {
-      const req = `${ex.method} ${ex.url}`; // 인증·외부호출 위험 → 자동 호출 금지, 표시+복사만
-      const pick = await vscode.window.showInformationMessage(
-        `PAESTRO: REST 요청은 자동 실행하지 않습니다(인증·외부호출). 요청: ${req}`,
-        "복사"
+      const req = `${ex.method} ${ex.url}`;
+      let host = "";
+      try {
+        host = new URL(ex.url).host;
+      } catch {
+        /* host 파싱 실패 → 미허용 취급 */
+      }
+      const allow = vscode.workspace.getConfiguration("paestro").get<string[]>("rest.allowlist", []);
+      const allowed = !!host && allow.some((h) => h === "*" || host === h || host.endsWith(`.${h}`));
+
+      // 허용목록에 없으면: 자동 호출 금지 → 표시/복사/설정안내만 (기본 안전)
+      if (!allowed) {
+        const pick = await vscode.window.showInformationMessage(
+          `PAESTRO: REST는 허용목록에 없어 자동 실행하지 않습니다. 요청: ${req}`,
+          "복사",
+          "설정 열기"
+        );
+        if (pick === "복사") await vscode.env.clipboard.writeText(req);
+        else if (pick === "설정 열기")
+          await vscode.commands.executeCommand("workbench.action.openSettings", "paestro.rest.allowlist");
+        return `REST 표시: ${req}`;
+      }
+
+      // 허용목록 → 매 호출 승인(외부 서비스에 실제 전송)
+      const go = await vscode.window.showWarningMessage(
+        `외부 REST 호출: ${req}\n외부 서비스에 실제 요청이 전송됩니다. 실행할까요?`,
+        { modal: true },
+        "실행"
       );
-      if (pick === "복사") await vscode.env.clipboard.writeText(req);
-      return `REST 표시: ${req}`;
+      if (go !== "실행") return "취소됨";
+
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      let body: string | undefined;
+      if (ex.method !== "GET" && ex.method !== "DELETE") {
+        body = await vscode.window.showInputBox({ prompt: "요청 본문(JSON, 선택)", ignoreFocusOut: true });
+      }
+      // 인증값은 매 호출 입력받고 저장하지 않음(시크릿 비저장)
+      const auth = await vscode.window.showInputBox({
+        prompt: "Authorization 헤더 값(선택 · 저장 안 함)",
+        password: true,
+        ignoreFocusOut: true,
+      });
+      if (auth) headers["Authorization"] = auth;
+
+      try {
+        const r = await httpRequest(ex.method, ex.url, headers, body);
+        await vscode.window.showInformationMessage(`PAESTRO: REST ${r.status} — ${req}`);
+        return `REST ${r.status}`;
+      } catch (e) {
+        vscode.window.showErrorMessage(`PAESTRO: REST 실패 — ${e}`);
+        return "REST 오류";
+      }
     }
     case "mcp":
       await vscode.window.showInformationMessage(

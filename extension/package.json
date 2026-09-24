@@ -13,7 +13,18 @@
       { "command": "paestro.ask", "title": "자연어로 도구 실행", "category": "PAESTRO" },
       { "command": "paestro.orchestrate", "title": "멀티스텝 오케스트레이션", "category": "PAESTRO" },
       { "command": "paestro.reindex", "title": "설치된 확장 재색인", "category": "PAESTRO" }
-    ]
+    ],
+    "configuration": {
+      "title": "PAESTRO",
+      "properties": {
+        "paestro.rest.allowlist": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "markdownDescription": "실제 호출을 허용할 REST 호스트 목록(예: `api.github.com`). 비어 있으면 어떤 REST도 자동 호출하지 않고 요청을 표시/복사만 합니다. 목록에 있는 호스트도 **매 호출마다 승인**을 받고, 인증값은 저장하지 않습니다."
+        }
+      }
+    }
   },
   "scripts": {
     "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
