@@ -3,6 +3,7 @@ import * as http from "node:http";
 import * as https from "node:https";
 import { URL } from "node:url";
 import * as engine from "./engineClient";
+import { callMcpTool } from "./mcpClient";
 
 // 최소 HTTP 클라이언트(node 빌트인). 본문은 2KB로 잘라 요약 표시용.
 function httpRequest(
@@ -195,11 +196,44 @@ async function executeHit(hit: Runnable): Promise<string> {
         return "REST 오류";
       }
     }
-    case "mcp":
-      await vscode.window.showInformationMessage(
-        `PAESTRO: MCP 도구 ${ex.server}/${ex.tool} — MCP 클라이언트 연결이 필요해 자동 실행은 아직 미지원입니다.`
+    case "mcp": {
+      const servers = vscode.workspace
+        .getConfiguration("paestro")
+        .get<Record<string, { command: string; args?: string[] }>>("mcp.servers", {});
+      const cfg = servers[ex.server];
+      if (!cfg?.command) {
+        const pick = await vscode.window.showInformationMessage(
+          `PAESTRO: MCP 서버 '${ex.server}'가 설정에 없어 실행할 수 없습니다. paestro.mcp.servers 에 추가하세요.`,
+          "설정 열기"
+        );
+        if (pick === "설정 열기")
+          await vscode.commands.executeCommand("workbench.action.openSettings", "paestro.mcp.servers");
+        return `MCP 안내: ${ex.server}/${ex.tool}`;
+      }
+      const go = await vscode.window.showWarningMessage(
+        `MCP 도구 실행: ${ex.server}/${ex.tool}. 실행할까요?`,
+        { modal: true },
+        "실행"
       );
-      return `MCP 안내: ${ex.server}/${ex.tool}`;
+      if (go !== "실행") return "취소됨";
+      const argStr = await vscode.window.showInputBox({
+        prompt: `'${ex.tool}' 인자(JSON, 선택)`,
+        ignoreFocusOut: true,
+      });
+      let toolArgs: unknown = {};
+      if (argStr) {
+        try {
+          toolArgs = JSON.parse(argStr);
+        } catch {
+          vscode.window.showErrorMessage("PAESTRO: 인자 JSON 파싱에 실패했습니다.");
+          return "MCP 인자 오류";
+        }
+      }
+      const r = await callMcpTool(cfg.command, cfg.args ?? [], ex.tool, toolArgs);
+      if (r.ok) await vscode.window.showInformationMessage(`PAESTRO: MCP ${ex.server}/${ex.tool} → ${r.text.slice(0, 300)}`);
+      else vscode.window.showErrorMessage(`PAESTRO: ${r.text}`);
+      return r.ok ? `MCP ${ex.server}/${ex.tool}` : "MCP 오류";
+    }
     default:
       vscode.window.showInformationMessage(`PAESTRO: [${ex.runtime}] 런타임은 아직 실행을 지원하지 않습니다: ${name}`);
       return `미지원(${ex.runtime})`;

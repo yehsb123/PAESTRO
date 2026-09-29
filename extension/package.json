@@ -22,6 +22,19 @@
           "items": { "type": "string" },
           "default": [],
           "markdownDescription": "실제 호출을 허용할 REST 호스트 목록(예: `api.github.com`). 비어 있으면 어떤 REST도 자동 호출하지 않고 요청을 표시/복사만 합니다. 목록에 있는 호스트도 **매 호출마다 승인**을 받고, 인증값은 저장하지 않습니다."
+        },
+        "paestro.mcp.servers": {
+          "type": "object",
+          "default": {},
+          "markdownDescription": "MCP 서버 접속 설정. 서버 이름 → `{ command, args }` (stdio 실행). 예: `{ \"github\": { \"command\": \"npx\", \"args\": [\"-y\", \"@modelcontextprotocol/server-github\"] } }`. 설정에 없는 서버는 실행하지 않고 안내만 합니다. 실행 시 매번 승인을 받습니다.",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "command": { "type": "string" },
+              "args": { "type": "array", "items": { "type": "string" } }
+            },
+            "required": ["command"]
+          }
         }
       }
     }
@@ -29,6 +42,7 @@
   "scripts": {
     "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
     "watch": "npm run build -- --watch",
+    "test:mcp": "esbuild src/mcpClient.ts --bundle --platform=node --format=cjs --outfile=test/_mcpClient.cjs && node test/mcp.test.js",
     "package": "vsce package"
   },
   "devDependencies": {
