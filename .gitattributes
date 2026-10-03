@@ -1,0 +1,5 @@
+# 줄바꿈 고정. Windows 클론에서 autocrlf로 bash 런처가 CRLF가 되면 mac/linux에서 깨진다.
+* text=auto
+pae text eol=lf
+*.sh text eol=lf
+*.cmd text eol=crlf

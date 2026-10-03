@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 # PAESTRO 런처(bash/mac/linux/Git Bash) — `./pae s "질의"` 처럼 쓰기 위한 래퍼.
+# mac/linux는 python3만 있는 경우가 많아 python3를 먼저 찾는다.
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-exec python "$DIR/pae.py" "$@"
+if command -v python3 >/dev/null 2>&1; then PY=python3; else PY=python; fi
+exec "$PY" "$DIR/pae.py" "$@"
